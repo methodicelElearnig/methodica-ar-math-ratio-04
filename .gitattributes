@@ -1,0 +1,15 @@
+# Line endings, pinned so every clone agrees (same policy as methodica-math-ratio-01/05).
+# Every text blob in the index is already LF (`git ls-files --eol`), so this renormalises
+# nothing; it also pins the working tree to LF on Windows, so packages copied from any
+# machine are byte-identical.
+
+* text=auto eol=lf
+
+*.woff2 binary
+*.ttf   binary
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.mp4   binary
+
+*.svg   text eol=lf

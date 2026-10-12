@@ -1,0 +1,8 @@
+.claude/
+node_modules/
+dist/
+_test/.resume-*.png
+kata-api-key.txt
+docs-and-tools/kata-api-key.txt
+docs-and-tools/*.log
+metadata-from/

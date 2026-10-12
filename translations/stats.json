@@ -1,0 +1,23 @@
+{
+  "module": "methodica-math-ratio-04",
+  "target": "04",
+  "parts": [
+    "methodica-math-ratio-04-01",
+    "methodica-math-ratio-04-02",
+    "methodica-math-ratio-04-03",
+    "methodica-math-ratio-04-04",
+    "methodica-math-ratio-04-05",
+    "methodica-math-ratio-04-06",
+    "methodica-math-ratio-04-07"
+  ],
+  "units": 712,
+  "screens": 76,
+  "excluded": 0,
+  "sweep1_literal": 686,
+  "sweep1_normalised": 19,
+  "sweep1_miss": 7,
+  "sweep2_uncovered_total": 109,
+  "sweep2_comments": 108,
+  "sweep2_to_classify": 1,
+  "overflow_ids": []
+}

@@ -1,0 +1,94 @@
+{
+  "id": "https://lomdot.education.gov.il/metodica/720active/math/ratio/04/methodica-math-ratio-04-05/",
+  "title": "هيا نتحدّى أنفسنا",
+  "learningUnitId": "methodica-math-ratio-04",
+  "componentPurpose": "practice",
+  "isAssessment": false,
+  "recommendedAfterFail": [],
+  "isRequired": false,
+  "relativeDifficulty": 5,
+  "masteryLevel": null,
+  "order": 5,
+  "depthLevel": "core-curriculum-basic",
+  "cognitiveLevels": [
+    "interpretation-and-reasoning"
+  ],
+  "languages": [
+    "Arabic"
+  ],
+  "skills": [],
+  "estimatedTimeInMinutes": 8,
+  "createdAt": "2026-09-30T00:00:00.000Z",
+  "updatedAt": "2026-09-30T00:00:00.000Z",
+  "subContent": [
+    {
+      "id": "https://lomdot.education.gov.il/metodica/720active/math/ratio/04/methodica-math-ratio-04-05/methodica-math-ratio-04-05-001/",
+      "title": "خزان ماء بثقب في أسفله",
+      "informationToBot": "هدف المعطى: تحدٍّ: مقارنة وتيرتَي التعبئة والتفريغ بوحدات قياس مختلفة واستنتاج ما سيحدث لمستوى الماء. ما الذي ينبغي أن يفهمه الطالب/يتدرّب عليه: تحويل 200 سم مكعب في الثانية إلى 12 لترًا في الدقيقة (200 · 60 = 12,000 سم مكعب)، ومقارنتها بوتيرة تعبئة مقدارها 5 لترات في الدقيقة: التفريغ أسرع ولذلك ينخفض المستوى. اتجاهات التفكير والاستراتيجيات: توحيد وحدات القياس للوتيرتين (لترات في الدقيقة) ثم المقارنة فقط. أخطاء شائعة: مقارنة 200 بـ 5 دون مواءمة الوحدات؛ تحويل معكوس بين السنتيمترات المكعبة واللترات أو بين الثواني والدقائق. معلومات إضافية: لكل بند محاولتان وتلميح بعد الخطأ الأول؛ البند ب يعتمد على نتيجة البند أ. لقطة شاشة: لم تُرفق.",
+      "contentType": "practice",
+      "mediaFormat": "interactive-content",
+      "questions": [
+        {
+          "questionId": "https://lomdot.education.gov.il/metodica/720active/math/ratio/04/methodica-math-ratio-04-05/methodica-math-ratio-04-05-001/q1",
+          "questionType": "numeric",
+          "questionText": "يمتلئ خزان أسطواني بالماء بوتيرة 5 لترات في الدقيقة. في أسفل الخزان ثقب يتسرب منه الماء بوتيرة 200 سم مكعب في الثانية (1 لتر = 1,000 سم مكعب). أ. أكملوا: وتيرة تفريغ الخزان هي _ لترًا في الدقيقة.",
+          "answers": [],
+          "correctAnswers": [
+            "12"
+          ]
+        },
+        {
+          "questionId": "https://lomdot.education.gov.il/metodica/720active/math/ratio/04/methodica-math-ratio-04-05/methodica-math-ratio-04-05-001/q2",
+          "questionType": "choice",
+          "questionText": "وتيرة تعبئة الماء في الخزان هي 5 لترات في الدقيقة، ووتيرة تفريغه هي 12 لترًا في الدقيقة. ب. ماذا سيحدث لمستوى الماء في الخزان مع مرور الوقت؟",
+          "answers": [
+            "مستوى الماء سينخفض",
+            "مستوى الماء سيرتفع",
+            "سيرتفع المستوى ثم يستقر",
+            "مستوى الماء سيبقى ثابتًا"
+          ],
+          "correctAnswers": [
+            "مستوى الماء سينخفض"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "https://lomdot.education.gov.il/metodica/720active/math/ratio/04/methodica-math-ratio-04-05/methodica-math-ratio-04-05-002/",
+      "title": "السيارة الكهربائية لعائلة سلمان",
+      "informationToBot": "هدف المعطى: تحدٍّ: حساب مدى السير واستهلاك الطاقة عندما تتغيّر وتيرة الاستهلاك في منتصف الطريق. ما الذي ينبغي أن يفهمه الطالب/يتدرّب عليه: المدى: 60 ÷ 0.2 = 300 كم؛ بعد 150 كم: 20 kWh في أول 100 كم + 12.5 kWh في الـ 50 كم التالية = 32.5 kWh، وتبقّى 27.5 kWh. اتجاهات التفكير والاستراتيجيات: تقسيم الرحلة إلى مقاطع بحسب وتيرة الاستهلاك، وحساب كل مقطع على حدة، ثم الجمع والطرح من البطارية. أخطاء شائعة: تطبيق وتيرة الاستهلاك الجديدة على كامل الـ 150 كم؛ التوقف بعد حساب الاستهلاك دون الطرح من 60 kWh. معلومات إضافية: لكل بند محاولتان وتلميح بعد الخطأ الأول؛ مصطلح kWh موضَّح في نص السؤال. في شاشة البند ب يوجد تمرير في لوحة التغذية الراجعة. لقطة شاشة: لم تُرفق.",
+      "contentType": "practice",
+      "mediaFormat": "interactive-content",
+      "questions": [
+        {
+          "questionId": "https://lomdot.education.gov.il/metodica/720active/math/ratio/04/methodica-math-ratio-04-05/methodica-math-ratio-04-05-002/q1",
+          "questionType": "choice",
+          "questionText": "عندما تكون بطارية السيارة الكهربائية لعائلة سلمان مشحونة بالكامل، يكون فيها 60 kWh. في القيادة العادية تستهلك السيارة 0.2 kWh لكل 1 كم. أ. كم كيلومترًا تستطيع السيارة أن تقطع قبل أن تفرغ البطارية بالكامل؟",
+          "answers": [
+            "12 كم",
+            "120 كم",
+            "300 كم",
+            "600 كم"
+          ],
+          "correctAnswers": [
+            "300 كم"
+          ]
+        },
+        {
+          "questionId": "https://lomdot.education.gov.il/metodica/720active/math/ratio/04/methodica-math-ratio-04-05/methodica-math-ratio-04-05-002/q2",
+          "questionType": "choice",
+          "questionText": "بعد أن قطعت السيارة 100 كم، شغّلت العائلة المكيّف وارتفع الاستهلاك إلى 0.25 kWh لكل كيلومتر. ب. ما هي كمية الطاقة التي ستبقى في البطارية بعد قطع 150 كم من بداية الرحلة؟",
+          "answers": [
+            "27.5 kWh",
+            "32.5 kWh",
+            "40 kWh",
+            "47.5 kWh"
+          ],
+          "correctAnswers": [
+            "27.5 kWh"
+          ]
+        }
+      ]
+    }
+  ]
+}

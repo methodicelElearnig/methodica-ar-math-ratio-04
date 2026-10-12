@@ -1,0 +1,88 @@
+{
+  "id": "https://lomdot.education.gov.il/metodica/720active/math/ratio/04/methodica-math-ratio-04-06/",
+  "title": "السؤال الأكبر",
+  "learningUnitId": "methodica-math-ratio-04",
+  "componentPurpose": "practice",
+  "isAssessment": true,
+  "recommendedAfterFail": [],
+  "isRequired": true,
+  "relativeDifficulty": 5,
+  "masteryLevel": null,
+  "order": 6,
+  "depthLevel": "core-curriculum-basic",
+  "cognitiveLevels": [
+    "interpretation-and-reasoning"
+  ],
+  "languages": [
+    "Arabic"
+  ],
+  "skills": [],
+  "estimatedTimeInMinutes": 10,
+  "createdAt": "2026-09-30T00:00:00.000Z",
+  "updatedAt": "2026-09-30T00:00:00.000Z",
+  "subContent": [
+    {
+      "id": "https://lomdot.education.gov.il/metodica/720active/math/ratio/04/methodica-math-ratio-04-06/methodica-math-ratio-04-06-001/",
+      "title": "الدفعة للجنة البناية (5 بنود)",
+      "informationToBot": "هدف المعطى: السؤال الأكبر: تطبيق النسبة بين مقادير من أنواع مختلفة (التسعيرة للمتر المربع) في موقف واقعي، بما يشمل الربط بتعبير جبري ومعادلة. ما الذي ينبغي أن يفهمه الطالب/يتدرّب عليه: حساب التسعيرة للمتر المربع (3,600 : 1,800 = 2 شيكل للمتر المربع)، وإيجاد الدفعة لكل شقة بحسب مساحتها، وصياغة تعبير جبري لعدد الشقق (9 - x) وحل المعادلة: 180x + 150(9 - x) = 5,100 - 3,600 ← x = 5، ومن هنا 4 شقق مساحة كل منها 75 مترًا مربعًا. اتجاهات التفكير والاستراتيجيات: البند أ: المساحة الإجمالية = 8 · 150 + 5 · 120 = 1,800 متر مربع. البند ب: قسمة المبلغ على المساحة. البنود ج-هـ: 22 - 8 - 5 - x = 9 - x، فتح الأقواس، تجميع الحدود وعزل x. أخطاء شائعة: كتابة المساحة كمجموع مساحات الشقق دون الضرب بعدد الشقق؛ خطأ في تجميع الحدود أو في نقل الأطراف؛ نسيان أن مجموع الشقق هو 22. معلومات إضافية: 5 بنود؛ يجب النجاح في 4 منها على الأقل. لكل بند محاولتان وتلميح بعد الخطأ الأول؛ عنصر أحادي المكوّن يتضمن شاشة افتتاحية وقصة إطار وشاشة ختام. في العنصر 3 شاشات بنود مع شاشة انتقال بينها. لقطة شاشة: لم تُرفق.",
+      "contentType": "practice",
+      "mediaFormat": "interactive-content",
+      "questions": [
+        {
+          "questionId": "https://lomdot.education.gov.il/metodica/720active/math/ratio/04/methodica-math-ratio-04-06/methodica-math-ratio-04-06-001/q1",
+          "questionType": "fill-in",
+          "questionText": "في بناية جديدة تضم 22 شقة، تقرر أن تكون الدفعة للجنة البناية بحسب نسبة ثابتة بين مبلغ بالشيكل ومساحة الشقة بالمتر المربع (التسعيرة الشهرية للمتر المربع). كان هناك معطيان ناقصان: عدد الشقق التي مساحتها 90 مترًا مربعًا (x) وعدد الشقق التي مساحتها 75 مترًا مربعًا. يجب أن تجمع اللجنة كل شهر 5,100 شيكل، وقد جمعت 3,600 شيكل من الشقق التي مساحتها 150 مترًا مربعًا و-120 مترًا مربعًا (8 شقق بمساحة 150 مترًا مربعًا و-5 شقق بمساحة 120 مترًا مربعًا). أ. ما هي النسبة بين المبلغ الذي جُمع من جميع الشقق التي مساحتها 150 مترًا مربعًا و-120 مترًا مربعًا وبين مساحتها الإجمالية بالمتر المربع؟ (شيكل للمتر المربع)",
+          "answers": [],
+          "correctAnswers": [
+            "3,600/1,800",
+            "3600/1800"
+          ]
+        },
+        {
+          "questionId": "https://lomdot.education.gov.il/metodica/720active/math/ratio/04/methodica-math-ratio-04-06/methodica-math-ratio-04-06-001/q2",
+          "questionType": "numeric",
+          "questionText": "ب. وجدنا أن النسبة هي 3,600/1,800 شيكل للمتر المربع. كم هي الدفعة للجنة البناية عن مساحة متر مربع واحد؟ (شيكل)",
+          "answers": [],
+          "correctAnswers": [
+            "2"
+          ]
+        },
+        {
+          "questionId": "https://lomdot.education.gov.il/metodica/720active/math/ratio/04/methodica-math-ratio-04-06/methodica-math-ratio-04-06-001/q3",
+          "questionType": "choice",
+          "questionText": "ت. لحساب عدد الشقق، مثّل وسام عدد الشقق التي مساحتها 75 مترًا مربعًا بواسطة التعبير الجبري: 22 - 8 - 5 - x. وبعد تجميع الحدود، حصل على: 9 - x. هل يمثّل التعبير عدد الشقق التي مساحتها 75 مترًا مربعًا تمثيلًا صحيحًا؟",
+          "answers": [
+            "نعم",
+            "لا",
+            "لا يمكن التحديد"
+          ],
+          "correctAnswers": [
+            "نعم"
+          ]
+        },
+        {
+          "questionId": "https://lomdot.education.gov.il/metodica/720active/math/ratio/04/methodica-math-ratio-04-06/methodica-math-ratio-04-06-001/q4",
+          "questionType": "choice",
+          "questionText": "ث. ادّعى وسام أنه لإيجاد x يجب حل المعادلة: 180x + 150 · (9 - x) = 5,100 - 3,600. هل وسام محق؟",
+          "answers": [
+            "نعم",
+            "لا",
+            "لا يمكن التحديد"
+          ],
+          "correctAnswers": [
+            "نعم"
+          ]
+        },
+        {
+          "questionId": "https://lomdot.education.gov.il/metodica/720active/math/ratio/04/methodica-math-ratio-04-06/methodica-math-ratio-04-06-001/q5",
+          "questionType": "fill-in",
+          "questionText": "جـ. حلّوا المعادلة 180x + 150 · (9 - x) = 5,100 - 3,600 لإيجاد x وأكملوا: عدد الشقق بمساحة 90 مترًا مربعًا، وعدد الشقق بمساحة 75 مترًا مربعًا.",
+          "answers": [],
+          "correctAnswers": [
+            "عدد الشقق بمساحة 90 مترًا مربعًا: 5، عدد الشقق بمساحة 75 مترًا مربعًا: 4"
+          ]
+        }
+      ]
+    }
+  ]
+}

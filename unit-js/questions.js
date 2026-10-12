@@ -1,0 +1,480 @@
+'use strict';
+/* ═══════════════════════════════════════════════════════════════════
+   methodica-math-ratio-04 — screen data, read from the deck.
+   ═══════════════════════════════════════════════════════════════════ */
+const QUESTIONS = [
+  /* 21.09 — deck slide 28. This screen used to be hand-rolled markup plus its
+     own s19Answer / s19Check / s19ToggleHint trio, which is why it shipped with
+     no attempt counting and no hint gating. It is now a config object on the
+     SHARED engine, exactly like proportion-02-01's screen 22: the engine owns
+     the two attempts, the after-wrong hint, the feedback panel and its drag. */
+  {
+    screen: 19, label: '', type: 'single', maxAttempts: 2, hintPolicy: 'after-wrong',
+    stem: `في المتجر أ، سعر 5 كغم بندورة هو 12 شيكل.<br>في المتجر ب، سعر 4 كغم بندورة هو 10 شيكل.<br><br><strong>في أي متجر سعر الـ 1 كغم أقل، وبكم أغورة / شيكل؟</strong>`,
+    content: `<img class="content-img s19-photo" data-no-zoom src="assets/img/s19-tomatoes.jpeg" alt="بندورة في بسطة خضار">`,
+    options: [
+      { id: 'a', html: 'في المتجر ب، بـ 10 أغورات' },
+      { id: 'b', html: 'في المتجر أ، بـ 10 أغورات' },
+      { id: 'c', html: 'في المتجر أ، بـ 4 شيكل' },
+      { id: 'd', html: 'السعر متساوٍ في المتجرين' },
+    ],
+    correct: 'b',
+    hint: { body: 'جدوا سعر 1 كغم بندورة في كل متجر‎.' },
+    fb: {
+      retry: 'الإجابة غير دقيقة، هل نحاول مرة أخرى؟',
+      correct: { title: 'صحيح‎!', body: 'في المتجر أ، سعر 5 كغم بندورة 12 شيكل.<br>لذلك فإن النسبة بين الوزن وسعر البندورة هي <span class="ratio">5 : 12</span>، نقسم على 5 ونحصل على <span class="ratio">1 : 2.4</span>، أي إن سعر كغم واحد من البندورة هو 2.4 شيكل.<br>في المتجر ب، سعر 4 كغم بندورة 10 شيكل.<br>لذلك فإن النسبة بين الوزن وسعر البندورة هي <span class="ratio">10 : 4</span>، نقسم على 4 ونحصل على <span class="ratio">1 : 2.5</span>، أي إن سعر كغم واحد من البندورة هو 2.5 شيكل.<br><strong>لذلك فإن سعر كغم البندورة في المتجر أ أرخص بـ 10 أغورات من المتجر ب‎.</strong>' },
+      wrong: { title: 'هذه ليست الإجابة الصحيحة. إلكيم الشرح‎:', body: 'في المتجر أ، سعر 5 كغم بندورة 12 شيكل.<br>لذلك فإن النسبة بين الوزن وسعر البندورة هي <span class="ratio">5 : 12</span>، نقسم على 5 ونحصل على <span class="ratio">1 : 2.4</span>، أي إن سعر كغم واحد من البندورة هو 2.4 شيكل.<br>في المتجر ب، سعر 4 كغم بندورة 10 شيكل.<br>لذلك فإن النسبة بين الوزن وسعر البندورة هي <span class="ratio">10 : 4</span>، نقسم على 4 ونحصل على <span class="ratio">1 : 2.5</span>، أي إن سعر كغم واحد من البندورة هو 2.5 شيكل.<br><strong>لذلك فإن سعر كغم البندورة في المتجر أ أرخص بـ 10 أغورات من المتجر ب‎.</strong>' },
+    },
+  },
+
+  /* ══ Standard practice 1 — deck slides 31-38, three exercises ═══════════
+     Engine-driven (type / maxAttempts / hintPolicy / options / fb), not
+     hand-rolled. Slide 30 promises "3 שאלות", so the stepper runs 3 stations
+     and a multi-part exercise shares one station. Hints are the deck's own
+     callout lines; feedback titles are the deck's own wording. ══ */
+  {
+    screen: 21, label: '', type: 'single', maxAttempts: 2, hintPolicy: 'after-wrong',
+    step: { group: 'practice1', index: 1, total: 3 },
+    /* 21.09 — rebuilt from the slide, not from my reading of the feedback.
+       spec/screens/slide-031.md names the template SingleChoiceQuestionImage,
+       and the slide carries FOUR `2/3` oMath objects against three unit
+       labels: y=2485673 bare, then מטרים / مترًا في الدقيقة / متر في الثانية. So the
+       options are the same fraction with and without a unit, and the bare one
+       is correct — the feedback says the unit cancels and is not stated.
+       I had built this as a ratio value-input, which is nowhere on the slide. */
+    stem: `سمر ولمى عضوتان في فريق الركض في المدرسة. تدرّبتا في ملعب الرياضة.<br>ركضت سمر مسافة 400 متر، وركضت لمى مسافة 600 متر.<br><br><strong>أ. ما هي النسبة بين المسافة التي قطعتها سمر والمسافة التي قطعتها لمى؟</strong>`,
+    content: `<img class="content-img" data-no-zoom src="assets/img/p1-runners.jpeg" alt="فتاتان تركضان في ملعب الرياضة">`,
+    options: [
+      { id: 'a', html: `<span class="fracpair"><span class="fraction fr-inline"><span class="frac-top">2</span><span class="frac-bottom">3</span></span></span>` },
+      { id: 'b', html: `<span class="fracpair"><span class="fraction fr-inline"><span class="frac-top">2</span><span class="frac-bottom">3</span></span></span> متر` },
+      { id: 'c', html: `<span class="fracpair"><span class="fraction fr-inline"><span class="frac-top">2</span><span class="frac-bottom">3</span></span></span> متر في الدقيقة` },
+      { id: 'd', html: `<span class="fracpair"><span class="fraction fr-inline"><span class="frac-top">2</span><span class="frac-bottom">3</span></span></span> متر في الثانية` },
+    ],
+    correct: 'a',
+    hint: { body: 'هل النسبة هي بين كميات من نفس النوع أم بين كميات من أنواع مختلفة؟' },
+    fb: { retry: 'الإجابة غير دقيقة، هل نحاول مرة أخرى؟',
+      correct: { title: 'هذا صحيح‎!', body: `النسبة بين المسافة التي قطعتها سمر والمسافة التي قطعتها لمى هي <span class="ratio">400 : 600</span>، وبعد الاختزال ستكون <span class="ratio">2 : 3</span>.<br>في هذه الحالة، النسبة هي بين كميات من نفس النوع، والتي تُقاس بنفس وحدة القياس (أمتار)، ولذلك نختزل وحدة القياس ولا نذكرها.` },
+      wrong: { title: 'هذا خطأ. هيا نفهم لماذا:', body: `النسبة بين المسافة التي قطعتها سمر والمسافة التي قطعتها لمى هي <span class="ratio">400 : 600</span>، وبعد الاختزال ستكون <span class="ratio">2 : 3</span>.<br>في هذه الحالة، النسبة هي بين كميات من نفس النوع، والتي تُقاس بنفس وحدة القياس (أمتار)، ولذلك نختزل وحدة القياس ولا نذكرها.` } },
+  },
+  {
+    /* QA 30.09.26, producer: ONE attempt on this screen and the hint shown
+       up front. (The deck's own note reads `רמז אחרי טעות אחת` — flagged;
+       the same request was noted 21.09 and never applied.) */
+    screen: 22, label: '', type: 'single', maxAttempts: 1, hintPolicy: 'always',
+    step: { group: 'practice1', index: 1, total: 3 },
+    stem: `سمر ولمى عضوتان في فريق الركض في المدرسة. تدرّبتا في ملعب الرياضة.<br>ركضت سمر مسافة 400 متر، وركضت لمى مسافة 600 متر.<br><br><strong>ب. هل يمكننا تحديد أيهما أسرع، بناءً على النسبة التي وجدناها في البند السابق؟</strong>`,
+    content: `<img class="content-img" data-no-zoom src="assets/img/p1-runners.jpeg" alt="فتاتان تركضان في ملعب الرياضة">`,
+    options: [{ id: 'a', html: 'نعم' }, { id: 'b', html: 'لا' }],
+    correct: 'b',
+    hint: { body: 'ركضت كل منهما مسافة مختلفة. هل النسبة بين المسافتين يمكّننا من معرفة أيهما قطعت المسافة بسرعة أكبر؟' },
+    fb: { retry: 'الإجابة غير دقيقة، هل نحاول مرة أخرى؟',
+      correct: { title: 'إجابة دقيقة‎!', body: `لا يمكن الاستنتاج أيهما أسرع بناءً على النسبة بين المسافتين فقط. لمعرفة أيهما أسرع، علينا حساب سرعة كل منهما - أي، عدد الأمتار التي تقطعها كلٌّ منهما في وحدة زمن واحدة (ثانية)‎.` },
+      wrong: { title: 'هذا خطأ. هيا نفهم لماذا:', body: `لا يمكن الاستنتاج أيهما أسرع بناءً على النسبة بين المسافتين فقط. لمعرفة أيهما أسرع، علينا حساب سرعة كل منهما - أي، عدد الأمتار التي تقطعها كلٌّ منهما في وحدة زمن واحدة (ثانية)‎.` } },
+  },
+  {
+    screen: 23, label: '', type: 'single', maxAttempts: 2, hintPolicy: 'after-wrong',
+    step: { group: 'practice1', index: 1, total: 3 },
+    stem: `ت. لكي تفحصا أيهما ركضت بسرعة أكبر، قاست سمر ولمى سرعة ركضهما باستخدام تطبيقات مختلفة:<br>بحسب لتطبيق سمر، ركضت بسرعة 3 أمتار في الثانية.<br>وبحسب تطبيق لمى، ركضت بسرعة 10 كم في الساعة.<br>تدّعي لمى: "10 أكبر من 3، ولذلك أنا أسرع".<br>تدّعي سمر: "السرعتان تظهران في التطبيق بوحدتَيّ قياس مختلفتين. إذا قارنّا بينهما باستخدام نفس وحدة القياس، سترين أنني أسرع".<br><br><strong>أيهما على صواب؟</strong>`,
+    content: `<img class="content-img" data-no-zoom src="assets/img/p1-runners.jpeg" alt="فتاتان تركضان في ملعب الرياضة">`,
+    options: [{ id: 'a', html: 'سمر' }, { id: 'b', html: 'لمى' }, { id: 'c', html: 'كلتاهما مخطئتان' }],
+    correct: 'a',
+    hint: { body: 'هل يمكن المقارنة مباشرةً بين 3 أمتار في الثانية<br>و-10 كم في الساعة؟<br>فكروا ماذا يجب أن نفعل أولًا‎.' },
+    fb: { retry: 'الإجابة غير دقيقة، هل نحاول مرة أخرى؟',
+      correct: { title: 'ممتاز‎!', body: `للمقارنة بين السرعتين، نحوّل سرعة لمى إلى متر في الثانية،<br>مثل وحدة قياس سمر:<br>تركض لمى 10,000 متر في 3,600 ثانية.<br>ولذلك فإن سرعتها هي: <span class="fracpair"><span class="fraction fr-inline"><span class="frac-top">25</span><span class="frac-bottom">9</span></span></span> أي <span class="vi-mixed" dir="ltr"><span class="vi-mixed-whole">2</span><span class="fracpair"><span class="fraction fr-inline"><span class="frac-top">7</span><span class="frac-bottom">9</span></span></span></span> متر في الثانية.<br> في المقابل، تركض لمى 3 أمتار في الثانية.<br>ولذلك لمى أسرع‎.` },
+      wrong: { title: 'هذا خطأ، تعالوا نتعلم منه:', body: `للمقارنة بين السرعتين، نحوّل سرعة لمى إلى متر في الثانية،<br>مثل وحدة قياس سمر:<br>تركض لمى 10,000 متر في 3,600 ثانية.<br>ولذلك فإن سرعتها هي: <span class="fracpair"><span class="fraction fr-inline"><span class="frac-top">25</span><span class="frac-bottom">9</span></span></span> أي <span class="vi-mixed" dir="ltr"><span class="vi-mixed-whole">2</span><span class="fracpair"><span class="fraction fr-inline"><span class="frac-top">7</span><span class="frac-bottom">9</span></span></span></span> متر في الثانية.<br> في المقابل، تركض لمى 3 أمتار في الثانية.<br>ولذلك لمى أسرع‎.` } },
+  },
+  {
+    screen: 24, label: '', type: 'value-input', maxAttempts: 2, hintPolicy: 'after-wrong',
+    step: { group: 'practice1', index: 2, total: 3 },
+    stem: `تستهلك سيارة لترًا واحدًا من الوقود لكل 12 كم من السفر.<br><br><strong>أ. كم لترًا ستستهلك السيارة في رحلة مسافتها 360 كم؟</strong><br><br>أكملوا‎:`,
+    content: `<img class="content-img" data-no-zoom src="assets/img/p2-car.jpeg" alt="سيارة تسير على الطريق">`,
+    ratioRows: [{ label: '360‏‎ ‎كم‎ :', parts: 1 }],
+    correctInputs: ['30'],
+    hint: { body: 'استعينوا بجدول التناسب أو وسّعوا النسبة المعطاة‎.' },
+    fb: { retry: 'الإجابة غير دقيقة، هل نحاول مرة أخرى؟',
+      correct: { title: 'رائع‎!', body: `النسبة هي 1 لتر لكل 12 كم (<span class="ratio">1 : 12</span>).<br>نوسّع النسبة بـ 30 مرة فنحصل على <span class="ratio">30 : 360</span>.<br>أي إن السيارة ستستهلك 30 لترًا في رحلة مسافتها 360 كم‎.` },
+      wrong: { title: 'هذا خطأ، تعالوا نتعلم منه:', body: `النسبة هي 1 لتر لكل 12 كم (<span class="ratio">1 : 12</span>).<br>نوسّع النسبة بـ 30 مرة فنحصل على <span class="ratio">30 : 360</span>.<br>أي إن السيارة ستستهلك 30 لترًا في رحلة مسافتها 360 كم‎.` } },
+  },
+  {
+    screen: 25, label: '', type: 'single', maxAttempts: 2, hintPolicy: 'after-wrong',
+    step: { group: 'practice1', index: 2, total: 3 },
+    stem: `سعر لتر الوقود هو 8.34 شيكل.<br>نذكّركم بأننا وجدنا أن السيارة تستهلك 30 لترًا في رحلة مسافتها 360 كم.<br><br><strong>ب. ما تكلفة الوقود لرحلة مسافتها 360 كم؟</strong>`,
+    content: `<img class="content-img" data-no-zoom src="assets/img/p2-car.jpeg" alt="سيارة تسير على الطريق">`,
+    options: [{ id: 'a', html: '150 شيكل' }, { id: 'b', html: '168.75 شيكل' }, { id: 'c', html: '180 شيكل' }, { id: 'd', html: '250.2 شيكل' }],
+    correct: 'd',
+    hint: { body: 'استخدموا كمية الوقود التي وجدتموها في البند أ وسعر اللتر الواحد لحساب التكلفة الإجمالية‎.' },
+    fb: { retry: 'الإجابة غير دقيقة، هل نحاول مرة أخرى؟',
+      correct: { title: 'صحيح جدًا‎!', body: `وجدنا أن السيارة تستهلك 30 لترًا لمسافة 360 كم.<br>سعر لتر الوقود هو 8.34 شيكل، ولذلك فإن سعر 30 لترًا هو <span dir="ltr">30 · 8.34 = 250.2</span>.` },
+      wrong: { title: 'هذا خطأ. هيا نفهم لماذا:', body: `وجدنا أن السيارة تستهلك 30 لترًا لمسافة 360 كم.<br>سعر لتر الوقود هو 8.34 شيكل، ولذلك فإن سعر 30 لترًا هو <span dir="ltr">30 · 8.34 = 250.2</span>.` } },
+  },
+  {
+    /* slide 36's note: `אין רמז` — no hint on this screen. */
+    screen: 26, label: '', type: 'value-input', maxAttempts: 2, hintPolicy: 'after-wrong',
+    step: { group: 'practice1', index: 3, total: 3 },
+    stem: `في حفلة عيد ميلاد ريم، حضّروا خلطة عصير فواكه كبيرة.<br>لتحضير خلطة العصير، خلطوا 3 لترات من عصير البرتقال مع لترين من عصير المانجو.<br>التكلفة الإجمالية للفواكه اللازمة لتحضير خمسة لترات من الخلطة كانت 40 شيكل.<br><br><strong>أ. اكتبوا النسبة بين كمية عصير البرتقال وكمية عصير المانجو في الخلطة‎:</strong>`,
+    content: `<img class="content-img" data-no-zoom src="assets/img/p3-shake.png" alt="كوب خلطة عصير فواكه مع برتقال ومانجو">`,
+    ratioRows: [{ label: '', parts: 2 }],
+    correctInputs: ['3', '2'],
+    hint: { body: 'هل النسبة هي بين كميات من نفس النوع أم بين كميات من أنواع مختلفة؟' },
+    fb: { retry: 'الإجابة غير دقيقة، هل نحاول مرة أخرى؟',
+      correct: { title: 'صحيح جدًا‎!', body: `النسبة هي بين كميات من نفس النوع (لترات)، لذلك النسبة هي <span class="ratio">3 : 2</span>.` },
+      wrong: { title: 'هذا خطأ. هيا نفهم لماذا:', body: `النسبة هي بين كميات من نفس النوع (لترات)، لذلك النسبة هي <span class="ratio">3 : 2</span>.` } },
+  },
+  {
+    screen: 27, label: '', type: 'value-input', maxAttempts: 2, hintPolicy: 'after-wrong',
+    step: { group: 'practice1', index: 3, total: 3 },
+    stem: `في حفلة عيد ميلاد ريم، حضّروا خلطة عصير فواكه كبيرة.<br>لتحضير خلطة العصير، خلطوا 3 لترات من عصير البرتقال مع لترين من عصير المانجو.<br>التكلفة الإجمالية للفواكه اللازمة لتحضير خمسة لترات من الخلطة كانت 40 شيكل.<br><br><strong>ب. ما هي النسبة بين التكلفة الإجمالية للخلطة وبين الحجم الكلي للخلطة<br>(أي، ما هي تكلفة لتر واحد من الخلطة)؟</strong>`,
+    content: `<img class="content-img" data-no-zoom src="assets/img/p3-shake.png" alt="كوب خلطة عصير فواكه مع برتقال ومانجو">`,
+    ratioRows: [{ label: 'شيكل للتر', parts: 1, unit: true }],
+    correctInputs: ['8'],
+    hint: { body: 'هل النسبة هي بين كميات من نفس النوع أم بين كميات من أنواع مختلفة؟' },
+    fb: { retry: 'الإجابة غير دقيقة، هل نحاول مرة أخرى؟',
+      correct: { title: 'صحيح جدًا‎!', body: `النسبة بين سعر وكمية الخلطة هي <span class="ratio">40 : 5</span>. النسبة هي بين كميات من أنواع مختلفة، ولذلك لا نختزل الوحدات. نختزل النسبة ونحصل على <span class="ratio">8 : 1</span>، أي إن تكلفة كل لتر من الخلطة هي 8 شيكل‎.` },
+      wrong: { title: 'هذا خطأ، تعالوا نتعلم منه:', body: `النسبة بين سعر وكمية الخلطة هي <span class="ratio">40 : 5</span>. النسبة هي بين كميات من أنواع مختلفة، ولذلك لا نختزل الوحدات. نختزل النسبة ونحصل على <span class="ratio">8 : 1</span>، أي إن تكلفة كل لتر من الخلطة هي 8 شيكل‎.` } },
+  },
+  {
+    /* slide 38's note carries BOTH `אין רמז` and `רמז אחרי טעות אחת` —
+       contradictory. Built with no hint, per the first line. FLAGGED. */
+    screen: 28, label: '', type: 'value-input', maxAttempts: 2, hintPolicy: 'after-wrong',
+    step: { group: 'practice1', index: 3, total: 3 },
+    stem: `في حفلة عيد ميلاد ريم، حضّروا خلطة عصير فواكه كبيرة.<br>لتحضير خلطة العصير، خلطوا 3 لترات من عصير البرتقال مع لترين من عصير المانجو.<br>التكلفة الإجمالية للفواكه اللازمة لتحضير خمسة لترات من الخلطة كانت 40 شيكل.<br><br><strong>ت. أكملوا:</strong>`,
+    content: `<img class="content-img" data-no-zoom src="assets/img/p3-shake.png" alt="كوب خلطة عصير فواكه مع برتقال ومانجو">`,
+    ratioRows: [
+      { label: 'لتحضير 15 لترًا من الخلطة، نحتاج إلى', parts: 1, suffix: 'لترات من عصير البرتقال' },
+      { label: 'و', parts: 1, suffix: 'لترات من عصير المانجو‎.' },
+    ],
+    correctInputs: ['9', '6'],
+    hint: { body: 'استعينوا بجدول التناسب أو وسّعوا النسبة المعطاة‎.' },
+    fb: { retry: 'الإجابة غير دقيقة، هل نحاول مرة أخرى؟',
+      correct: { title: 'صحيح جدًا‎!', body: `النسبة بين عصير البرتقال وعصير المانجو هي <span class="ratio">3 : 2</span>. لتحضير كمية أكبر بـ 3 مرات من الخلطة، يجب تكبير الكميتين بـ 3 مرات‎.` },
+      wrong: { title: 'هذا خطأ، تعالوا نتعلم منه:', body: `النسبة بين عصير البرتقال وعصير المانجو هي <span class="ratio">3 : 2</span>. لتحضير كمية أكبر بـ 3 مرات من الخلطة، يجب تكبير الكميتين بـ 3 مرات‎.` } },
+  },
+
+  /* ══ Basic practice — deck slides 41-45 (group `basic`, 2 exercises) ════
+     Slide 40 promises "تمرينان", so the stepper runs 2 stations: slides
+     41-43 are one exercise (א/ב/ג) and 44-45 the second (א/ב). Every note in
+     the range reads `רמז מופיע מיד`, hence hintPolicy 'always'. ══ */
+  {
+    screen: 30, label: '', type: 'value-input', maxAttempts: 2, hintPolicy: 'always',
+    step: { group: 'basic', index: 1, total: 2 },
+    stem: `أُجريت في مختبر التكنولوجيا في المدرسة تجربة على روبوتين: الروبوت أ والروبوت ب، اللذين يتحركان بخط مستقيم.<br>يقطع الروبوت أ مسافة 180 مترًا خلال دقيقتين.<strong> هذه النسبة تسمى سرعة. </strong><br><br><strong>أ. ما هي النسبة بين المسافة التي يقطعها الروبوت أ والزمن الذي يستغرقه (أي ما هي سرعته)؟</strong><br><strong>اكتبوها بصيغتين:</strong>`,
+    ratioRows: [{ label: 'مترًا في الدقيقة', parts: 1, unit: true }, { label: 'متر في الثانية', parts: 1, unit: true }],
+    correctInputs: ['90', '1.5'],
+    hint: { body: 'كم ثانية توجد في الدقيقة؟' },
+    fb: { retry: 'الإجابة غير دقيقة، هل نحاول مرة أخرى؟',
+      correct: { title: 'رائع!', body: `يقطع الروبوت أ مسافة 180 مترًا خلال دقيقتين. لذلك فإن النسبة بين المسافة والزمن هي: <br><span class="eq-ltr" dir="ltr"><span class="fraction fr-inline"><span class="frac-top">180</span><span class="frac-bottom">2</span></span> = <span dir="rtl">90 مترًا في الدقيقة</span></span><br> وإذا حوّلنا الدقيقتين إلى ثوانٍ، سنحصل على 120 ثانية. النسبة بين المسافة والزمن ستكون: <br><span class="eq-ltr" dir="ltr"><span class="fraction fr-inline"><span class="frac-top">180</span><span class="frac-bottom">120</span></span> = <span dir="rtl">1.5 متر في الثانية</span></span>` },
+      wrong: { title: 'هذا خطأ. لكن هذه أيضًا فرصة للتعلم‎:', body: `يقطع الروبوت أ مسافة 180 مترًا خلال دقيقتين. لذلك فإن النسبة بين المسافة والزمن هي: <br><span class="eq-ltr" dir="ltr"><span class="fraction fr-inline"><span class="frac-top">180</span><span class="frac-bottom">2</span></span> = <span dir="rtl">90 مترًا في الدقيقة</span></span><br> وإذا حوّلنا الدقيقتين إلى ثوانٍ، سنحصل على 120 ثانية. النسبة بين المسافة والزمن ستكون: <br><span class="eq-ltr" dir="ltr"><span class="fraction fr-inline"><span class="frac-top">180</span><span class="frac-bottom">120</span></span> = <span dir="rtl">1.5 متر في الثانية</span></span>` } },
+  },
+  {
+    screen: 31, label: '', type: 'value-input', maxAttempts: 2, hintPolicy: 'always',
+    step: { group: 'basic', index: 1, total: 2 },
+    stem: `أُجريت في مختبر التكنولوجيا في المدرسة تجربة على روبوتين: الروبوت أ والروبوت ب، اللذين يتحركان بخط مستقيم.<br>يقطع الروبوت أ مسافة 180 مترًا خلال دقيقتين. في البند أ وجدنا أن سرعته هي 1.5 متر في الثانية.<br>يتحرك الروبوت ب بسرعة ثابتة مقدارها 2.5 متر في الثانية.<br><br><strong>ب. ما هي النسبة المختزلة بين سرعة الروبوت أ وسرعة الروبوت ب<br>(بحيث يتم التعبير عنهما بنفس وحدة القياس "متر في الثانية")؟</strong>`,
+    ratioRows: [{ label: '', parts: 2 }],
+    correctInputs: ['3', '5'],
+    hint: { body: 'تذكّروا، السرعة هي النسبة بين المسافة والزمن‎.' },
+    fb: { retry: 'الإجابة غير دقيقة، هل نحاول مرة أخرى؟',
+      correct: { title: 'رائع!', body: `النسبة بين سرعة الروبوت أ وسرعة الروبوت ب هي <span class="ratio">1.5 : 2.5</span>، نوسّعها<br> بمرتين ونحصل على <span class="ratio">3 : 5</span>.<br>النسبة هي بين مقدارين لهما نفس وحدة القياس (متر في الثانية)، لذلك لا نذكر الوحدات‎.` },
+      wrong: { title: 'هذا خطأ. هيا نفهم لماذا:', body: `النسبة بين سرعة الروبوت أ وسرعة الروبوت ب هي <span class="ratio">1.5 : 2.5</span>، نوسّعها<br> بمرتين ونحصل على <span class="ratio">3 : 5</span>.<br>النسبة هي بين مقدارين لهما نفس وحدة القياس (متر في الثانية)، لذلك لا نذكر الوحدات‎.` } },
+  },
+  {
+    screen: 32, label: '', type: 'value-input', maxAttempts: 2, hintPolicy: 'always',
+    step: { group: 'basic', index: 1, total: 2 },
+    stem: `أُجريت في مختبر التكنولوجيا في المدرسة تجربة على روبوتين: الروبوت أ والروبوت ب، اللذين يتحركان بخط مستقيم.<br>يقطع الروبوت أ مسافة 180 مترًا خلال دقيقتين.<br>يتحرك الروبوت ب بسرعة ثابتة مقدارها 2.5 متر في الثانية.<br>زمن الحركة الإجمالي للروبوت ب في التجربة كان 1.5 دقيقة.<br><br><strong>ت. ما هي النسبة المختزلة المسافة الإجمالية التي قطعها الروبوت أ (في دقيقتين) وبين المسافة الإجمالية التي قطعها الروبوت ب (في 1.5 دقيقة)؟</strong>`,
+    ratioRows: [{ label: '', parts: 2 }],
+    correctInputs: ['4', '5'],
+    hint: { body: 'ما هي المسافة التي قطعها الروبوت ب في 1.5 دقيقة؟' },
+    fb: { retry: 'الإجابة غير دقيقة، هل نحاول مرة أخرى؟',
+      correct: { title: 'ممتاز‎!', body: `الروبوت أ: قطع 180 مترًا خلال دقيقتين.<br>الروبوت ب: النسبة بين المسافة والزمن هي <span class="ratio">2.5 : 1</span> متر في الثانية.<br>لتحويل وحدة الزمن إلى دقائق نوسّع النسبة بـ 90 مرة (1.5 دقيقة = 90 ثانية)، ونحصل على <span class="ratio">225 : 1.5</span> متر في الدقيقة. أي إن الروبوت ب قطع 225 مترًا خلال 1.5 دقيقة.<br>النسبة بين المسافة الإجمالية التي قطعها الروبوت أ والمسافة الإجمالية التي قطعها الروبوت ب هي <span class="ratio">180 : 225</span>، وبعد الاختزال ستكون <span class="ratio">4 : 5‏‎</span>.` },
+      wrong: { title: 'هذا خطأ. هيا نفهم لماذا:', body: `الروبوت أ: قطع 180 مترًا خلال دقيقتين.<br>الروبوت ب: النسبة بين المسافة والزمن هي <span class="ratio">2.5 : 1</span> متر في الثانية.<br>لتحويل وحدة الزمن إلى دقائق نوسّع النسبة بـ 90 مرة (1.5 دقيقة = 90 ثانية)، ونحصل على <span class="ratio">225 : 1.5</span> متر في الدقيقة. أي إن الروبوت ب قطع 225 مترًا خلال 1.5 دقيقة.<br>النسبة بين المسافة الإجمالية التي قطعها الروبوت أ والمسافة الإجمالية التي قطعها الروبوت ب هي <span class="ratio">180 : 225</span>، وبعد الاختزال ستكون <span class="ratio">4 : 5‏‎</span>.` } },
+  },
+  {
+    screen: 33, label: '', type: 'single', maxAttempts: 2, hintPolicy: 'always',
+    step: { group: 'basic', index: 2, total: 2 },
+    stem: `بإمكان طابعة أن تطبع 60 ورقة خلال 3 دقائق.<br><br><strong>أ. كم ورقة ستطبع خلال ربع ساعة إذا استمرت بنفس بالوتيرة؟</strong>`,
+    content: `<img class="content-img" data-no-zoom src="assets/img/p4-printer.jpeg" alt="طابعة مكتبية تُخرج أوراقًا مطبوعة">`,
+    options: [{ id: 'a', html: '180' }, { id: 'b', html: '200' }, { id: 'c', html: '300' }, { id: 'd', html: '600' }],
+    correct: 'c',
+    hint: { body: 'جدوا أولًا عدد الأوراق التي تطبعها الطابعة في دقيقة واحدة‎.' },
+    fb: { retry: 'الإجابة غير دقيقة، هل نحاول مرة أخرى؟',
+      correct: { title: 'رائع!', body: `النسبة بين عدد الأوراق ومدة الطباعة بالدقائق هي <span class="ratio">60 : 3</span>.<br>إذا اختزلنا من خلال القسمة على 3 سنحصل على <span class="ratio">20 : 1</span>، أي إن الطابعة تطبع في الدقيقة الواحدة <br>20 ورقة. في ربع الساعة توجد 15 دقيقة، لذلك نوسّع النسبة بـ 15 مرة ونحصل على <span class="ratio">300 : 15</span>.<br>في ربع ساعة تطبع الطابعة 300 ورقة‎.` },
+      wrong: { title: 'هذا خطأ. لكن هذه أيضًا فرصة للتعلم‎:', body: `النسبة بين عدد الأوراق ومدة الطباعة بالدقائق هي <span class="ratio">60 : 3</span>.<br>إذا اختزلنا من خلال القسمة على 3 سنحصل على <span class="ratio">20 : 1</span>، أي إن الطابعة تطبع في الدقيقة الواحدة <br>20 ورقة. في ربع الساعة توجد 15 دقيقة، لذلك نوسّع النسبة بـ 15 مرة ونحصل على <span class="ratio">300 : 15</span>.<br>في ربع ساعة تطبع الطابعة 300 ورقة‎.` } },
+  },
+  {
+    screen: 34, label: '', type: 'value-input', maxAttempts: 2, hintPolicy: 'always',
+    step: { group: 'basic', index: 2, total: 2 },
+    stem: `ب. وجدنا أن وتيرة الطباعة هي 20 ورقة في الدقيقة.<br><br><strong>كم ساعة تحتاج الطابعة لطباعة 1,800 ورقة؟</strong>`,
+    content: `<img class="content-img" data-no-zoom src="assets/img/p4-printer.jpeg" alt="طابعة مكتبية تُخرج أوراقًا مطبوعة">`,
+    ratioRows: [{ label: 'ساعات', parts: 1, unit: true }],
+    correctInputs: ['1.5'],
+    hint: { body: 'تذكروا - يجب تحويل وحدة الزمن إلى ساعات‎.' },
+    fb: { retry: 'الإجابة غير دقيقة، هل نحاول مرة أخرى؟',
+      correct: { title: 'صحيح‎!', body: `وتيرة الطباعة هي 20 ورقة في الدقيقة.<br>لطباعة 1,800 ورقة، نوسّع النسبة (أوراق في الدقيقة - سرعة الطباعة) <span class="ratio">20 : 1</span> بـ 90 مرة ونحصل على <span class="ratio">1,800 : 90</span>، أي إن:<br> طباعة 1,800 ورقة تحتاج إلى 90 دقيقة، وهي 1.5 ساعة‎.` },
+      wrong: { title: 'هذا خطأ. لكن هذه أيضًا فرصة للتعلم‎:', body: `وتيرة الطباعة هي 20 ورقة في الدقيقة.<br>لطباعة 1,800 ورقة، نوسّع النسبة (أوراق في الدقيقة - سرعة الطباعة) <span class="ratio">20 : 1</span> بـ 90 مرة ونحصل على <span class="ratio">1,800 : 90</span>، أي إن:<br> طباعة 1,800 ورقة تحتاج إلى 90 دقيقة، وهي 1.5 ساعة‎.` } },
+  },
+
+  /* ══ Standard practice ב — deck slides 47-50 (group `standard-b`) ═══════
+     Slide 46 promises "עוד تمرينان": the cars (47-48) and the lawns
+     (49-50). Every note reads `רמז אחרי טעות אחת`. ══ */
+  {
+    screen: 36, label: '', type: 'single', maxAttempts: 2, hintPolicy: 'after-wrong',
+    step: { group: 'standard-b', index: 1, total: 2 },
+    stem: `تقطع السيارة أ مسافة 180 كم خلال ساعتين، وتستهلك أثناء الرحلة 15 لترًا من الوقود.<br>تقطع السيارة ب مسافة 45,000 متر خلال 45 دقيقة، وتستهلك أثناء الرحلة 1.5 لتر من الوقود.<br><br><strong>أ. أي سيارة أسرع؟</strong>`,
+    options: [{ id: 'a', html: 'لا يمكن المعرفة' }, { id: 'b', html: 'السيارة أ' }, { id: 'c', html: 'السيارة ب' }],
+    correct: 'b',
+    hint: { body: 'انتبهوا إلى وحدات الزمن في معطيات السفر في السيارتين‎.' },
+    fb: { retry: 'الإجابة غير دقيقة، هل نحاول مرة أخرى؟',
+      correct: { title: 'رائع!', body: `تقطع السيارة أ 180 كم خلال ساعتين، ولذلك تقطع 90 كم في ساعة واحدة<br>(سرعتها 90 كم/ساعة).<br>تقطع السيارة ب 45,000 متر خلال 45 دقيقة.<br> نحوّل إلى وحدات قياس للسيارة أ ونحصل على أنها تقطع 45 كم خلال <span class="fracpair"><span class="fraction fr-inline"><span class="frac-top">3</span><span class="frac-bottom">4</span></span></span> الساعة.<br>النسبة بين المسافة والزمن للسيارة ب هي <span class="ratio">45 : <span class="fraction fr-inline"><span class="frac-top">3</span><span class="frac-bottom">4</span></span></span>،<br> نوسّع النسبة بـ <span class="fracpair"><span class="fraction fr-inline"><span class="frac-top">4</span><span class="frac-bottom">3</span></span></span> ونحصل على <span class="ratio">60 : 1</span>.<br>أي إن السيارة ب تقطع 60 كم في ساعة واحدة (سرعتها 60 كم/س)، ولذلك السيارة أ أسرع‎.` },
+      wrong: { title: 'هذا خطأ. لكن هذه أيضًا فرصة للتعلم‎:', body: `تقطع السيارة أ 180 كم خلال ساعتين، ولذلك تقطع 90 كم في ساعة واحدة<br>(سرعتها 90 كم/ساعة).<br>تقطع السيارة ب 45,000 متر خلال 45 دقيقة.<br> نحوّل إلى وحدات قياس للسيارة أ ونحصل على أنها تقطع 45 كم خلال <span class="fracpair"><span class="fraction fr-inline"><span class="frac-top">3</span><span class="frac-bottom">4</span></span></span> الساعة.<br>النسبة بين المسافة والزمن للسيارة ب هي <span class="ratio">45 : <span class="fraction fr-inline"><span class="frac-top">3</span><span class="frac-bottom">4</span></span></span>،<br> نوسّع النسبة بـ <span class="fracpair"><span class="fraction fr-inline"><span class="frac-top">4</span><span class="frac-bottom">3</span></span></span> ونحصل على <span class="ratio">60 : 1</span>.<br>أي إن السيارة ب تقطع 60 كم في ساعة واحدة (سرعتها 60 كم/س)، ولذلك السيارة أ أسرع‎.` } },
+  },
+  {
+    screen: 37, label: '', type: 'single', maxAttempts: 2, hintPolicy: 'after-wrong',
+    step: { group: 'standard-b', index: 1, total: 2 },
+    stem: `تقطع السيارة أ مسافة 180 كم خلال ساعتين، وتستهلك أثناء الرحلة 15 لترًا من الوقود.<br>تقطع السيارة ب مسافة 45,000 متر خلال 45 دقيقة، وتستهلك أثناء الرحلة 1.5 لتر من الوقود.<br><br><strong>ب. أي سيارة تستهلك كمية أقل من الوقود خلال سفرها؟ </strong>`,
+    options: [{ id: 'a', html: 'لا يمكن المعرفة' }, { id: 'b', html: 'السيارة ب' }, { id: 'c', html: 'السيارة أ' }],
+    correct: 'b',
+    hint: { body: 'انتبهوا إلى وحدات الزمن في معطيات السفر في السيارتين‎.' },
+    fb: { retry: 'الإجابة غير دقيقة، هل نحاول مرة أخرى؟',
+      correct: { title: 'رائع!', body: `في السيارة أ، النسبة بين عدد اللترات وساعات السفر هي <span class="ratio">15 : 2</span>. ولذلك استهلكت السيارة 7.5 لترات في الساعة الواحدة.<br>سافرت السيارة ب <span class="fracpair"><span class="fraction fr-inline"><span class="frac-top">3</span><span class="frac-bottom">4</span></span></span> الساعة واستهلكت 1.5 لتر من الوقود. لذلك، النسبة بين عدد اللترات وعدد ساعات السفر هي <span class="ratio">1.5 : <span class="fraction fr-inline"><span class="frac-top">3</span><span class="frac-bottom">4</span></span></span>.<br> نوسّع النسبة بـ <span class="fracpair"><span class="fraction fr-inline"><span class="frac-top">4</span><span class="frac-bottom">3</span></span></span> ونحصل على <span class="ratio">2 : 1</span>، أي إن السيارة ب تستهلك لترين في الساعة الواحدة.<br><strong>الاستنتاج:</strong>السيارة ب استهلك كمية أقل‎ من الوقود.` },
+      wrong: { title: 'هذا خطأ. لكن هذه أيضًا فرصة للتعلم‎:', body: `في السيارة أ، النسبة بين عدد اللترات وساعات السفر هي <span class="ratio">15 : 2</span>. ولذلك استهلكت السيارة 7.5 لترات في الساعة الواحدة.<br>سافرت السيارة ب <span class="fracpair"><span class="fraction fr-inline"><span class="frac-top">3</span><span class="frac-bottom">4</span></span></span> الساعة واستهلكت 1.5 لتر من الوقود. لذلك، النسبة بين عدد اللترات وعدد ساعات السفر هي <span class="ratio">1.5 : <span class="fraction fr-inline"><span class="frac-top">3</span><span class="frac-bottom">4</span></span></span>.<br> نوسّع النسبة بـ <span class="fracpair"><span class="fraction fr-inline"><span class="frac-top">4</span><span class="frac-bottom">3</span></span></span> ونحصل على <span class="ratio">2 : 1</span>، أي إن السيارة ب تستهلك لترين في الساعة الواحدة.<br><strong>الاستنتاج:</strong>السيارة ب استهلك كمية أقل‎ من الوقود.` } },
+  },
+  {
+    screen: 38, label: '', type: 'single', maxAttempts: 2, hintPolicy: 'after-wrong',
+    step: { group: 'standard-b', index: 2, total: 2 },
+    stem: `أ. تخطط بلدية العفولة لإضافة مسطّحين من العشب الأخضر إلى الحديقة البلدية:<br>المسطّح أ (مستطيل الشكل) والمسطّح ب (مربع الشكل). أبعاد المسطّحين تظهر في الصور.<br>تلقّت البلدية عرض سعر من بستاني البلدية لتركيب عشب اصطناعي في المسطّح أ بتكلفة 15,000 شيكل،<br>وعرضًا من شركة بستنة أخرى لتركيب عشب اصطناعي في المسطّح ب بتكلفة 30,000 شيكل.<br><br><strong>اضغطوا على المسطّح الذي فيه عرض السعر للمتر المربع أرخص‎. </strong>`,
+    answersClass: 'scq-answers--lawn',
+    options: [{ id: 'a', html: `<figure class="lawn-fig"><img data-no-zoom src="assets/img/lawn-a.jpeg" alt="مسطّح مستطيل"><figcaption>المسطّح أ</figcaption><span class="lawn-w">20‏‎ ‎مترًا</span><span class="lawn-h">15 مترًا</span></figure>` }, { id: 'b', html: `<figure class="lawn-fig lawn-fig--sq"><img data-no-zoom src="assets/img/lawn-b.jpeg" alt="مسطّح عشبي مربع"><figcaption>المسطّح ب</figcaption><span class="lawn-w">25‏‎ ‎مترًا</span><span class="lawn-h">25 مترًا</span></figure>` }],
+    correct: 'b',
+    hint: { body: 'احسبوا تكلفة تركيب متر مربع واحد من العشب الاصطناعي‎.' },
+    fb: { retry: 'الإجابة غير دقيقة، هل نحاول مرة أخرى؟',
+      correct: { title: 'رائع!', body: `مساحة المسطّح أ هي <span class="eq-ltr" dir="ltr">15 · 20 = <span dir="rtl">300 متر مربع</span></span>.<br>النسبة بين السعر ومساحة العشب هي <span class="ratio">15,000 : 300</span> شيكل للمتر المربع، وبعد الاختزال <span class="ratio">50 : 1</span>. أي 50 شيكل لكل متر مربع من العشب.<br>مساحة المسطّح ب هي <span class="eq-ltr" dir="ltr">25 · 25 = <span dir="rtl">625 مترًا مربعًا</span></span>.<br>النسبة بين السعر ومساحة العشب هي <span class="ratio">30,000 : 625</span> شيكل للمتر المربع، وبعد الاختزال نحصل على <span class="ratio">48 : 1</span>. أي 48 شيكل للمتر المربع.<br>ولذلك فإن عرض السعر للمتر المربع في المسطّح ب أرخص‎.` },
+      wrong: { title: 'هذا خطأ. هيا نفهم لماذا:', body: `مساحة المسطّح أ هي <span class="eq-ltr" dir="ltr">15 · 20 = <span dir="rtl">300 متر مربع</span></span>.<br>النسبة بين السعر ومساحة العشب هي <span class="ratio">15,000 : 300</span> شيكل للمتر المربع، وبعد الاختزال <span class="ratio">50 : 1</span>. أي 50 شيكل لكل متر مربع من العشب.<br>مساحة المسطّح ب هي <span class="eq-ltr" dir="ltr">25 · 25 = <span dir="rtl">625 مترًا مربعًا</span></span>.<br>النسبة بين السعر ومساحة العشب هي <span class="ratio">30,000 : 625</span> شيكل للمتر المربع، وبعد الاختزال نحصل على <span class="ratio">48 : 1</span>. أي 48 شيكل للمتر المربع.<br>ولذلك فإن عرض السعر للمتر المربع في المسطّح ب أرخص‎.` } },
+  },
+  {
+    screen: 39, label: '', type: 'value-input', maxAttempts: 2, hintPolicy: 'after-wrong',
+    step: { group: 'standard-b', index: 2, total: 2 },
+    stem: `ب. تريد البلدية إقامة سياج حول المسطّح أ.<br>يقوم عامل بتركيب السياج بوتيرة ثابتة بمقدار 5 أمتار في الساعة.<br><br><strong>كم ساعة سيحتاج لإتمام العمل؟ </strong>`,
+    content: `<figure class="lawn-fig"><img data-no-zoom src="assets/img/lawn-a.jpeg" alt="مسطّح مستطيل"><figcaption>المسطّح أ</figcaption><span class="lawn-w">20‏‎ ‎مترًا</span><span class="lawn-h">15‏‎ ‎مترًا</span></figure>`,
+    ratioRows: [{ label: 'ساعات', parts: 1, unit: true }],
+    correctInputs: ['14'],
+    hint: { body: 'احسبوا <strong>محيط</strong> المسطّح، وافحصوا كم من الوقت سيحتاج العامل لإنهاء العمل‎.' },
+    fb: { retry: 'الإجابة غير دقيقة، هل نحاول مرة أخرى؟',
+      correct: { title: 'رائع!', body: `محيط المسطّح أ هو:  <span class="eq-ltr" dir="ltr">(15 + 20) · 2 = <span dir="rtl">70 مترًا</span></span> يركّب العامل 5 أمتار من السياج في كل ساعة، ولذلك فإن النسبة بين طول السياج الذي يركبه ومدة التركيب هي <span class="ratio">5 : 1</span>.<br>للوصول إلى 70 مترًا، نوسّع النسبة بـ 14 مرة ونحصل على <span class="ratio">70 : 14</span>.<br>أي إن العامل سيبني السياج بأكمله (70 مترًا) خلال 14 ساعة‎.` },
+      wrong: { title: 'هذا خطأ. هيا نفهم لماذا:', body: `محيط المسطّح أ هو:  <span class="eq-ltr" dir="ltr">(15 + 20) · 2 = <span dir="rtl">70 مترًا</span></span> يركّب العامل 5 أمتار من السياج في كل ساعة، ولذلك فإن النسبة بين طول السياج الذي يركبه ومدة التركيب هي <span class="ratio">5 : 1</span>.<br>للوصول إلى 70 مترًا، نوسّع النسبة بـ 14 مرة ونحصل على <span class="ratio">70 : 14</span>.<br>أي إن العامل سيبني السياج بأكمله (70 مترًا) خلال 14 ساعة‎.` } },
+  },
+
+  /* ══ Advanced practice — deck slides 57-60 (group `advanced`, 2 exercises) ══
+     Slide 56 promises "2 שאלות מתקדמות". Every note reads `רמז אחרי טעות אחת`;
+     slide 60 adds `משוב בגלילה`, hence fbScroll. ══ */
+  {
+    screen: 44, label: '', type: 'value-input', maxAttempts: 2, hintPolicy: 'after-wrong',
+    step: { group: 'advanced', index: 1, total: 2 },
+    stem: `يمتلئ خزان أسطواني بالماء. وتيرة تعبئة الماء في الخزان هي 5 لترات في الدقيقة.<br>اكتشف رامي أن هناك ثقبًا في أسفل الخزان، يتسرب منه الماء بوتيرة 200 سم مكعب في الثانية.<br>(1 لتر = 1,000 سم مكعب).<br><strong>أ. أكملوا (انتبهوا إلى وحدات القياس)‎:</strong>`,
+    content: `<figure class="tank-fig" data-zoom><span class="tank-art"><img src="assets/img/a1-tank-clean.png" alt="خزان أسطواني يمتلئ بالماء وفي أسفله ثقب يخرج منه الماء"><span class="tank-tag tank-tag--fill">وتيرة التعبئة: <br>5 لترات في الدقيقة</span><span class="tank-tag tank-tag--hole">الثقب في أسفل الخزان:<br>200 سم مكعب في الثانية</span></span></figure>`,
+    ratioRows: [{ label: 'وتيرة تفريغ الخزان هي', suffix: 'لترًا في الدقيقة‎.', parts: 1 }],
+    correctInputs: ['12'],
+    hint: { body: 'لتحويل وحدة قياس من الثواني إلى الدقائق نقسم على 60، ولتحويل وحدة القياس من لتر إلى سم مكعب نضرب بـ 1,000، والعكس صحيح‎.' },
+    fb: { retry: 'الإجابة غير دقيقة، هل نحاول مرة أخرى؟',
+      correct: { title: 'جيد جدًا‎!', body: `وتيرة تفريغ الخزان هي 200 سم مكعب في الثانية. لذلك، خلال دقيقة واحدة يتفرغ الخزان بـ 12,000 سم مكعب (200 سم مكعب · 60 ثانية).<br>يوجد في اللتر 1,000 سم مكعب. نحوّل وحدة القياس إلى لترات:<br><span class="ratio">12,000 : 1,000</span> سم مكعب = 12 لترًا.<br>الاستنتاج: وتيرة تفريغ الخزان هي 12 لترًا في الدقيقة‎.` },
+      wrong: { title: 'هذا خطأ. هيا نفهم لماذا:', body: `وتيرة تفريغ الخزان هي 200 سم مكعب في الثانية. لذلك، خلال دقيقة واحدة يتفرغ الخزان بـ 12,000 سم مكعب (200 سم مكعب · 60 ثانية).<br>يوجد في اللتر 1,000 سم مكعب. نحوّل وحدة القياس إلى لترات:<br><span class="ratio">12,000 : 1,000</span> سم مكعب = 12 لترًا.<br>الاستنتاج: وتيرة تفريغ الخزان هي 12 لترًا في الدقيقة‎.` } },
+  },
+  {
+    screen: 45, label: '', type: 'single', maxAttempts: 2, hintPolicy: 'after-wrong',
+    step: { group: 'advanced', index: 1, total: 2 },
+    stem: `<strong>ب. ماذا سيحدث لمستوى الماء في <span dir="rtl">الخزان</span> مع مرور الوقت؟</strong><br>نذكّر بأن وتيرة تعبئة الماء في الخزان هي 5 لترات في الدقيقة،<br>ووتيرة تفريغه هي 12 لترًا في الدقيقة‎.`,
+    content: `<figure class="tank-fig" data-zoom><span class="tank-art"><img src="assets/img/a2-tank-level-clean.png" alt="مستوى الماء في الخزان الأسطواني"><span class="tank-tag tank-tag--fill">وتيرة التعبئة:<br> 5 لترات في الدقيقة</span><span class="tank-tag tank-tag--hole">الثقب في أسفل الخزان:<br>200 سم مكعب في الثانية</span></span></figure>`,
+    options: [{ id: 'a', html: 'مستوى الماء سينخفض' }, { id: 'b', html: 'مستوى الماء سيرتفع' },
+      { id: 'c', html: 'سيرتفع المستوى ثم يستقر' }, { id: 'd', html: 'مستوى الماء سيبقى ثابتًا' }],
+    correct: 'a',
+    hint: { body: 'ماذا يحدث في كل دقيقة: أي كمية من الماء تدخل وأي كمية تخرج؟' },
+    fb: { retry: 'الإجابة غير دقيقة، هل نحاول مرة أخرى؟',
+      correct: { title: 'إجابة رائعة فعلًا!', body: `وتيرة تعبئة الماء في الخزان هي 5 لترات في الدقيقة.<br>وجدنا في البند السابق أن وتيرة تفريغ الخزان هي 12 لترًا في الدقيقة.<br>وتيرة التفريغ أسرع من وتيرة التعبئة، ولذلك سينخفض مستوى الماء.` },
+      wrong: { title: 'هذا خطأ، تعالوا نتعلم منه:', body: `وتيرة تعبئة الماء في الخزان هي 5 لترات في الدقيقة.<br>وجدنا في البند السابق أن وتيرة تفريغ الخزان هي 12 لترًا في الدقيقة.<br>وتيرة التفريغ أسرع من وتيرة التعبئة، ولذلك سينخفض مستوى الماء.` } },
+  },
+  {
+    screen: 46, label: '', type: 'single', maxAttempts: 2, hintPolicy: 'after-wrong',
+    step: { group: 'advanced', index: 2, total: 2 },
+    stem: `خرجت عائلة سلمان إلى رحلة في سيارتها الكهربائية.<br>عندما تكون بطارية السيارة الكهربائية مشحونة بالكامل، يكون فيها <span dir="ltr">60‏‎ kWh ‎</span>(كيلوواط-ساعة<span class="info-wrap"><button type="button" class="info-dot" aria-label="ما هو الكيلوواط-ساعة؟"><svg class="info-dot-icon" viewBox="0 0 15 15" fill="none" aria-hidden="true"><rect width="15" height="15" rx="7.5" fill="currentColor"/><path d="M7.12219 12.327C6.89019 12.327 6.69419 12.293 6.53419 12.225C6.37819 12.157 6.26419 12.063 6.19219 11.943C6.12019 11.819 6.09419 11.673 6.11419 11.505C6.13419 11.325 6.16219 11.105 6.19819 10.845C6.23819 10.585 6.28019 10.293 6.32419 9.969C6.37219 9.645 6.42419 9.295 6.48019 8.919C6.53619 8.543 6.59019 8.151 6.64219 7.743C6.69819 7.335 6.75419 6.919 6.81019 6.495L6.11419 6.165L6.19819 5.691L8.28019 5.397L8.57419 5.535L7.78219 10.995C7.76219 11.139 7.77019 11.249 7.80619 11.325C7.84219 11.397 7.90019 11.433 7.98019 11.433C8.05219 11.433 8.13019 11.411 8.21419 11.367C8.30219 11.319 8.41419 11.239 8.55019 11.127L8.70619 11.493C8.66219 11.553 8.57219 11.649 8.43619 11.781C8.30419 11.913 8.12819 12.037 7.90819 12.153C7.68819 12.269 7.42619 12.327 7.12219 12.327ZM7.84219 4.593C7.60619 4.593 7.40419 4.505 7.23619 4.329C7.07219 4.153 6.99619 3.947 7.00819 3.711C7.02019 3.419 7.11619 3.173 7.29619 2.973C7.48019 2.773 7.72619 2.673 8.03419 2.673C8.29819 2.673 8.50819 2.759 8.66419 2.931C8.82019 3.099 8.89619 3.293 8.89219 3.513C8.88819 3.817 8.79819 4.073 8.62219 4.281C8.44619 4.489 8.18619 4.593 7.84219 4.593Z" fill="#fff"/></svg></button><span class="info-pop" hidden>وحدة قياس تقيس كمية الطاقة الكهربائية المستهلكة على مدار الزمن</span></span>).<br>في القيادة العادية، تستهلك السيارة طاقة بوتيرة ثابتة مقدارها <span dir="ltr">0.2 kWh</span> لكل 1 كم.<br><br><strong>أ. كم كيلومترًا تستطيع السيارة أن تقطع قبل أن تفرغ البطارية بالكامل؟</strong>`,
+    content: `<img class="content-img" src="assets/img/a3-family-car.jpeg" alt="عائلة تسافر معًا في سيارة">`,
+    options: [{ id: 'a', html: '12‏‎ ‎كم' }, { id: 'b', html: '120‏‎ ‎كم' },
+      { id: 'c', html: '300‏‎ ‎كم' }, { id: 'd', html: '600‏‎ ‎كم' }],
+    correct: 'c',
+    hint: { body: 'إذا كانت السيارة تستهلك <span dir="ltr">0.2 kWh</span> لكل كيلومتر، كم كيلومترًا ستقطع إلى أن تستهلك <span dir="ltr">60 kWh</span>؟' },
+    fb: { retry: 'الإجابة غير دقيقة، هل نحاول مرة أخرى؟',
+      correct: { title: 'صحيح جدًا‎!', body: `تستهلك السيارة <span dir="ltr">0.2 kWh</span> لكل كيلومتر، ولذلك فإن النسبة بين عدد الكيلوواط-ساعة وعدد الكيلومترات هي <span class="ratio">0.2 : 1</span>.<br>نوسّع النسبة بـ 300 مرة (للحصول على  60 كم) ونحصل على النسبة <span class="ratio">60 : 300</span>.<br><span class="oneline">أي إن السيارة تستطيع قطع مسافة 300 كم إلى أن تفرغ البطارية التي فيها <span dir="ltr">60 kWh</span>.</span>` },
+      wrong: { title: 'هذا خطأ. هيا نفهم لماذا:', body: `تستهلك السيارة <span dir="ltr">0.2 kWh</span> لكل كيلومتر، ولذلك فإن النسبة بين عدد الكيلوواط-ساعة وعدد الكيلومترات هي <span class="ratio">0.2 : 1</span>.<br>نوسّع النسبة بـ 300 مرة (للحصول على  60 كم) ونحصل على النسبة <span class="ratio">60 : 300</span>.<br><span class="oneline">أي إن السيارة تستطيع قطع مسافة 300 كم إلى أن تفرغ البطارية التي فيها <span dir="ltr">60 kWh</span>.</span>` } },
+  },
+  {
+    screen: 47, label: '', type: 'single', maxAttempts: 2, hintPolicy: 'after-wrong', fbScroll: true,
+    step: { group: 'advanced', index: 2, total: 2 },
+    stem: `ب. بعد أن قطعت السيارة 100 كم، شغّلت العائلة المكيّف بأقصى قوة. أدى تشغيل المكيّف إلى زيادة استهلاك الطاقة في السيارة إلى <span dir="ltr">0.25 kWh</span> لكل كيلومتر.<br><br><strong>. ما هي كمية الطاقة التي ستبقى في البطارية بعد قطع 150 كم منذ بداية السفر؟</strong>`,
+    content: `<img class="content-img" src="assets/img/a4-road.jpeg" alt="سيارة تسير على طريق متعرج بين الأشجار">`,
+    options: [{ id: 'a', html: '<span dir="ltr">27.5 kWh</span>' }, { id: 'b', html: '<span dir="ltr">32.5 kWh</span>' },
+      { id: 'c', html: '<span dir="ltr">40 kWh</span>' }, { id: 'd', html: '<span dir="ltr">47.5 kWh</span>' }],
+    correct: 'a',
+    hint: { body: 'احسبوا بشكل منفرد استهلاك الطاقة في أول 100 كم وفي الـ 50 كم التالية‎.' },
+    fb: { retry: 'الإجابة غير دقيقة، هل نحاول مرة أخرى؟',
+      correct: { title: 'ممتاز‎!', body: `<strong>في أول 100 كم</strong> استهلكت السيارة الطاقة بوتيرة ثابتة مقدارها <span dir="ltr">0.2 kWh</span> لكل كيلومتر. لذلك استهلكت <span class="eq-ltr" dir="ltr">0.2 ∙ 100 = 20 kWh</span><br><strong>في الـ 50 كم التالية</strong> ارتفعت وتيرة استهلاك الطاقة إلى <span dir="ltr">0.25 kWh</span> لكل كيلومتر.<br>لذلك استهلكت <span class="eq-ltr" dir="ltr">0.25 ∙ 50 = 12.5 kWh</span><br>نجمع الاستهلاك الكلي ونحصل على: <br><span class="eq-ltr" dir="ltr">20 kWh + 12.5 kWh = 32.5 kWh</span><br>أي إنه بعد 150 كم استهلكت السيارة <span dir="ltr">32.5 kWh</span>.<br>نحسب كمية الطاقة المتبقية في البطارية بعد 150 كم: <span class="eq-ltr" dir="ltr">60 kWh – 32.5 kWh = 27.5 kWh</span>` },
+      wrong: { title: 'الإجابة غير صحيحة. إليكم الشرح:', body: `<strong>في أول 100 كم</strong> استهلكت السيارة الطاقة بوتيرة ثابتة مقدارها <span dir="ltr">0.2 kWh</span> لكل كيلومتر. لذلك استهلكت <span class="eq-ltr" dir="ltr">0.2 ∙ 100 = 20 kWh</span><br><strong>في الـ 50 كم التالية</strong> ارتفعت وتيرة استهلاك الطاقة إلى <span dir="ltr">0.25 kWh</span> لكل كيلومتر.<br>لذلك استهلكت <span class="eq-ltr" dir="ltr">0.25 ∙ 50 = 12.5 kWh</span><br>نجمع الاستهلاك الكلي ونحصل على: <br><span class="eq-ltr" dir="ltr">20 kWh + 12.5 kWh = 32.5 kWh</span><br>أي إنه بعد 150 كم استهلكت السيارة <span dir="ltr">32.5 kWh</span>.<br>نحسب كمية الطاقة المتبقية في البطارية بعد 150 كم: <span class="eq-ltr" dir="ltr">60 kWh – 32.5 kWh = 27.5 kWh</span>` } },
+  },
+
+  /* ══ Peak question 1 — deck slides 64-69, five parts (group `peak1`) ═══════
+     Slide 62 promises "5 סעיפים, עליכם להצליח ב-4 לפחות". Slides 66 and 70 are
+     FullImageWithTextOverlay beats inside the block, built in index.html, so
+     the stepper simply does not appear on them. Every note reads
+     `רמז אחרי טעות אחת`; slide 68 adds `משוב בגלילה`. The deck's credit line
+     rides each screen's content column. ══ */
+  {
+    screen: 50, label: '', type: 'value-input', maxAttempts: 2, hintPolicy: 'after-wrong',
+    stem: `جمعت لجنة البناية معلومات عن مساحات الشقق في البناية ورتبتها في جدول.<br><span class="oneline">كان هناك معطيان ناقصان: عدد الشقق التي مساحتها 90 مترًا مربعًا وعدد الشقق التي مساحتها 75 مترًا متربعًا.</span><br>نرمز إلى عدد الشقق التي مساحتها 90 مترًا مربعًا بـ x.<br>تذكّروا - في البناية 22 شقة.<br><br>وفقًا لحسابات اللجنة، يجب جمع مبلغ 5,100 شيكل شهريًا من جميع سكان البناية.<br><br>جمعت اللجنة 3,600 شيكل من جميع الشقق التي مساحتها 150 مترًا مربعًا و-120 مترًا مربعًا.<br><br><strong>أ. ما هي النسبة بين المبلغ الذي جُمع من كل الشقق التي مساحتها 150 مترًا مربعًا و-120 مترًا مربعًا، وبين المساحة الإجمالية لهذه الشقق بالمتر المربع؟</strong>`,
+    content: `<table class="deck-table"><tbody><tr><th>مساحة الشقة بالمتر المربع</th><td>150</td><td>120</td><td>90</td><td>75</td></tr><tr><th>عدد الشقق</th><td>8</td><td>5</td><td>x</td><td>?</td></tr></tbody></table><p class="deck-credit">‎*‎مأخوذ من مهمة "مؤور‎".</p>`,
+    ratioRows: [{ frac: true, suffix: 'شيكل للمتر المربع' }],
+    correctInputs: ['3,600', '1,800'],
+    altInputs: [['3600', '1800']],
+    hint: { body: 'لحساب مساحة الشقق، احرصوا على ضرب مساحة الشقة بعدد الشقق من هذه المساحة‎.' },
+    fb: { retry: 'الإجابة غير دقيقة، هل نحاول مرة أخرى؟',
+      correct: { title: 'هذا صحيح‎!', body: `المبلغ الذي جُمع من الشقق التي مساحتها 150 مترًا مربعًا و-120 مترًا مربعًا هو 3,600 شيكل.<br>المساحة الإجمالية لهذه الشقق هي:<br><span class="eq-ltr" dir="ltr">8 · 150 + 5 · 120 = <span dir="rtl">1,800 مترًا مربعًا</span></span><br>النسبة بين المبلغ الذي جُمع والمساحة الإجمالية للشقق هي <span class="fracpair"><span class="fraction fr-inline"><span class="frac-top">3,600</span><span class="frac-bottom">1,800</span></span></span> شيكل للمتر المربع.` },
+      wrong: { title: 'الإجابة خاطئة', body: `المبلغ الذي جُمع من الشقق التي مساحتها 150 مترًا مربعًا و-120 مترًا مربعًا هو 3,600 شيكل.<br>المساحة الإجمالية لهذه الشقق هي:<br><span class="eq-ltr" dir="ltr">8 · 150 + 5 · 120 = <span dir="rtl">1,800 مترًا مربعًا</span></span><br>النسبة بين المبلغ الذي جُمع والمساحة الإجمالية للشقق هي <span class="fracpair"><span class="fraction fr-inline"><span class="frac-top">3,600</span><span class="frac-bottom">1,800</span></span></span> شيكل للمتر المربع.` } },
+  },
+  {
+    screen: 51, label: '', type: 'value-input', maxAttempts: 2, hintPolicy: 'after-wrong',
+    stem: `ب. وجدنا أن النسبة بين المبلغ الذي جُمع من الشقق التي مساحتها 150 مترًا مربعًا و-120 مترًا مربعًا وبين مساحتها الإجمالية هي <span class="fracpair"><span class="fraction fr-inline"><span class="frac-top">3,600</span><span class="frac-bottom">1,800</span></span></span> شيكل للمتر المربع.<br><br><strong>ما هي قيمة الدفعة للجنة البناية عن مساحة متر مربع واحد؟</strong>`,
+    content: `<img class="content-img" src="assets/img/b2-vaad.png" alt="رسم توضيحي: كم شيكل يساوي متر مربع واحد من الشقة؟"><p class="deck-credit">‎*‎مأخوذ من مهمة "مؤور‎".</p>`,
+    ratioRows: [{ suffix: 'شيكل', parts: 1 }],
+    correctInputs: ['2'],
+    hint: { body: 'صغِّروا المساحة بمقدار معيّن للحصول على السعر للمتر المربع الواحد‎.' },
+    fb: { retry: 'الإجابة غير دقيقة، هل نحاول مرة أخرى؟',
+      correct: { title: 'صحيح جدًا‎!', body: `النسبة بين المبلغ الذي جُمع من الشقق التي مساحتها 150 مترًا مربعًا و-120 مترًا مربعًا وبين مساحتها الإجمالية هي <span class="fracpair"><span class="fraction fr-inline"><span class="frac-top">3,600</span><span class="frac-bottom">1,800</span></span></span> شيكل للمتر المربع.<br>لإيجاد السعر للمتر المربع الواحد، نقسم المبلغ على عدد الأمتار المربعة الكليّ. <span class="eq-ltr" dir="ltr">3,600 : 1,800 = 2</span><br>أي إن الدفعة هي 2 شيكل للمتر المربع‎.` },
+      wrong: { title: 'هذا خطأ. لكن هذه أيضًا فرصة للتعلم‎:', body: `النسبة بين المبلغ الذي جُمع من الشقق التي مساحتها 150 مترًا مربعًا و-120 مترًا مربعًا وبين مساحتها الإجمالية هي <span class="fracpair"><span class="fraction fr-inline"><span class="frac-top">3,600</span><span class="frac-bottom">1,800</span></span></span> شيكل للمتر المربع.<br>لإيجاد السعر للمتر المربع الواحد، نقسم المبلغ على عدد الأمتار المربعة الكليّ. <span class="eq-ltr" dir="ltr">3,600 : 1,800 = 2</span><br>أي إن الدفعة هي 2 شيكل للمتر المربع‎.` } },
+  },
+  {
+    screen: 53, label: '', type: 'single', maxAttempts: 2, hintPolicy: 'after-wrong',
+    stem: `ت. لحساب عدد الشقق، قام وسام بتمثيل عدد الشقق التي مساحتها 75 مترًا مربعًا بواسطة التعبير الجبري:‎وبعد تجميع الحدود، حصل إيتان على التعبير الجبري: <span class="eq-ltr" dir="ltr">22 - 8 - 5 - x</span><br> وبعد أن رتّب الحدود، حصل وسام على التعبير الجبري التالي: <span class="eq-ltr" dir="ltr">9 - x</span><br><br><strong>هل يمثّل هذا التعبير عدد الشقق التي مساحتها 75 مترًا مربعًا بشكل صحيح؟</strong>`,
+    content: `<table class="deck-table"><tbody><tr><th>مساحة الشقة بالمتر المربع</th><td>150</td><td>120</td><td>90</td><td>75</td></tr><tr><th>عدد الشقق</th><td>8</td><td>5</td><td>x</td><td>?</td></tr></tbody></table><p class="deck-credit">‎*‎مأخوذ من مهمة "مؤور‎".</p>`,
+    answersClass: 'scq-answers--short-wide',
+    options: [{ id: 'a', html: 'نعم' }, { id: 'b', html: 'لا' }, { id: 'c', html: 'لا يمكن التحديد' }],
+    correct: 'a',
+    hint: { body: 'إجمالي عدد الشقق في البناية هو 22‏‎.' },
+    fb: { retry: 'الإجابة غير دقيقة، هل نحاول مرة أخرى؟',
+      correct: { title: 'هذا صحيح‎!', body: `يوجد في البناية 22 شقة بالمجمل: 8 شقق بمساحة 150 مترًا مربعًا، 5 شقق بمساحة 120 مترًا مربعًا، x شقق بمساحة 90 مترًا مربعًا، وعدد غير معروف من الشقق بمساحة 75 مترًا مربعًا. لذلك فإن التعبير الذي يصف عدد الشقق بمساحة 75 مترًا مربعًا هو: <br><span class="eq-ltr" dir="ltr">22 - 5 - 8 - x</span><br>أي <span class="eq-ltr" dir="ltr">9 - x</span> شقق.` },
+      wrong: { title: 'هذا خطأ. هيا نفهم لماذا:', body: `يوجد في البناية 22 شقة بالمجمل: 8 شقق بمساحة 150 مترًا مربعًا، 5 شقق بمساحة 120 مترًا مربعًا، x شقق بمساحة 90 مترًا مربعًا، وعدد غير معروف من الشقق بمساحة 75 مترًا مربعًا. لذلك فإن التعبير الذي يصف عدد الشقق بمساحة 75 مترًا مربعًا هو: <br><span class="eq-ltr" dir="ltr">22 - 5 - 8 - x</span><br>أي <span class="eq-ltr" dir="ltr">9 - x</span> شقق.` } },
+  },
+  {
+    screen: 54, label: '', type: 'single', maxAttempts: 2, hintPolicy: 'after-wrong', fbScroll: true,
+    stem: `ث. ادعى وسام أنه من اجل إيجاد x، يجب حل المعادلة: <span class="eq-ltr" dir="ltr">180x + 150 · (9 – x) = 5,100 – 3,600</span><br><span class="nowrap">نذكّركم أنه وفقًا لحسابات اللجنة، يجب جمع مبلغ 5,100 شيكل شهريًا من جميع سكان البناية.</span><br><br>جمعت اللجنة 3,600 شيكل من جميع الشقق التي مساحتها 150 مترًا مربعًا و-120 مترًا مربعًا.<br><br><strong> هل وسام على صواب؟</strong>`,
+    content: `<table class="deck-table"><tbody><tr><th>مساحة الشقة بالمتر المربع</th><td>150</td><td>120</td><td>90</td><td>75</td></tr><tr><th>عدد الشقق</th><td>8</td><td>5</td><td>x</td><td dir="ltr">9 - x</td></tr></tbody></table><p class="deck-credit">‎*‎مأخوذ من مهمة "مؤور‎".</p>`,
+    answersClass: 'scq-answers--short-wide',
+    options: [{ id: 'a', html: 'نعم' }, { id: 'b', html: 'لا' }, { id: 'c', html: 'لا يمكن التحديد' }],
+    correct: 'a',
+    hint: { title: 'كيف نحل المعادلة؟', body: 'افتحوا الأقواس باستخدام قانون التوزيع، واجمعوا الحدود المتشابهة، ثم اعزلوا x.' },
+    fb: { retry: 'الإجابة غير دقيقة، هل نحاول مرة أخرى؟',
+      correct: { title: 'ممتاز‎!', body: `الدفعة للمتر المربع هي 2 شيكل، لذلك فإن الدفعة لشقة مساحتها 75 مترًا مربعًا هي 150 شيكل.<br>توجد  <span class="eq-ltr" dir="ltr">(9 – x)</span> شقق بمساحة 75 مترًا مربعًا، والدفعة عنها جميعًا ستكون <span class="eq-ltr" dir="ltr">150 · (9 – x)</span>.<br>بالإضافة إلى ذلك، توجد‎ x ‎شقق بمساحة 90 مترًا مربعًا. الدفعة لكل واحدة منها هي 180 شيكل، ولها جميعًا <span class="eq-ltr" dir="ltr">180x</span>.<br>المبلغ الذي دُفع عن الشقق بمساحة 120 مترًا مربعًا و-150 مترًا مربعًا هو 3,600 شيكل، وإجمالي المبلغ المطلوب جبايته من جميع الشقق هو 5,100 شيكل.<br>من هنا فإن إجمالي الدفعة عن الشقق بمساحة 75 مترًا مربعًا و-90 مترًا مربعًا هو: <span class="eq-ltr" dir="ltr">5,100 – 3,600</span> شيكل.<br>لذلك، من أجل إيجاد‎ x ‎نحل المعادلة: <br><span class="eq-ltr" dir="ltr">180x + 150 · (9 – x) = 5,100 – 3,600</span>` },
+      wrong: { title: 'هذا خطأ. لكن هذه أيضًا فرصة للتعلم‎:', body: `الدفعة للمتر المربع هي 2 شيكل، لذلك فإن الدفعة لشقة مساحتها 75 مترًا مربعًا هي 150 شيكل.<br>توجد  <span class="eq-ltr" dir="ltr">(9 – x)</span> شقق بمساحة 75 مترًا مربعًا، والدفعة عنها جميعًا ستكون <span class="eq-ltr" dir="ltr">150 · (9 – x)</span>.<br>بالإضافة إلى ذلك، توجد‎ x ‎شقق بمساحة 90 مترًا مربعًا. الدفعة لكل واحدة منها هي 180 شيكل، ولها جميعًا <span class="eq-ltr" dir="ltr">180x</span>.<br>المبلغ الذي دُفع عن الشقق بمساحة 120 مترًا مربعًا و-150 مترًا مربعًا هو 3,600 شيكل، وإجمالي المبلغ المطلوب جبايته من جميع الشقق هو 5,100 شيكل.<br>من هنا فإن إجمالي الدفعة عن الشقق بمساحة 75 مترًا مربعًا و-90 مترًا مربعًا هو: <span class="eq-ltr" dir="ltr">5,100 – 3,600</span> شيكل.<br>لذلك، من أجل إيجاد‎ x ‎نحل المعادلة: <br><span class="eq-ltr" dir="ltr">180x + 150 · (9 – x) = 5,100 – 3,600</span>` } },
+  },
+  {
+    screen: 55, label: '', type: 'value-input', maxAttempts: 2, hintPolicy: 'after-wrong',
+    stem: `<strong>جـ. حلوا المعادلة لإيجاد‎ X ‎وأكملوا المعطيات الناقصة للشقق بمساحة 75 مترًا مربعًا و-90 مترًا مربعًا.</strong><br><span class="eq-ltr" dir="ltr">180x + 150 · (9 – x) = 5,100 – 3,600</span>`,
+    content: `<table class="deck-table"><tbody><tr><th>مساحة الشقة بالمتر المربع</th><td>150</td><td>120</td><td>90</td><td>75</td></tr><tr><th>عدد الشقق</th><td>8</td><td>5</td><td>x</td><td dir="ltr">9 - x</td></tr></tbody></table><p class="deck-credit">‎*‎مأخوذ من مهمة "مؤور‎".</p>`,
+    ratioRows: [{ label: 'عدد الشقق بمساحة 90 مترًا مربعًا‏‎:', parts: 1 }, { label: 'عدد الشقق بمساحة 75 مترًا مربعًا‏‎:', parts: 1 }],
+    correctInputs: ['5', '4'],
+    hint: { body: 'افتحوا الأقواس باستخدام قانون التوزيع، واجمعوا الحدود المتشابهة، ثم اعزلوا x.' },
+    fb: { retry: 'الإجابة غير دقيقة، هل نحاول مرة أخرى؟',
+      correct: { title: 'رائع!', body: `أولًا نفتح الأقواس باستخدام قانون التوزيع: <span class="eq-ltr" dir="ltr">180x + 1,350 - 150x = 1,500</span><br>نجمع الحدود المتشابهة <span class="eq-ltr" dir="ltr">30x + 1,350 = 1,500 / - 1,350</span><br><span class="eq-ltr" dir="ltr">30x = 150 / : 30</span><br><span class="eq-ltr" dir="ltr">x = 5</span><br>لذلك، فإن عدد الشقق بمساحة 90 مترًا مربعًا هو 5.<br>عدد الشقق بمساحة 75 مترًا مربعًا هو <span class="eq-ltr" dir="ltr">9 - 5 = 4</span>.` },
+      wrong: { title: 'هذا غير صحيح، تعالوا نفهم لماذا:', body: `أولًا نفتح الأقواس باستخدام قانون التوزيع: <span class="eq-ltr" dir="ltr">180x + 1,350 - 150x = 1,500</span><br>نجمع الحدود المتشابهة <span class="eq-ltr" dir="ltr">30x + 1,350 = 1,500 / - 1,350</span><br><span class="eq-ltr" dir="ltr">30x = 150 / : 30</span><br><span class="eq-ltr" dir="ltr">x = 5</span><br>لذلك، فإن عدد الشقق بمساحة 90 مترًا مربعًا هو 5.<br>عدد الشقق بمساحة 75 مترًا مربعًا هو <span class="eq-ltr" dir="ltr">9 - 5 = 4</span>.` } },
+  },
+
+  /* ══ Peak question 2 — deck slides 74-81, seven parts (group `peak2`) ══════
+     Slide 72 promises "7 סעיפים, עליכם להצליח ב-5 לפחות". Slide 77 is a
+     FullImageWithTextOverlay beat between parts ג and ד. Notes read
+     `רמז אחרי טעות אחת`, except slide 76: `ניסיון אחד למענה ואחריו יופיע
+     המשוב` + `ללא רמז`. ══ */
+  {
+    screen: 59, label: '', type: 'value-input', maxAttempts: 2, hintPolicy: 'after-wrong',
+    step: { group: 'peak2', index: 1, total: 7 },
+    stem: `أ. خرج إلى الرحلة 160 طالبًا وطالبة و-20 شخصًا من أفراد الطاقم.<br>أكملوا‎:`,
+    ratioRows: [{ label: '<strong>النسبة المختزلة بين عدد الطلاب والطالبات وعدد أفراد الطاقم هي‎:</strong>', parts: 2 }],
+    correctInputs: ['8', '1'],
+    hint: { body: 'انتبهوا إلى ترتيب الكتابة‎.' },
+    fb: { retry: 'الإجابة غير دقيقة، هل نحاول مرة أخرى؟',
+      correct: { title: 'صحيح جدًا‎!', body: `النسبة بين الطلاب وأفراد الطاقم هي <span class="ratio">160 : 20</span> وفقًا لترتيب الصيغة الكلامية. نختزل ونحصل على النسبة <span class="ratio">8 : 1</span>` },
+      wrong: { title: 'هذا خطأ. لكن هذه أيضًا فرصة للتعلم‎:', body: `النسبة بين الطلاب وأفراد الطاقم هي <span class="ratio">160 : 20</span> وفقًا لترتيب الصيغة الكلامية. نختزل ونحصل على النسبة <span class="ratio">8 : 1</span>` } },
+  },
+  {
+    screen: 60, label: '', type: 'single', maxAttempts: 2, hintPolicy: 'after-wrong',
+    step: { group: 'peak2', index: 2, total: 7 },
+    stem: `<strong>ب. هل النسبة التي وجدتموها بين الطلاب وأفراد الطاقم هي نسبة بين كميات من نفس النوع أم من أنواع مختلفة؟</strong>`,
+    content: `<img class="content-img" data-no-zoom src="assets/img/c2-group.png" alt="معلّم وطالب يجلسان ويتعلمان معًا">`,
+    options: [{ id: 'a', html: 'نسبة بين أنواع مختلفة لأن الحديث عن طلاب وأفراد طاقم' },
+      { id: 'b', html: 'نسبة بين كميات من نفس النوع، لأن الكميتين تمثلان أشخاصًا' },
+      { id: 'c', html: 'نسبة بين أنواع مختلفة، لأن عدد الطلاب أكبر من عدد أفراد الطاقم' },
+      { id: 'd', html: 'لا يمكن المعرفة بدون معطيات ميزانية الرحلة' }],
+    correct: 'b',
+    fb: { retry: 'الإجابة غير دقيقة، هل نحاول مرة أخرى؟',
+      correct: { title: 'صحيح‎!', body: `الطلاب والطالبات وأفراد الطاقم - جميعهم أشخاص. ولذلك نتحدث عن نسبة بين كميات من نفس النوع‎.` },
+      wrong: { title: 'هذا خطأ. لكن هذه أيضًا فرصة للتعلم‎:', body: `الطلاب والطالبات وأفراد الطاقم - جميعهم أشخاص. ولذلك نتحدث عن نسبة بين كميات من نفس النوع‎.` } },
+  },
+  {
+    /* deck note: `ניסיון אחד למענה ואחריו יופיע המשוב` + `ללא רמז` */
+    screen: 61, label: '', type: 'single', maxAttempts: 1, hintPolicy: 'none',
+    step: { group: 'peak2', index: 3, total: 7 },
+    stem: `<strong>ت. في النسبة بين كميات من نفس نفسه، النتيجة هي‎:</strong>`,
+    options: [{ id: 'a', html: 'عدد بدون وحدات' }, { id: 'b', html: 'وحدة جديدة ومركبة' }],
+    correct: 'a',
+    fb: { retry: 'الإجابة غير دقيقة، هل نحاول مرة أخرى؟',
+      correct: { title: 'صحيح جدًا‎!', body: `في النسبة بين كميات من نفس النوع، لا حاجة إلى ذكر وحدات القياس، لذلك نحصل على عدد بدون وحدات‎.` },
+      wrong: { title: 'هذا خطأ. هيا نفهم لماذا:', body: `في النسبة بين كميات من نفس النوع، لا حاجة إلى ذكر وحدات القياس، لذلك نحصل على عدد بدون وحدات‎.` } },
+  },
+  {
+    screen: 63, label: '', type: 'single', maxAttempts: 2, hintPolicy: 'after-wrong',
+    step: { group: 'peak2', index: 4, total: 7 },
+    stem: `<span class="nowrap">ث. تتقاضى شركة الحافلات 3,200 شيكل مقابل 8 ساعات من السفر والانتظار (لكل يوم رحلة).</span><br><br><strong>أي وحدة قياس ملائمة لنتيجة قسمة مبلغ المال على الزمن؟</strong>`,
+    content: `<img class="content-img content-img--sm" data-no-zoom src="assets/img/c4-bus.png" alt="حافلة رحلات">`,
+    options: [{ id: 'a', html: 'شيكل' }, { id: 'b', html: 'ساعة للشيكل' },
+      { id: 'c', html: 'شيكل للساعة' }, { id: 'd', html: 'لا حاجة للإشارة إلى وحدات القياس' }],
+    correct: 'c',
+    hint: { body: 'أي وحدة قياس تصف مبلغ المال المدفوع مقابل ساعة واحدة؟' },
+    fb: { retry: 'الإجابة غير دقيقة، هل نحاول مرة أخرى؟',
+      correct: { title: 'صحيح‎!', body: `تكلفة السفر تُقاس بالشيكل للساعة.<br>النسبة هي بين كميات من أنواع مختلفة، لذلك نكتبها بهذا الشكل ونذكر وحدات القياس:<br><span class="fracpair"><span class="fraction fr-inline"><span class="frac-top">3,200</span><span class="frac-bottom">8</span></span></span> شيكل للساعة<br>. نقسم ونحصل على 400‏‎.` },
+      wrong: { title: 'هذا خطأ. هيا نفهم لماذا:', body: `تكلفة السفر تُقاس بالشيكل للساعة.<br>النسبة هي بين كميات من أنواع مختلفة، لذلك نكتبها بهذا الشكل ونذكر وحدات القياس:<br><span class="fracpair"><span class="fraction fr-inline"><span class="frac-top">3,200</span><span class="frac-bottom">8</span></span></span> شيكل للساعة<br>. نقسم ونحصل على 400‏‎.` } },
+  },
+  {
+    screen: 64, label: '', type: 'single', maxAttempts: 2, hintPolicy: 'after-wrong',
+    step: { group: 'peak2', index: 5, total: 7 },
+    stem: `<strong>جـ. ما معنى النتيجة "400" التي حصلنا عليها في البند السابق؟</strong>`,
+    content: `<img class="content-img content-img--sm" data-no-zoom src="assets/img/c4-bus.png" alt="حافلة رحلات">`,
+    options: [{ id: 'a', html: 'هذا هو سعر حافلة واحدة فقط من الـ 4 حافلات المطلوبة' },
+      { id: 'b', html: 'هذه هي نسبة الخصم التي حصلت عليها المدرسة من شركة النقل' },
+      { id: 'c', html: 'هذا هو عدد الكيلومترات التي تقطعها الحافلة في كل ساعة' },
+      { id: 'd', html: 'هذا عدد يمثّل تكلفة ساعة عمل واحدة للحافلة' }],
+    correct: 'd',
+    hint: { body: 'السعر الذي حصلنا عليه من شركة النقل هو <span class="fracpair"><span class="fraction fr-inline"><span class="frac-top">3,200</span><span class="frac-bottom">8</span></span></span> شيكل للساعة.' },
+    fb: { retry: 'الإجابة غير دقيقة، هل نحاول مرة أخرى؟',
+      correct: { title: 'صحيح‎!', body: `تكلفة السفر هي <span class="fracpair"><span class="fraction fr-inline"><span class="frac-top">3,200</span><span class="frac-bottom">8</span></span></span> شيكل للساعة.<br>. نقسم ونحصل على أن التكلفة لكل ساعة هي 400 شيكل‎.` },
+      wrong: { title: 'هذا خطأ. هيا نفهم لماذا:', body: `تكلفة السفر هي <span class="fracpair"><span class="fraction fr-inline"><span class="frac-top">3,200</span><span class="frac-bottom">8</span></span></span> شيكل للساعة.. نقسم ونحصل على أن التكلفة لكل ساعة هي 400 شيكل‎.` } },
+  },
+  {
+    screen: 65, label: '', type: 'statement', maxAttempts: 2, hintPolicy: 'after-wrong',
+    step: { group: 'peak2', index: 6, total: 7 },
+    stem: `<strong>حـ. اختاروا صحيح أو غير صحيح في العبارات التالية‎:</strong>`,
+    statements: [
+      { text: 'إذا قسنا مدة الرحلة بالدقائق بدلًا من الساعات، ستتغيّر النسبة بين الطلاب والطاقم‎.', correct: false },
+      { text: 'إذا قسنا مدة الرحلة بالدقائق بدلًا من الساعات، ستتغيّر النسبة بين تكلفة الحافلة والزمن‎.', correct: true },
+    ],
+    hint: { body: 'أي أنواع من النسبة مذكورة في كل عبارة؟' },
+    fb: { retry: 'الإجابة غير دقيقة، هل نحاول مرة أخرى؟',
+      correct: { title: 'صحيح‎!', body: `تعالوا ننتقل إلى السؤال التالي لنشرح‎.` },
+      wrong: { title: 'الإجابة غير دقيقة.', body: `تعالوا ننتقل إلى السؤال التالي لنفهم السبب‎.` } },
+  },
+  {
+    screen: 66, label: '', type: 'single', maxAttempts: 2, hintPolicy: 'after-wrong',
+    step: { group: 'peak2', index: 7, total: 7 },
+    stem: `<strong>خـ. لماذا تغيّرت نسبة تكلفة الحافلة عندما انتقلنا إلى الدقائق، بينما بقيت النسبة بين الطلاب والطاقم كما هي؟</strong>`,
+    options: [{ id: 'a', html: 'أ. النسبة بين الطلاب والطاقم لا تحتوي على وحدات، لذلك لا تتأثر من تغييرات وحدات القياس الخارجية' },
+      { id: 'b', html: 'ب. في نسبة تكلفة الحافلة، يتكوّن مقدار جديد يجمع بين المال والزمن، لذلك فإن تغيير وحدة الزمن يُلزِم بتغيير العدد' },
+      { id: 'c', html: 'الإجابتان أ و-ب صحيحتان، وهما توضّحان الفرق بين النسبة بين كميات من نفس النوع والنسبة بين كميات من أنواع مختلفة' }],
+    correct: 'c',
+    hint: { body: 'في كل نسبة - هل النسبة هي بين كميات من نفس النوع أم بين كميات من أنواع مختلفة، وأي منها تتأثر من تغيير وحدات القياس؟' },
+    fb: { retry: 'الإجابة غير دقيقة، هل نحاول مرة أخرى؟',
+      correct: { title: 'صحيح‎!', body: `النسبة بين الطلاب وأفراد الطاقم هي نسبة بين كميات من نفس النوع، ولذلك فإن تغيير وحدات القياس لا يؤثر عليها.<br>أما النسبة بين تكلفة الحافلة ومدة الرحلة فهي نسبة بين كميات ليست من نفس النوع، ولذلك فإن تغيير وحدة القياس يؤثر عليها‎.` },
+      wrong: { title: 'الإجابة غير دقيقة، هيّا نفهم السبب:', body: `النسبة بين الطلاب وأفراد الطاقم هي نسبة بين كميات من نفس النوع، ولذلك فإن تغيير وحدات القياس لا يؤثر عليها.<br>أما النسبة بين تكلفة الحافلة ومدة الرحلة فهي نسبة بين كميات ليست من نفس النوع، ولذلك فإن تغيير وحدة القياس يؤثر عليها‎.` } },
+  },
+];
