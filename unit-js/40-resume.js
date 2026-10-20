@@ -138,7 +138,7 @@ function emptyUnitState() {
    followed by every later component. Namespaced per unit (QA D-6): an origin-wide key would let
    another unit's value be adopted into this unit's documents. Equals CHARACTER_STORAGE_KEY in
    unit-js/unit.js. */
-var UI_CHARACTER_KEY = 'methodica_math_ratio_04_selectedCharacter';
+var UI_CHARACTER_KEY = 'methodica_ar_math_ratio_04_selectedCharacter';
 /* Each component's own verdict, written by partExit() (70-platform.js) through setUnitResult. */
 var RESULT_KEYS      = ['ratio04_c01_result', 'ratio04_c02_result', 'ratio04_c03_result', 'ratio04_c04_result',
                         'ratio04_c05_result', 'ratio04_c06_result', 'ratio04_c07_result'];

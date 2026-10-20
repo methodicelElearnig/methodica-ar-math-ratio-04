@@ -79,7 +79,7 @@ shared `isLast` (guide §6.3). Its one hint is reported against q6.
 | Every hand-built question in 01 has one attempt, so it reports `answered.last` | `onCustomAnswered()` |
 | Keyboard forward gated like each screen's own button (quiz answered, s6 checked, otherwise the continue button enabled); arrows inside a field never navigate; free under `DEV_NAV` | `keyboardForwardAllowed()` |
 | Retry gate (`st.lw`, D-14) on single, value-input and statement questions | `quiz-engine.js` |
-| Character key renamed to `methodica_math_ratio_04_selectedCharacter` (was `ratio04_selectedCharacter`, un-namespaced — D-6). A choice stored under the old key before this change is not adopted | `unit.js`, `40-resume.js` |
+| Character key renamed to `methodica_ar_math_ratio_04_selectedCharacter` (was `ratio04_selectedCharacter`, un-namespaced — D-6). A choice stored under the old key before this change is not adopted | `unit.js`, `40-resume.js` |
 | YouTube (01 screens 3 and 5): static `youtube-nocookie` iframes, `strict-origin-when-cross-origin`, nothing from `location` in `src` — the token cannot reach Google (§6.9.1). **No `played`/`paused`**: that needs the IFrame API, and the engine parks every iframe by blanking its `src` on navigation. Open — see §7 | `index.html` |
 
 ## 4. The component end

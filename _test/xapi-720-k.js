@@ -233,7 +233,7 @@
        מהריצה הקודמת בחיים בחלון שלפני קריאת המסמך, וזה בדיוק סוג המצב
        שהעוזר הזה קיים כדי לחסל. אותו ניקוי כמו ב-initResumeResetHatch. */
     try {
-      localStorage.removeItem('methodica_math_ratio_04_selectedCharacter');
+      localStorage.removeItem('methodica_ar_math_ratio_04_selectedCharacter');
       /* The same seven as RESULT_KEYS in unit-js/40-resume.js (methodica-ar-math-ratio-04). */
       ['ratio04_c01_result', 'ratio04_c02_result', 'ratio04_c03_result', 'ratio04_c04_result',
        'ratio04_c05_result', 'ratio04_c06_result', 'ratio04_c07_result']
