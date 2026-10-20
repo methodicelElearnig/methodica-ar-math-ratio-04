@@ -1,6 +1,6 @@
 'use strict';
 /* ═══════════════════════════════════════════════════════════════════
-   methodica-math-ratio-04 (יעד 1.4) — unit layer
+   methodica-ar-math-ratio-04 (יעד 1.4) — unit layer
    ═══════════════════════════════════════════════════════════════════ */
 
 const TOTAL_SCREENS = 68;   /* grows as screens are built */

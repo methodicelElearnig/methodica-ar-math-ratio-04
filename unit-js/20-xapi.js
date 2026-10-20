@@ -1,13 +1,13 @@
 'use strict';
 /* ═══════════════════ xAPI (720) — item scope + question ids ═══════════════════
-   Shared by all seven components of methodica-math-ratio-04. Definition-only; 90-boot.js drives
+   Shared by all seven components of methodica-ar-math-ratio-04. Definition-only; 90-boot.js drives
    startup via bootXAPI(). Copied verbatim from methodica-math-ratio-06 (feature/reporting-resume), which has it from
    methodica-math-ratio-01 (35648a6: B-1, O-1, D-7, D-8 included); only the answer-text selector
    list is this unit's. The unit record is docs-and-tools/REPORTING-RESUME.md.
 
    Per-part seams read at CALL time (each component's own script.js declares them):
      SCREEN_TO_SUBCONTENT   screen -> [item suffix, page-in-item]; null = no catalog item
-     XAPI_COMP_SLUG         e.g. 'methodica-math-ratio-04-02'
+     XAPI_COMP_SLUG         e.g. 'methodica-ar-math-ratio-04-02'
      XAPI_COMP_ID           XAPI_ID_PREFIX + XAPI_COMP_SLUG + '/'
      XAPI_EVAL_ITEMS        items that carry a graded question IN CODE
      XAPI_ITEM_RESULT       optional; item suffix -> function returning an explicit result

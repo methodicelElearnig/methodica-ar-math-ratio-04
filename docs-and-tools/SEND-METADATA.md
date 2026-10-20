@@ -1,3 +1,10 @@
+> **methodica-ar-math-ratio-04 (2026-10-20):** the Arabic twin. `ContentBaseUrl` =
+> `https://lomdot.education.gov.il/metodica/720/ar/math/ratio/04`, retrieve `IdBase` = `…/720/ar/math/ratio/04`
+> (ids and content both under `720/ar/`, as ar-ratio-01 / ar-percent-08), `$TitleLangKey = 'Arabic'`, unit key
+> `methodica-ar-math-ratio-04`. NOT SENT YET. Before the first send, decide the Kata shape: ar-percent-08 got
+> `409 objective already bound` for a separate Arabic unit and moved to parent-unit mode (its `ee5833e`, the
+> Arabic components inside the Hebrew unit). That mode is not ported here. The note below is the Hebrew unit's.
+>
 > **methodica-math-ratio-04 (2026-09-30):** copied unchanged from methodica-math-ratio-05 (itself from
 > methodica-science-volume-liquid-01, the newest sender; ratio-06's copy is the older lineage without
 > presence semantics, `-Preflight`/`-Status` and the 200/404-only existence check). Only the unit

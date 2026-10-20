@@ -1,20 +1,20 @@
 'use strict';
 /* ═══════════════════════════════════════════════════════════════════
-   methodica-math-ratio-04-02 — רכיב 02 מתוך 7 · שקופיות 30-38 — תרגול סטנדרטי א (3 תרגילים)
+   methodica-ar-math-ratio-04-02 — רכיב 02 מתוך 7 · שקופיות 30-38 — תרגול סטנדרטי א (3 תרגילים)
 
    CONFIGURATION ONLY. Every behaviour is shared in ../unit-js/.
    The split follows the deck's own "רכיב N" separator slides.
    ═══════════════════════════════════════════════════════════════════ */
 /* next/prev are folder paths; engine.js appends index.html (the CDN serves a folder URL as 0
    bytes). Used only by DEV_NAV walkthroughs — in production the platform routes. */
-window.PART_CONFIG = { start: 20, end: 28, next: "../methodica-math-ratio-04-03/", prev: "../methodica-math-ratio-04-01/" };
+window.PART_CONFIG = { start: 20, end: 28, next: "../methodica-ar-math-ratio-04-03/", prev: "../methodica-ar-math-ratio-04-01/" };
 
 /* ═══════════════════ xAPI (720) — this component's configuration ═══════════════════
    Data only; the shared layer in ../unit-js/ reads it at CALL time. Ids must match
-   ../metadata/methodica-math-ratio-04-02.json byte-for-byte (the loader shouts on a mismatch). */
-var XAPI_COMP_SLUG     = 'methodica-math-ratio-04-02';
+   ../metadata/methodica-ar-math-ratio-04-02.json byte-for-byte (the loader shouts on a mismatch). */
+var XAPI_COMP_SLUG     = 'methodica-ar-math-ratio-04-02';
 var XAPI_COMP_ID       = XAPI_ID_PREFIX + XAPI_COMP_SLUG + '/';
-var XAPI_METADATA_FILE = '../metadata/methodica-math-ratio-04-02.json';
+var XAPI_METADATA_FILE = '../metadata/methodica-ar-math-ratio-04-02.json';
 
 /* Screen 20 is the transition ("3 שאלות … צריך לענות נכון על 2 שאלות לפחות") — no item.
    001 Anna and Lihi (21-23) · 002 fuel (24-25) · 003 the fruit shake (26-28): the three stations of

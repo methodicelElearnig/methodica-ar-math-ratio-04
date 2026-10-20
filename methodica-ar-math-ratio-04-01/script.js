@@ -1,20 +1,20 @@
 'use strict';
 /* ═══════════════════════════════════════════════════════════════════
-   methodica-math-ratio-04-01 — רכיב 01 מתוך 7 · שקופיות 3-28 — פתיחה, הקנייה מודרכת
+   methodica-ar-math-ratio-04-01 — רכיב 01 מתוך 7 · שקופיות 3-28 — פתיחה, הקנייה מודרכת
 
    CONFIGURATION ONLY. Every behaviour is shared in ../unit-js/.
    The split follows the deck's own "רכיב N" separator slides.
    ═══════════════════════════════════════════════════════════════════ */
 /* next/prev are folder paths; engine.js appends index.html (the CDN serves a folder URL as 0
    bytes). Used only by DEV_NAV walkthroughs — in production the platform routes. */
-window.PART_CONFIG = { start: 0, end: 19, next: "../methodica-math-ratio-04-02/", prev: null };
+window.PART_CONFIG = { start: 0, end: 19, next: "../methodica-ar-math-ratio-04-02/", prev: null };
 
 /* ═══════════════════ xAPI (720) — this component's configuration ═══════════════════
    Data only; the shared layer in ../unit-js/ reads it at CALL time. Ids must match
-   ../metadata/methodica-math-ratio-04-01.json byte-for-byte (the loader shouts on a mismatch). */
-var XAPI_COMP_SLUG     = 'methodica-math-ratio-04-01';
+   ../metadata/methodica-ar-math-ratio-04-01.json byte-for-byte (the loader shouts on a mismatch). */
+var XAPI_COMP_SLUG     = 'methodica-ar-math-ratio-04-01';
 var XAPI_COMP_ID       = XAPI_ID_PREFIX + XAPI_COMP_SLUG + '/';
-var XAPI_METADATA_FILE = '../metadata/methodica-math-ratio-04-01.json';
+var XAPI_METADATA_FILE = '../metadata/methodica-ar-math-ratio-04-01.json';
 
 /* Screen -> [item, page in item]. 0 = the character choice, 8 and 18 = transitions: no item.
    001 tennis/running 3:5 (s1 question, s2 reveal) · 002 the two kinds of ratio (films s3/s5, s4

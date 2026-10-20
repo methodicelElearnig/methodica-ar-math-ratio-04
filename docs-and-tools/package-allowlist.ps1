@@ -22,7 +22,7 @@
 
 .NOTES
     Copied from methodica-math-ratio-06 (itself from ratio-01 35648a6).
-    methodica-math-ratio-04 ships unit-css/styles.css and unit-assets/ (fonts and the
+    methodica-ar-math-ratio-04 ships unit-css/styles.css and unit-assets/ (fonts and the
     companion-character family, hoisted in Phase 1); a component folder holds only
     index.html, script.js and its own assets/img/. translations/ (the XLIFF export)
     matches no rule and never ships.
@@ -56,7 +56,7 @@ $UnitDirs = @{
 
 # Inside a component folder: these files, plus everything under assets/.
 $ComponentFiles = @('index.html', 'script.js')
-$ComponentGlob  = 'methodica-math-*-[0-9][0-9]'
+$ComponentGlob  = 'methodica-ar-math-ratio-04-[0-9][0-9]'
 
 # ── Hygiene: if any of these turn up INSIDE a package, it is unsafe to upload ──
 $SecretPatterns = @('*key*', '*.ps1', '*.log', 'index_dev.html', 'README.md', '.git*', '_*')

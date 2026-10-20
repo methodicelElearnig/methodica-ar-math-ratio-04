@@ -68,7 +68,7 @@
 .EXAMPLE
     pwsh -File retrieve-metadata.ps1
 .EXAMPLE
-    pwsh -File retrieve-metadata.ps1 -UnitKey methodica-math-scale-01 -KeepRaw
+    pwsh -File retrieve-metadata.ps1 -UnitKey methodica-ar-math-ratio-04 -KeepRaw
 #>
 [CmdletBinding()]
 param(
@@ -132,7 +132,7 @@ $Manufacture = $null
 # It arrived here pointing at math/percent/02, which is where this script was copied
 # from. In practice it is the THIRD fallback and is not reached while components carry
 # an IRI uniqueKey, so the wrong value never surfaced — which is exactly why it sat.
-if (-not $IdBase) { $IdBase = 'https://lomdot.education.gov.il/metodica/720active/math/ratio/04' }   # methodica-math-ratio-04 (2026-09-30)
+if (-not $IdBase) { $IdBase = 'https://lomdot.education.gov.il/metodica/720/ar/math/ratio/04' }   # methodica-ar-math-ratio-04 (2026-10-20): the Arabic ids live under 720/ar/, as ar-percent-08
 # The authored metadata/ that KATA is audited against (override with -MetadataDir,
 # or pass '' to skip). Not bound to $OutDir: the point is to compare the catalogue
 # with what we MEANT to publish, not with a previous retrieval of itself.

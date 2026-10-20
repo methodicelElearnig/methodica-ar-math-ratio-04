@@ -1,7 +1,7 @@
 'use strict';
 /* ═══════════════════════════════════════════════════════════════════
    RESUME — save / restore execution state to KATA (xAPI State API)
-   Shared by all seven components of methodica-math-ratio-04 (copied from methodica-math-ratio-06 (feature/reporting-resume),
+   Shared by all seven components of methodica-ar-math-ratio-04 (copied from methodica-math-ratio-06 (feature/reporting-resume),
    itself from methodica-math-ratio-01 35648a6; retargeted). Definition-only; ../unit-js/90-boot.js calls
    initResumeResetHatch() and initResumeLeaveHandlers(), and ../unit-js/50-loader.js drives the
    restore itself. Full design: Documentation/reporting-and-resume/ADDING-REPORTING-AND-RESUME.md §8.
@@ -454,7 +454,7 @@ function sendCompletedOnce(ledger, key, objectType, result, opts) {
 
    ⚠️ NAV_EDGE_KEY must carry the unit slug. Two units sharing this key share a ledger and
    silently suppress each other's reports. */
-var NAV_EDGE_KEY = 'lomda_nav_edges::methodica-math-ratio-04';
+var NAV_EDGE_KEY = 'lomda_nav_edges::methodica-ar-math-ratio-04';
 
 function _readEdges() {
   try {

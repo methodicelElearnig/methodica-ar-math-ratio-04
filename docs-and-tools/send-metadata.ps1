@@ -1,7 +1,7 @@
 #Requires -Version 7.0
 <#
 .SYNOPSIS
-    Send the metadata/ folder (1 unit + 7 components + 16 items, methodica-math-ratio-04) to the Kata
+    Send the metadata/ folder (1 unit + 7 components + 16 items, methodica-ar-math-ratio-04) to the Kata
     (Katalog) catalog API at https://kata.cet.ac.il/api/v1.
 
 .DESCRIPTION
@@ -111,10 +111,10 @@ if ($Status -or $Publish) { $LogFile = Join-Path $PSScriptRoot 'publish-metadata
 # one, for every component of this unit.
 #
 # Take this from the unit's own DEPLOY.md deploy target. No trailing slash.
-$ContentBaseUrl = 'https://lomdot.education.gov.il/metodica/720/math/ratio/04'   # methodica-math-ratio-04 (2026-09-30) — ratio-01/05/06 convention, confirmed with the owner; the package must be uploaded here
+$ContentBaseUrl = 'https://lomdot.education.gov.il/metodica/720/ar/math/ratio/04'   # methodica-ar-math-ratio-04 (2026-10-20) — the Arabic hosting path, as ar-ratio-01 / ar-percent-08 (the Hebrew unit's .../720/math/ratio/04 was confirmed 2026-09-30). Confirm against this unit's DEPLOY.md before the first send; the package must be uploaded here
 # Title language key: wraps a string title into the API object, e.g.
 #   "מדידת מסה" -> { "Hebrew": "מדידת מסה" }. Change only for non-Hebrew content.
-$TitleLangKey = 'Hebrew'
+$TitleLangKey = 'Arabic'
 # ⚠️ NO LONGER SENT (2026-09-09). v2.5 §2.6 renamed the v2.4 component field
 # `manufacture` to the unit field `manufacturer` and retyped it as the ministry's
 # supplier number. It is moot either way, because KATA derives the value itself

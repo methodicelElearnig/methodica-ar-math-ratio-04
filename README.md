@@ -1,4 +1,4 @@
-# methodica-math-ratio-04
+# methodica-ar-math-ratio-04
 
 יעד 1.4 — יחס בין כמויות. The client's multi-component delivery repo, built
 from the single-folder unit `units/methodica-math-ratio-04/` on 24.09.26.
@@ -53,7 +53,7 @@ decisions: `docs-and-tools/REPORTING-RESUME.md`; family guide:
 Local walk with the stand-in library, served from the folder above the repo:
 
 ```
-http://localhost:<port>/methodica-math-ratio-04/methodica-math-ratio-04-01/index.html?xapiLib=../_test/xapi-720-k.js&resetState
+http://localhost:<port>/methodica-ar-math-ratio-04/methodica-ar-math-ratio-04-01/index.html?xapiLib=../_test/xapi-720-k.js&resetState
 ```
 
 `&dev=1` gives free navigation and the hops between components.

@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-/* ═══════════════════ statement-flow.js — methodica-math-ratio-04 behaviour ═══════════════════
+/* ═══════════════════ statement-flow.js — methodica-ar-math-ratio-04 behaviour ═══════════════════
    NOT DEPLOYED. What each component actually sends, walked through the REAL handlers in jsdom
    over the stub library (ADDING-REPORTING-AND-RESUME.md §6.8, §8, §10.2):
 
@@ -171,7 +171,7 @@ function endClick(b) {
     r.exec('goTo(32)');
     const back = r.stmts().slice(mark);
     ok('back', 'Back into an earlier item closes nothing', !back.some(s => s.verb === 'completed'));
-    ok('back', 'Back re-opens the earlier item', back.some(s => s.verb === 'initialized' && short(s) === 'methodica-math-ratio-04-03-001'));
+    ok('back', 'Back re-opens the earlier item', back.some(s => s.verb === 'initialized' && short(s) === 'methodica-ar-math-ratio-04-03-001'));
   }
 
   /* ── B-2 (QA 2026-10-02): Back onto a screen with NO item closes nothing (component 01) ──
@@ -188,7 +188,7 @@ function endClick(b) {
     eq('b2', 'and leaves item 004 out of the ledger', b.val('alreadySent("doneItems", itemLedgerKey("004"))'), false);
     b.exec('goTo(19);' + H.enterJs(19, H.answerFor(q19, 'right')) + H.clickCheck(19));
     endClick(b);
-    const c004 = b.stmts().filter(s => s.verb === 'completed' && short(s) === 'methodica-math-ratio-04-01-004');
+    const c004 = b.stmts().filter(s => s.verb === 'completed' && short(s) === 'methodica-ar-math-ratio-04-01-004');
     eq('b2', 'item 004 completed exactly once', c004.length, 1);
     ok('b2', 'with the final result (success, scaled 1)', c004[0] && c004[0].result && c004[0].result.success === true && c004[0].result.score.scaled === 1, JSON.stringify(c004[0] && c004[0].result));
     ok('b2', 'no console errors', !b.errors.length, b.errors.slice(0, 3).join(' | '));
@@ -343,7 +343,7 @@ function endClick(b) {
     b.exec(H.FAKE_YT(false));
     eq('yt', '01: both YouTube iframes got a player', b.val('window.__ytPlayers.length'), 2);
     ok('yt', '01: attached to the existing iframes (no videoId / playerVars)', b.val('window.__ytPlayers.every(function(p){ return p.el.tagName === "IFRAME" && !p.cfg.videoId && !p.cfg.playerVars; })') === true);
-    ok('yt', '01: the Hebrew titles survive the API renaming them', b.val('Array.prototype.every.call(document.querySelectorAll("iframe[data-yt-item]"), function(f){ return /[א-ת]/.test(f.getAttribute("title")); })') === true);
+    ok('yt', '01: the Arabic titles survive the API renaming them', b.val('Array.prototype.every.call(document.querySelectorAll("iframe[data-yt-item]"), function(f){ return /[\\u0621-\\u064A]/.test(f.getAttribute("title")); })') === true);
     b.exec('goTo(3)');
     let n = b.stmts().length;
     b.exec(`${P}.t = 12; ${P}.fire(1); ${P}.fire(3); ${P}.fire(1); ${P}.fire(2); ${P}.fire(2); ${P}.fire(1); ${P}.fire(0); ${P}.fire(2); ${P}.fire(1);`);

@@ -36,7 +36,7 @@ results left to the library. `verify-assets.js` has its own eight (see its commi
 ## In a browser
 
 ```
-http://localhost:<port>/methodica-math-ratio-04/methodica-math-ratio-04-01/index.html?xapiLib=../_test/xapi-720-k.js
+http://localhost:<port>/methodica-ar-math-ratio-04/methodica-ar-math-ratio-04-01/index.html?xapiLib=../_test/xapi-720-k.js
 ```
 
 Add `&resetState` for a clean document, `&dev=1` for free navigation and the hops between

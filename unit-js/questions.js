@@ -1,6 +1,6 @@
 'use strict';
 /* ═══════════════════════════════════════════════════════════════════
-   methodica-math-ratio-04 — screen data, read from the deck.
+   methodica-ar-math-ratio-04 — screen data, read from the deck.
    ═══════════════════════════════════════════════════════════════════ */
 const QUESTIONS = [
   /* 21.09 — deck slide 28. This screen used to be hand-rolled markup plus its

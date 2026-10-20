@@ -1,20 +1,20 @@
 'use strict';
 /* ═══════════════════ xAPI (720) — identity ═══════════════════
-   Shared by all seven components of methodica-math-ratio-04. Loaded first. Copied from
+   Shared by all seven components of methodica-ar-math-ratio-04. Loaded first. Copied from
    methodica-math-ratio-06 (feature/reporting-resume, itself from ratio-01 35648a6) and
    retargeted; design: Documentation/reporting-and-resume/ADDING-REPORTING-AND-RESUME.md.
 
    Canonical id prefix for this unit. Every component/item/question id the lomda reports is built
    from it and must match metadata/*.json byte-for-byte, INCLUDING the trailing slashes
-   (metadata/methodica-math-ratio-04-01.json id:
-   https://lomdot.education.gov.il/metodica/720active/math/ratio/04/methodica-math-ratio-04-01/). */
-var XAPI_ID_PREFIX = 'https://lomdot.education.gov.il/metodica/720active/math/ratio/04/';
+   (metadata/methodica-ar-math-ratio-04-01.json id:
+   https://lomdot.education.gov.il/metodica/720/ar/math/ratio/04/methodica-ar-math-ratio-04-01/). */
+var XAPI_ID_PREFIX = 'https://lomdot.education.gov.il/metodica/720/ar/math/ratio/04/';
 
 /* The unit id is the BARE slug here (MOE v2.5 §2.7 — the content unit alone need not be an IRI):
-   metadata/methodica-math-ratio-04_unit.json carries id "methodica-math-ratio-04", and every
+   metadata/methodica-ar-math-ratio-04_unit.json carries id "methodica-ar-math-ratio-04", and every
    component's learningUnitId says the same. XAPI_UNIT_ID must equal that id, whatever its shape.
    It keys the library's localStorage fallback; no statement ever carries it as object. */
-window.XAPI_UNIT_ID = 'methodica-math-ratio-04';
+window.XAPI_UNIT_ID = 'methodica-ar-math-ratio-04';
 
 /* Last path segment of a canonical id — the short slug the bug-report form records. */
 function shortId(u){ return String(u || '').replace(/\/+$/, '').split('/').pop(); }

@@ -1,4 +1,4 @@
-# methodica-math-ratio-04 — xAPI reporting, issue reporting, resume
+# methodica-ar-math-ratio-04 — xAPI reporting, issue reporting, resume
 
 Unit record. The family guide is
 `2026/Documentation/reporting-and-resume/ADDING-REPORTING-AND-RESUME.md`; this file records only
@@ -46,8 +46,8 @@ report-modal, engine, 70-platform, 90-boot`.
 
 | | |
 |---|---|
-| `XAPI_ID_PREFIX` | `https://lomdot.education.gov.il/metodica/720active/math/ratio/04/` |
-| `XAPI_UNIT_ID` | `methodica-math-ratio-04` — bare slug, = `metadata/methodica-math-ratio-04_unit.json` `id` |
+| `XAPI_ID_PREFIX` | `https://lomdot.education.gov.il/metodica/720/ar/math/ratio/04/` |
+| `XAPI_UNIT_ID` | `methodica-ar-math-ratio-04` — bare slug, = `metadata/methodica-ar-math-ratio-04_unit.json` `id` |
 | component ids | `<prefix><slug>/`, = `METADATA.id` (checked on every load) |
 
 Screens are numbered **globally** (0–67). Each `script.js` maps exactly its own screens:
