@@ -66,6 +66,12 @@
   inset: 0;
   display: grid;
   place-items: center;
+  /* One track the size of the window. With auto tracks, a window smaller than the 1280x710 #app
+     grew the track to #app's full size, so #app started at the window's edge and scale() (origin:
+     centre) could not pull it back: the canvas slid off-screen and the bottom-bar buttons with it.
+     Same fix as ratio-06 (2d46837); found 2026-10-07, KNOWN-ISSUES.md §1. */
+  grid-template-columns: 100%;
+  grid-template-rows: 100%;
 }
 #app {
   position: relative;
