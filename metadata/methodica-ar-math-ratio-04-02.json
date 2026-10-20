@@ -1,0 +1,142 @@
+{
+  "id": "https://lomdot.education.gov.il/metodica/720/ar/math/ratio/04/methodica-ar-math-ratio-04-02/",
+  "title": "وقت التمرين",
+  "learningUnitId": "methodica-ar-math-ratio-04",
+  "componentPurpose": "practice",
+  "isAssessment": false,
+  "recommendedAfterFail": [],
+  "isRequired": true,
+  "relativeDifficulty": 3,
+  "masteryLevel": null,
+  "order": 2,
+  "depthLevel": "core-curriculum-basic",
+  "cognitiveLevels": [
+    "process-thinking"
+  ],
+  "languages": [
+    "Arabic"
+  ],
+  "skills": [],
+  "estimatedTimeInMinutes": 16,
+  "createdAt": "2026-10-19T00:00:00.000Z",
+  "updatedAt": "2026-10-19T00:00:00.000Z",
+  "subContent": [
+    {
+      "id": "https://lomdot.education.gov.il/metodica/720/ar/math/ratio/04/methodica-ar-math-ratio-04-02/methodica-ar-math-ratio-04-02-001/",
+      "title": "سمر ولمى في فريق الركض",
+      "informationToBot": "מטרת הפריט: תרגול הבחנה בין יחס בין כמויות מאותו סוג ליחס בין סוגים שונים, והשוואת מהירויות ביחידות מידה שונות. מה התלמיד אמור להבין/לתרגל: יחס בין שני מרחקים הוא מספר ללא יחידות ואינו קובע מי מהירה יותר; להשוואת מהירויות יש להמיר לאותן יחידות מידה. כיווני חשיבה ואסטרטגיות: סעיף א: 400 : 600 = 2 : 3. סעיף ב: מהירות דורשת מרחק וזמן. סעיף ג: להמיר 10 ק\"מ בשעה ל-10,000 מטרים ב-3,600 שניות (כ-2.78 מטרים לשנייה) ולהשוות ל-3 מטרים לשנייה. טעויות נפוצות: ציון יחידות ביחס בין כמויות מאותו סוג; הסקת מהירות מיחס מרחקים; השוואת 10 ל-3 בלי התאמת יחידות. מידע נוסף: סעיף ב נענה בניסיון אחד עם רמז זמין מההתחלה; סעיפים א ו-ג בשני ניסיונות עם רמז אחרי טעות. בסעיף א הבחירה היא בין אותו שבר עם/בלי יחידה. צילום מסך: לא צורף.",
+      "contentType": "practice",
+      "mediaFormat": "interactive-content",
+      "questions": [
+        {
+          "questionId": "https://lomdot.education.gov.il/metodica/720/ar/math/ratio/04/methodica-ar-math-ratio-04-02/methodica-ar-math-ratio-04-02-001/q1",
+          "questionType": "choice",
+          "questionText": "أ. ما هي النسبة بين المسافة التي قطعتها سمر والمسافة التي قطعتها لمى؟ (ركضت سمر 400 متر، ولمى 600 متر)",
+          "answers": [
+            "2/3",
+            "2/3 متر",
+            "2/3 متر في الدقيقة",
+            "2/3 متر في الثانية"
+          ],
+          "correctAnswers": [
+            "2/3"
+          ]
+        },
+        {
+          "questionId": "https://lomdot.education.gov.il/metodica/720/ar/math/ratio/04/methodica-ar-math-ratio-04-02/methodica-ar-math-ratio-04-02-001/q2",
+          "questionType": "true-false",
+          "questionText": "ب. هل يمكننا تحديد أيهما أسرع، بناءً على النسبة التي وجدناها في البند السابق؟",
+          "answers": [
+            "نعم",
+            "لا"
+          ],
+          "correctAnswers": [
+            "لا"
+          ]
+        },
+        {
+          "questionId": "https://lomdot.education.gov.il/metodica/720/ar/math/ratio/04/methodica-ar-math-ratio-04-02/methodica-ar-math-ratio-04-02-001/q3",
+          "questionType": "choice",
+          "questionText": "ت. بحسب تطبيق سمر ركضت 3 أمتار في الثانية، وبحسب تطبيق لمى 10 كم في الساعة. تدّعي لمى: \"10 أكبر من 3، ولذلك أنا أسرع\". تقول سمر إننا إذا قارنّا بنفس الوحدات فهي أسرع. أيهما على صواب؟",
+          "answers": [
+            "سمر",
+            "لمى",
+            "كلتاهما مخطئتان"
+          ],
+          "correctAnswers": [
+            "سمر"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "https://lomdot.education.gov.il/metodica/720/ar/math/ratio/04/methodica-ar-math-ratio-04-02/methodica-ar-math-ratio-04-02-002/",
+      "title": "استهلاك الوقود وتكلفة الرحلة",
+      "informationToBot": "מטרת הפריט: תרגול הרחבת יחס בין כמויות מסוגים שונים (ליטרים לק\"מ) ושימוש בתוצאה לחישוב עלות. מה התלמיד אמור להבין/לתרגל: הרחבת היחס 1 : 12 פי 30 כדי למצוא צריכה ל-360 ק\"מ, והכפלה במחיר ליטר. כיווני חשיבה ואסטרטגיות: טבלת פרופורציה או הרחבת יחס: 1 : 12 → 30 : 360; עלות = 30 · 8.34. טעויות נפוצות: כפל/חילוק הפוך של ק\"מ וליטרים; שימוש במחיר ליטר על הק\"מ במקום על הליטרים. מידע נוסף: לכל סעיף שני ניסיונות ורמז אחרי טעות ראשונה; סעיף ב נשען על התוצאה של סעיף א. צילום מסך: לא צורף.",
+      "contentType": "practice",
+      "mediaFormat": "interactive-content",
+      "questions": [
+        {
+          "questionId": "https://lomdot.education.gov.il/metodica/720/ar/math/ratio/04/methodica-ar-math-ratio-04-02/methodica-ar-math-ratio-04-02-002/q1",
+          "questionType": "numeric",
+          "questionText": "تستهلك سيارة لترًا واحدًا من الوقود لكل 12 كم من السفر. أ. كم لترًا ستستهلك السيارة في رحلة مسافتها 360 كم؟",
+          "answers": [],
+          "correctAnswers": [
+            "30"
+          ]
+        },
+        {
+          "questionId": "https://lomdot.education.gov.il/metodica/720/ar/math/ratio/04/methodica-ar-math-ratio-04-02/methodica-ar-math-ratio-04-02-002/q2",
+          "questionType": "choice",
+          "questionText": "سعر لتر الوقود هو 8.34 شيكل. ب. ما تكلفة الوقود لرحلة مسافتها 360 كم؟",
+          "answers": [
+            "150 شيكل",
+            "168.75 شيكل",
+            "180 شيكل",
+            "250.2 شيكل"
+          ],
+          "correctAnswers": [
+            "250.2 شيكل"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "https://lomdot.education.gov.il/metodica/720/ar/math/ratio/04/methodica-ar-math-ratio-04-02/methodica-ar-math-ratio-04-02-003/",
+      "title": "خلطة عصير فواكه لعيد ميلاد ريم",
+      "informationToBot": "מטרת הפריט: תרגול כתיבת יחס בין כמויות מאותו סוג, יחס מחיר לנפח (מסוגים שונים) והגדלת יחס. מה התלמיד אמור להבין/לתרגל: יחס מיץ תפוזים למיץ מנגו הוא 3 : 2 (ללא יחידות); יחס עלות לנפח הוא 40 : 5 = 8 : 1 ש\"ח לליטר; הגדלת שתי הכמויות פי 3 מעבירה מ-5 ל-15 ליטרים. כיווני חשיבה ואסטרטגיות: לפני כל סעיף לשאול אם הכמויות מאותו סוג; בסעיף ג להרחיב את שני חלקי היחס באותו גורם. טעויות נפוצות: ציון יחידות ביחס בין ליטרים; הגדלת חלק אחד בלבד מהיחס. מידע נוסף: לכל סעיף שני ניסיונות ורמז אחרי טעות ראשונה; בסעיף א נכתבים שני מספרים בתבנית ' _ : _ ', ובסעיף ג שתי תיבות. צילום מסך: לא צורף.",
+      "contentType": "practice",
+      "mediaFormat": "interactive-content",
+      "questions": [
+        {
+          "questionId": "https://lomdot.education.gov.il/metodica/720/ar/math/ratio/04/methodica-ar-math-ratio-04-02/methodica-ar-math-ratio-04-02-003/q1",
+          "questionType": "fill-in",
+          "questionText": "في حفلة عيد ميلاد ريم حضّروا خلطة عصير فواكه: 3 لترات من عصير البرتقال مع لترين من عصير المانجو، بتكلفة إجمالية 40 شيكل. أ. اكتبوا النسبة بين كمية عصير البرتقال وكمية عصير المانجو في الخلطة.",
+          "answers": [],
+          "correctAnswers": [
+            "3:2",
+            "3 : 2"
+          ]
+        },
+        {
+          "questionId": "https://lomdot.education.gov.il/metodica/720/ar/math/ratio/04/methodica-ar-math-ratio-04-02/methodica-ar-math-ratio-04-02-003/q2",
+          "questionType": "numeric",
+          "questionText": "في حفلة عيد ميلاد ريم حضّروا خلطة عصير فواكه: 3 لترات من عصير البرتقال مع لترين من عصير المانجو، بتكلفة إجمالية 40 شيكل. ب. ما هي النسبة بين التكلفة الإجمالية للخلطة وبين الحجم الكلي للخلطة (أي، ما هي تكلفة لتر واحد من الخلطة)؟ (شيكل للتر)",
+          "answers": [],
+          "correctAnswers": [
+            "8"
+          ]
+        },
+        {
+          "questionId": "https://lomdot.education.gov.il/metodica/720/ar/math/ratio/04/methodica-ar-math-ratio-04-02/methodica-ar-math-ratio-04-02-003/q3",
+          "questionType": "fill-in",
+          "questionText": "في حفلة عيد ميلاد ريم حضّروا خلطة عصير فواكه: 3 لترات من عصير البرتقال مع لترين من عصير المانجو، بتكلفة إجمالية 40 شيكل. ت. لتحضير 15 لترًا من الخلطة يلزم _ لترات من عصير البرتقال و-_ لترات من عصير المانجو.",
+          "answers": [],
+          "correctAnswers": [
+            "عصير البرتقال: 9, عصير المانجو: 6"
+          ]
+        }
+      ]
+    }
+  ]
+}

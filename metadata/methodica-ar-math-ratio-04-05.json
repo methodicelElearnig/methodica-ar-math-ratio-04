@@ -1,0 +1,94 @@
+{
+  "id": "https://lomdot.education.gov.il/metodica/720/ar/math/ratio/04/methodica-ar-math-ratio-04-05/",
+  "title": "هيا نتحدّى أنفسنا",
+  "learningUnitId": "methodica-ar-math-ratio-04",
+  "componentPurpose": "practice",
+  "isAssessment": false,
+  "recommendedAfterFail": [],
+  "isRequired": false,
+  "relativeDifficulty": 5,
+  "masteryLevel": null,
+  "order": 5,
+  "depthLevel": "core-curriculum-basic",
+  "cognitiveLevels": [
+    "interpretation-and-reasoning"
+  ],
+  "languages": [
+    "Arabic"
+  ],
+  "skills": [],
+  "estimatedTimeInMinutes": 8,
+  "createdAt": "2026-10-19T00:00:00.000Z",
+  "updatedAt": "2026-10-19T00:00:00.000Z",
+  "subContent": [
+    {
+      "id": "https://lomdot.education.gov.il/metodica/720/ar/math/ratio/04/methodica-ar-math-ratio-04-05/methodica-ar-math-ratio-04-05-001/",
+      "title": "خزان ماء بثقب في أسفله",
+      "informationToBot": "מטרת הפריט: אתגר: השוואת קצבי מילוי והתרוקנות ביחידות מידה שונות והסקת מסקנה על מפלס המים. מה התלמיד אמור להבין/לתרגל: המרת 200 סמ\"ק לשנייה ל-12 ליטרים לדקה (200 · 60 = 12,000 סמ\"ק), והשוואה לקצב מילוי של 5 ליטרים לדקה: ההתרוקנות מהירה יותר ולכן המפלס יורד. כיווני חשיבה ואסטרטגיות: להביא את שני הקצבים לאותן יחידות (ליטרים לדקה) ורק אז להשוות. טעויות נפוצות: השוואה בין 200 ל-5 בלי התאמת יחידות; המרה הפוכה בין סמ\"ק לליטר או בין שניות לדקות. מידע נוסף: לכל סעיף שני ניסיונות ורמז אחרי טעות ראשונה; סעיף ב נשען על התוצאה של סעיף א. צילום מסך: לא צורף.",
+      "contentType": "practice",
+      "mediaFormat": "interactive-content",
+      "questions": [
+        {
+          "questionId": "https://lomdot.education.gov.il/metodica/720/ar/math/ratio/04/methodica-ar-math-ratio-04-05/methodica-ar-math-ratio-04-05-001/q1",
+          "questionType": "numeric",
+          "questionText": "يمتلئ خزان أسطواني بالماء بوتيرة 5 لترات في الدقيقة. في أسفل الخزان ثقب يتسرب منه الماء بوتيرة 200 سم مكعب في الثانية (1 لتر = 1,000 سم مكعب). أ. أكملوا: وتيرة تفريغ الخزان هي _ لترًا في الدقيقة.",
+          "answers": [],
+          "correctAnswers": [
+            "12"
+          ]
+        },
+        {
+          "questionId": "https://lomdot.education.gov.il/metodica/720/ar/math/ratio/04/methodica-ar-math-ratio-04-05/methodica-ar-math-ratio-04-05-001/q2",
+          "questionType": "choice",
+          "questionText": "وتيرة تعبئة الماء في الخزان هي 5 لترات في الدقيقة، ووتيرة تفريغه هي 12 لترًا في الدقيقة. ب. ماذا سيحدث لمستوى الماء في الخزان مع مرور الوقت؟",
+          "answers": [
+            "مستوى الماء سينخفض",
+            "مستوى الماء سيرتفع",
+            "سيرتفع المستوى ثم يستقر",
+            "مستوى الماء سيبقى ثابتًا"
+          ],
+          "correctAnswers": [
+            "مستوى الماء سينخفض"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "https://lomdot.education.gov.il/metodica/720/ar/math/ratio/04/methodica-ar-math-ratio-04-05/methodica-ar-math-ratio-04-05-002/",
+      "title": "السيارة الكهربائية لعائلة سلمان",
+      "informationToBot": "מטרת הפריט: אתגר: חישוב טווח נסיעה וצריכת אנרגיה כשקצב הצריכה משתנה באמצע הדרך. מה התלמיד אמור להבין/לתרגל: טווח: 60 ÷ 0.2 = 300 ק\"מ; לאחר 150 ק\"מ: 20 kWh ב-100 הק\"מ הראשונים + 12.5 kWh ב-50 הבאים = 32.5 kWh, ונותרו 27.5 kWh. כיווני חשיבה ואסטרטגיות: לפצל את הנסיעה לקטעים לפי קצב הצריכה, לחשב כל קטע בנפרד, לחבר ולהחסיר מהסוללה. טעויות נפוצות: החלת קצב הצריכה החדש על כל 150 הק\"מ; עצירה אחרי חישוב הצריכה בלי להחסיר מ-60 kWh. מידע נוסף: לכל סעיף שני ניסיונות ורמז אחרי טעות ראשונה; המונח kWh מוסבר בגוף השאלה. במסך סעיף ב יש גלילה בפאנל המשוב. צילום מסך: לא צורף.",
+      "contentType": "practice",
+      "mediaFormat": "interactive-content",
+      "questions": [
+        {
+          "questionId": "https://lomdot.education.gov.il/metodica/720/ar/math/ratio/04/methodica-ar-math-ratio-04-05/methodica-ar-math-ratio-04-05-002/q1",
+          "questionType": "choice",
+          "questionText": "عندما تكون بطارية السيارة الكهربائية لعائلة سلمان مشحونة بالكامل، يكون فيها 60 kWh. في القيادة العادية تستهلك السيارة 0.2 kWh لكل 1 كم. أ. كم كيلومترًا تستطيع السيارة أن تقطع قبل أن تفرغ البطارية بالكامل؟",
+          "answers": [
+            "12 كم",
+            "120 كم",
+            "300 كم",
+            "600 كم"
+          ],
+          "correctAnswers": [
+            "300 كم"
+          ]
+        },
+        {
+          "questionId": "https://lomdot.education.gov.il/metodica/720/ar/math/ratio/04/methodica-ar-math-ratio-04-05/methodica-ar-math-ratio-04-05-002/q2",
+          "questionType": "choice",
+          "questionText": "بعد أن قطعت السيارة 100 كم، شغّلت العائلة المكيّف وارتفع الاستهلاك إلى 0.25 kWh لكل كيلومتر. ب. ما هي كمية الطاقة التي ستبقى في البطارية بعد قطع 150 كم من بداية الرحلة؟",
+          "answers": [
+            "27.5 kWh",
+            "32.5 kWh",
+            "40 kWh",
+            "47.5 kWh"
+          ],
+          "correctAnswers": [
+            "27.5 kWh"
+          ]
+        }
+      ]
+    }
+  ]
+}

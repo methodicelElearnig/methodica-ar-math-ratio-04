@@ -1,0 +1,162 @@
+{
+  "id": "https://lomdot.education.gov.il/metodica/720/ar/math/ratio/04/methodica-ar-math-ratio-04-03/",
+  "title": "وقت التمرين 2",
+  "learningUnitId": "methodica-ar-math-ratio-04",
+  "componentPurpose": "practice",
+  "isAssessment": false,
+  "recommendedAfterFail": [
+    "https://lomdot.education.gov.il/metodica/720/ar/math/ratio/04/methodica-ar-math-ratio-04-02/"
+  ],
+  "isRequired": false,
+  "relativeDifficulty": 2,
+  "masteryLevel": null,
+  "order": 3,
+  "depthLevel": "core-curriculum-basic",
+  "cognitiveLevels": [
+    "algorithmic-thinking"
+  ],
+  "languages": [
+    "Arabic"
+  ],
+  "skills": [],
+  "estimatedTimeInMinutes": 18,
+  "createdAt": "2026-10-19T00:00:00.000Z",
+  "updatedAt": "2026-10-19T00:00:00.000Z",
+  "subContent": [
+    {
+      "id": "https://lomdot.education.gov.il/metodica/720/ar/math/ratio/04/methodica-ar-math-ratio-04-03/methodica-ar-math-ratio-04-03-001/",
+      "title": "تجربة الروبوتات — السرعة ونسبة السرعات",
+      "informationToBot": "מטרת הפריט: תרגול חישוב מהירות בשני ייצוגים, ויחס בין מהירויות ובין מרחקים. מה התלמיד אמור להבין/לתרגל: מהירות היא יחס בין מרחק לזמן: 180 : 2 = 90 מטרים לדקה = 1.5 מטרים לשנייה; יחס בין שתי מהירויות באותן יחידות הוא יחס בין כמויות מאותו סוג (3 : 5); יחס מרחקים דורש קודם לחשב את המרחק של רובוט ב'. כיווני חשיבה ואסטרטגיות: להמיר דקות לשניות (2 דקות = 120 שניות) ולצמצם; לחשב מרחק = מהירות · זמן לפני שמשווים (2.5 · 90 = 225). טעויות נפוצות: השוואת מהירויות ביחידות שונות; שכחה להמיר 1.5 דקות לשניות; אי-צמצום היחס. מידע נוסף: לכל סעיף שני ניסיונות ורמז זמין מההתחלה; בסעיף א שתי תיבות (מטרים לדקה, מטרים לשנייה), ובסעיפים ב-ג שתי תיבות לכתיבת היחס. פריט פתיחה של רכיב הבסיסי. צילום מסך: לא צורף.",
+      "contentType": "practice",
+      "mediaFormat": "interactive-content",
+      "questions": [
+        {
+          "questionId": "https://lomdot.education.gov.il/metodica/720/ar/math/ratio/04/methodica-ar-math-ratio-04-03/methodica-ar-math-ratio-04-03-001/q1",
+          "questionType": "fill-in",
+          "questionText": "أُجريت في مختبر التكنولوجيا تجربة على روبوتين يتحركان بخط مستقيم. يقطع الروبوت أ 180 مترًا خلال دقيقتين. أ. ما هي النسبة بين المسافة التي يقطعها الروبوت أ والزمن الذي يستغرقه (أي ما هي سرعته)؟ اكتبوها بصيغتين.",
+          "answers": [],
+          "correctAnswers": [
+            "أمتار في الدقيقة: 90، أمتار في الثانية: 1.5"
+          ]
+        },
+        {
+          "questionId": "https://lomdot.education.gov.il/metodica/720/ar/math/ratio/04/methodica-ar-math-ratio-04-03/methodica-ar-math-ratio-04-03-001/q2",
+          "questionType": "fill-in",
+          "questionText": "أُجريت في مختبر التكنولوجيا تجربة على روبوتين يتحركان بخط مستقيم. يقطع الروبوت أ 180 مترًا خلال دقيقتين. يتحرك الروبوت ب بسرعة ثابتة مقدارها 2.5 متر في الثانية. ب. ما هي النسبة المختزلة بين سرعة الروبوت أ وسرعة الروبوت ب (بنفس وحدات القياس)؟",
+          "answers": [],
+          "correctAnswers": [
+            "3:5",
+            "3 : 5"
+          ]
+        },
+        {
+          "questionId": "https://lomdot.education.gov.il/metodica/720/ar/math/ratio/04/methodica-ar-math-ratio-04-03/methodica-ar-math-ratio-04-03-001/q3",
+          "questionType": "fill-in",
+          "questionText": "أُجريت في مختبر التكنولوجيا تجربة على روبوتين يتحركان بخط مستقيم. يقطع الروبوت أ 180 مترًا خلال دقيقتين. يتحرك الروبوت ب بسرعة 2.5 متر في الثانية، وكان زمن حركته 1.5 دقيقة. ت. ما هي النسبة المختزلة بين المسافة الكلية التي قطعها الروبوت أ (خلال دقيقتين) والمسافة الكلية التي قطعها الروبوت ب (خلال 1.5 دقيقة)؟",
+          "answers": [],
+          "correctAnswers": [
+            "4:5",
+            "4 : 5"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "https://lomdot.education.gov.il/metodica/720/ar/math/ratio/04/methodica-ar-math-ratio-04-03/methodica-ar-math-ratio-04-03-002/",
+      "title": "طابعة — وتيرة الطباعة",
+      "informationToBot": "מטרת הפריט: תרגול שימוש בקצב (דפים לדקה) והמרת יחידות זמן. מה התלמיד אמור להבין/לתרגל: קצב 60 : 3 = 20 דפים לדקה; רבע שעה = 15 דקות → 300 דפים; 1,800 דפים ÷ 20 = 90 דקות = 1.5 שעות. כיווני חשיבה ואסטרטגיות: לצמצם ליחידה אחת (דקה) ואז להרחיב; להקפיד על יחידת הזמן המבוקשת (דקות מול שעות). טעויות נפוצות: אי-המרת רבע שעה לדקות; מתן התשובה בדקות כשנשאל בשעות. מידע נוסף: רמז זמין מההתחלה; סעיף ב נשען על קצב ההדפסה שנמצא בסעיף א. צילום מסך: לא צורף.",
+      "contentType": "practice",
+      "mediaFormat": "interactive-content",
+      "questions": [
+        {
+          "questionId": "https://lomdot.education.gov.il/metodica/720/ar/math/ratio/04/methodica-ar-math-ratio-04-03/methodica-ar-math-ratio-04-03-002/q1",
+          "questionType": "choice",
+          "questionText": "بإمكان طابعة أن تطبع 60 ورقة خلال 3 دقائق. أ. كم ورقة ستطبع الطابعة خلال ربع ساعة إذا استمرت بنفس الوتيرة؟",
+          "answers": [
+            "180",
+            "200",
+            "300",
+            "600"
+          ],
+          "correctAnswers": [
+            "300"
+          ]
+        },
+        {
+          "questionId": "https://lomdot.education.gov.il/metodica/720/ar/math/ratio/04/methodica-ar-math-ratio-04-03/methodica-ar-math-ratio-04-03-002/q2",
+          "questionType": "numeric",
+          "questionText": "وجدنا أن وتيرة الطباعة هي 20 ورقة في الدقيقة. ب. كم ساعة ستحتاج الطابعة لطباعة 1,800 ورقة؟",
+          "answers": [],
+          "correctAnswers": [
+            "1.5"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "https://lomdot.education.gov.il/metodica/720/ar/math/ratio/04/methodica-ar-math-ratio-04-03/methodica-ar-math-ratio-04-03-003/",
+      "title": "سيارتان — السرعة واستهلاك الوقود",
+      "informationToBot": "מטרת הפריט: תרגול השוואה בין שני יחסים מסוגים שונים כשהנתונים ביחידות מידה שונות. מה התלמיד אמור להבין/לתרגל: יש להמיר לאותן יחידות: מכונית ב' עוברת 45 ק\"מ ב-3/4 שעה = 60 קמ\"ש (מכונית א' 90 קמ\"ש); צריכת דלק: 7.5 ליטר לשעה למכונית א' לעומת 2 ליטר לשעה למכונית ב'. כיווני חשיבה ואסטרטגיות: להמיר מטרים לק\"מ ודקות לשעות, להביא כל יחס ליחידת זמן אחת ורק אז להשוות. טעויות נפוצות: השוואה ישירה בין 180 ל-45,000; התעלמות מיחידות הזמן השונות. מידע נוסף: לכל סעיף שני ניסיונות ורמז אחרי טעות ראשונה; הפריט פותח את מקבץ התרגול הסטנדרטי ב' ('עוד 2 תרגילים ברמה גבוהה יותר'). הבחירה 'אי אפשר לדעת' היא מסיח. צילום מסך: לא צורף.",
+      "contentType": "practice",
+      "mediaFormat": "interactive-content",
+      "questions": [
+        {
+          "questionId": "https://lomdot.education.gov.il/metodica/720/ar/math/ratio/04/methodica-ar-math-ratio-04-03/methodica-ar-math-ratio-04-03-003/q1",
+          "questionType": "choice",
+          "questionText": "تقطع السيارة أ مسافة 180 كم خلال ساعتين، وتستهلك أثناء الرحلة 15 لترًا من الوقود. تقطع السيارة ب مسافة 45,000 متر خلال 45 دقيقة، وتستهلك أثناء الرحلة 1.5 لتر من الوقود. أ. أي سيارة أسرع؟",
+          "answers": [
+            "لا يمكن المعرفة",
+            "السيارة أ",
+            "السيارة ب"
+          ],
+          "correctAnswers": [
+            "السيارة أ"
+          ]
+        },
+        {
+          "questionId": "https://lomdot.education.gov.il/metodica/720/ar/math/ratio/04/methodica-ar-math-ratio-04-03/methodica-ar-math-ratio-04-03-003/q2",
+          "questionType": "choice",
+          "questionText": "تقطع السيارة أ مسافة 180 كم خلال ساعتين، وتستهلك أثناء الرحلة 15 لترًا من الوقود. تقطع السيارة ب مسافة 45,000 متر خلال 45 دقيقة، وتستهلك أثناء الرحلة 1.5 لتر من الوقود. ب. أي سيارة تستهلك كمية أقل من الوقود خلال سفرها؟",
+          "answers": [
+            "لا يمكن المعرفة",
+            "السيارة ب",
+            "السيارة أ"
+          ],
+          "correctAnswers": [
+            "السيارة ب"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "https://lomdot.education.gov.il/metodica/720/ar/math/ratio/04/methodica-ar-math-ratio-04-03/methodica-ar-math-ratio-04-03-004/",
+      "title": "مسطّحات الحديقة البلدية والسياج المحيط",
+      "informationToBot": "מטרת הפריט: תרגול השוואת מחיר לשטח (מסוגים שונים) ושימוש בקצב עבודה לחישוב זמן. מה התלמיד אמור להבין/לתרגל: מחיר למ\"ר: מדשאה א' 15,000 : 300 = 50 ש\"ח למ\"ר; מדשאה ב' 30,000 : 625 = 48 ש\"ח למ\"ר; היקף מדשאה א' 70 מטרים, בקצב 5 מטרים לשעה → 14 שעות. כיווני חשיבה ואסטרטגיות: לחשב שטח (אורך · רוחב), לחלק את המחיר בשטח ולהשוות; לחשב היקף ולחלק בקצב. טעויות נפוצות: השוואת המחירים הכוללים; חישוב שטח במקום היקף בסעיף ב. מידע נוסף: לכל סעיף שני ניסיונות ורמז אחרי טעות ראשונה; בסעיף א הלומד לוחץ על אחת משתי המדשאות (מידות מופיעות על התמונות: 20×15 ו-25×25 מטרים). צילום מסך: לא צורף.",
+      "contentType": "practice",
+      "mediaFormat": "interactive-content",
+      "questions": [
+        {
+          "questionId": "https://lomdot.education.gov.il/metodica/720/ar/math/ratio/04/methodica-ar-math-ratio-04-03/methodica-ar-math-ratio-04-03-004/q1",
+          "questionType": "choice",
+          "questionText": "تخطط بلدية العفولة لإضافة مسطّحين من العشب الأخضر: المسطّح أ (مستطيل الشكل، 20 في 15 مترًا) والمسطّح ب (مربع الشكل، 25 في 25 مترًا). عرض سعر لتركيب عشب اصطناعي: 15,000 شيكل في المسطّح أ و30,000 شيكل في المسطّح ب. أ. اضغطوا على المسطّح الذي فيه عرض السعر للمتر المربع أرخص.",
+          "answers": [
+            "المسطّح أ (20 مترًا في 15 مترًا)",
+            "المسطّح ب (25 مترًا في 25 مترًا)"
+          ],
+          "correctAnswers": [
+            "المسطّح ب (25 مترًا في 25 مترًا)"
+          ]
+        },
+        {
+          "questionId": "https://lomdot.education.gov.il/metodica/720/ar/math/ratio/04/methodica-ar-math-ratio-04-03/methodica-ar-math-ratio-04-03-004/q2",
+          "questionType": "numeric",
+          "questionText": "تريد البلدية إقامة سياج حول المسطّح أ (20 في 15 مترًا). يعمل عامل بوتيرة ثابتة مقدارها 5 أمتار في الساعة. ب. كم ساعة سيحتاج لإتمام العمل؟",
+          "answers": [],
+          "correctAnswers": [
+            "14"
+          ]
+        }
+      ]
+    }
+  ]
+}
