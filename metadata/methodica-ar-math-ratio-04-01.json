@@ -1,0 +1,182 @@
+{
+  "id": "https://lomdot.education.gov.il/metodica/720/ar/math/ratio/04/methodica-ar-math-ratio-04-01/",
+  "title": "تعالوا نتعلم شيئًا جديدًا",
+  "learningUnitId": "methodica-ar-math-ratio-04",
+  "componentPurpose": "instruction",
+  "isAssessment": false,
+  "recommendedAfterFail": [],
+  "isRequired": true,
+  "relativeDifficulty": 3,
+  "masteryLevel": null,
+  "order": 1,
+  "depthLevel": "core-curriculum-basic",
+  "cognitiveLevels": [
+    "process-thinking"
+  ],
+  "languages": [
+    "Arabic"
+  ],
+  "skills": [],
+  "estimatedTimeInMinutes": 16,
+  "createdAt": "2026-10-19T00:00:00.000Z",
+  "updatedAt": "2026-10-19T00:00:00.000Z",
+  "subContent": [
+    {
+      "id": "https://lomdot.education.gov.il/metodica/720/ar/math/ratio/04/methodica-ar-math-ratio-04-01/methodica-ar-math-ratio-04-01-001/",
+      "title": "النسبة 3:5 في الرياضة — عبير وأمجد",
+      "informationToBot": "מטרת הפריט: פתיח מוטיבציוני שמעורר את השאלה: האם אותו יחס מספרי תמיד מתאר אותו דבר. מה התלמיד אמור להבין/לתרגל: שהיחס 3 : 5 יכול לתאר יחס בין כמויות מאותו סוג (משחקים) וגם בין כמויות מסוגים שונים (מרחק וזמן). כיווני חשיבה ואסטרטגיות: התלמיד מתבקש להשוות בין הישג בטניס (ניצחונות מתוך משחקים) להישג בריצה (הקפות וזמן) ולשים לב מה הכמויות שביניהן נבנה היחס. טעויות נפוצות: הנחה שיחס מספרי זהה משמעו תיאור זהה של המצב. מידע נוסף: הפריט כולל בחירת דמות מלווה (בחירה בלבד, לא מוערכת) ומסך הסבר שחושף את התשובה ומוביל להקנייה; לשאלה אין משוב מילולי, רק סימון התשובה הנכונה. צילום מסך: לא צורף.",
+      "contentType": "motivational",
+      "mediaFormat": "interactive-content",
+      "questions": [
+        {
+          "questionId": "https://lomdot.education.gov.il/metodica/720/ar/math/ratio/04/methodica-ar-math-ratio-04-01/methodica-ar-math-ratio-04-01-001/q1",
+          "questionType": "true-false",
+          "questionText": "تنافست عبير وأمجد في يوم رياضي بلدي. شاركت عبير في سباق ركض وشارك أمجد في التنس. هل تصف النسبة 3 : 5 إنجاز كليهما بشكل مشابه؟",
+          "answers": [
+            "نعم",
+            "لا"
+          ],
+          "correctAnswers": [
+            "لا"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "https://lomdot.education.gov.il/metodica/720/ar/math/ratio/04/methodica-ar-math-ratio-04-01/methodica-ar-math-ratio-04-01-002/",
+      "title": "نسبة بين كميات من نفس النوع ومن أنواع مختلفة",
+      "informationToBot": "מטרת הפריט: הקניית ההבחנה בין יחס בין כמויות מאותו סוג ליחס בין כמויות מסוגים שונים, והמשמעות של יחידת המידה בכל אחד. מה התלמיד אמור להבין/לתרגל: יחס בין כמויות מאותו סוג הוא מספר ללא יחידות; יחס בין כמויות מסוגים שונים הוא גודל חדש עם יחידה מורכבת (מחיר לק\"ג, מרחק לזמן). כדי להשוות מהירויות יש לדעת גם את הזמן, לא רק את הכמות. כיווני חשיבה ואסטרטגיות: לפני בניית יחס לשאול מהן שתי הכמויות ובאילו יחידות הן נמדדות; אם היחידות זהות הן מצטמצמות. טעויות נפוצות: סברה שיחס בין נפחי קבצים מספיק כדי לדעת מי מהיר יותר; בלבול בין 'הכמויות שונות' לבין 'המספרים שונים'. מידע נוסף: כולל שני סרטוני הסבר (YouTube) ומסך סיכום עם שני כרטיסים; שאלת ה-MB נענית בניסיון אחד בלי רמז, ובמיון הדוגמאות נדרש למיין את כל 4 השורות לפני הבדיקה. צילום מסך: לא צורף.",
+      "contentType": "instruction",
+      "mediaFormat": "video",
+      "questions": [
+        {
+          "questionId": "https://lomdot.education.gov.il/metodica/720/ar/math/ratio/04/methodica-ar-math-ratio-04-01/methodica-ar-math-ratio-04-01-002/q1",
+          "questionType": "true-false",
+          "questionText": "وجدنا أن النسبة بين حجم الملفات التي تم تنزيلها بوحدة MB هي 2 : 5. هل يمكننا بالاعتماد على هذه المعلومة تحديد أيهما لديه إنترنت أسرع؟",
+          "answers": [
+            "نعم",
+            "لا"
+          ],
+          "correctAnswers": [
+            "لا"
+          ]
+        },
+        {
+          "questionId": "https://lomdot.education.gov.il/metodica/720/ar/math/ratio/04/methodica-ar-math-ratio-04-01/methodica-ar-math-ratio-04-01-002/q2",
+          "questionType": "matching",
+          "questionText": "بجانب كل مثال، حدّدوا نوع النسبة التي يصفها.",
+          "answers": {
+            "source": [
+              "تخبز مرام صانعة الحلويات 50 قطعة كعك في الساعة",
+              "سعر كيلو الموز 8 شيكل",
+              "تسير سيارة بسرعة 85 كم (كيلومتر) في الساعة",
+              "مقابل كل بلوزتين بيضاوين، توجد لدى ياسمين 3 بلوزات سوداء"
+            ],
+            "target": [
+              "نسبة بين كميات من نفس النوع",
+              "نسبة بين كميات من أنواع مختلفة"
+            ]
+          },
+          "correctAnswers": [
+            {
+              "source": "تخبز مرام صانعة الحلويات 50 قطعة كعك في الساعة",
+              "target": "نسبة بين كميات من أنواع مختلفة"
+            },
+            {
+              "source": "سعر كيلو الموز 8 شيكل",
+              "target": "نسبة بين كميات من أنواع مختلفة"
+            },
+            {
+              "source": "تسير سيارة بسرعة 85 كم (كيلومتر) في الساعة",
+              "target": "نسبة بين كميات من أنواع مختلفة"
+            },
+            {
+              "source": "مقابل كل بلوزتين بيضاوين، توجد لدى ياسمين 3 بلوزات سوداء",
+              "target": "نسبة بين كميات من نفس النوع"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "https://lomdot.education.gov.il/metodica/720/ar/math/ratio/04/methodica-ar-math-ratio-04-01/methodica-ar-math-ratio-04-01-003/",
+      "title": "نحلّ معًا: راكبة دراجة وعدّاء ماراثون",
+      "informationToBot": "מטרת הפריט: הדגמת דרך החשיבה בפתרון שאלה על שני סוגי יחס, שלב אחר שלב עם הדמות. מה התלמיד אמור להבין/לתרגל: בסעיף א: יחס בין שני מרחקים (30 : 25 = 6 : 5) הוא בין כמויות מאותו סוג ולכן ללא יחידות. בסעיף ב: השוואת מהירויות דורשת יחס בין מרחק לזמן, ציון יחידות והתאמת יחידות המידה (ק\"מ לשעה מול מטרים לשנייה). כיווני חשיבה ואסטרטגיות: לשאול קודם: מהן הכמויות? האם הן מאותו סוג? האם צריך יחידות? ורק אז לחשב; להמיר 20 ק\"מ בשעה ל-20,000 מטרים ב-3,600 שניות. טעויות נפוצות: כתיבת יחס בין מרחקים עם יחידות; השוואת 20 עם 3 בלי התאמת יחידות מידה. מידע נוסף: פריט הדגמה: הלומד בוחר תשובה בכל שלב והדמות מציגה את הפתרון, ולכן מוגדר כטקסט. צילום מסך: לא צורף.",
+      "contentType": "solved-exercise",
+      "mediaFormat": "text",
+      "questions": [
+        {
+          "questionId": "https://lomdot.education.gov.il/metodica/720/ar/math/ratio/04/methodica-ar-math-ratio-04-01/methodica-ar-math-ratio-04-01-003/q1",
+          "questionType": "true-false",
+          "questionText": "تتنافس راكبة دراجة وعدّاء ماراثون في مقاطع مختلفة. تقطع راكبة الدراجة 30 كم بسرعة 20 كم/ساعة، ويقطع العدّاء 25 كم بسرعة 3 أمتار في الثانية. أ. ما هي النسبة بين المسافة التي تقطعها راكبة الدراجة والمسافة التي يقطعها العدّاء؟ أولًا، نفحص الكميات التي نريد بناء النسبة بينها: هل الكميات من نفس النوع؟",
+          "answers": [
+            "نعم",
+            "لا"
+          ],
+          "correctAnswers": [
+            "نعم"
+          ]
+        },
+        {
+          "questionId": "https://lomdot.education.gov.il/metodica/720/ar/math/ratio/04/methodica-ar-math-ratio-04-01/methodica-ar-math-ratio-04-01-003/q2",
+          "questionType": "choice",
+          "questionText": "في هذه الحالة، النسبة هي بين مسافتين، ولذلك الكميات هي من نفس النوع. هل هناك حاجة للإشارة إلى وحدة القياس إلى جانب الكمية؟",
+          "answers": [
+            "هناك حاجة للإشارة إلى وحدات القياس",
+            "لا حاجة للإشارة إلى وحدات القياس"
+          ],
+          "correctAnswers": [
+            "لا حاجة للإشارة إلى وحدات القياس"
+          ]
+        },
+        {
+          "questionId": "https://lomdot.education.gov.il/metodica/720/ar/math/ratio/04/methodica-ar-math-ratio-04-01/methodica-ar-math-ratio-04-01-003/q3",
+          "questionType": "choice",
+          "questionText": "ب. من يتحرك بسرعة أكبر، عدّاء الماراثون أم راكبة الدراجة؟ الآن، علينا أن نكتشف أيهما أسرع. في هذه الحالة، النسبة هي بين:",
+          "answers": [
+            "كميات من نفس النوع",
+            "كميات من أنواع مختلفة"
+          ],
+          "correctAnswers": [
+            "كميات من أنواع مختلفة"
+          ]
+        },
+        {
+          "questionId": "https://lomdot.education.gov.il/metodica/720/ar/math/ratio/04/methodica-ar-math-ratio-04-01/methodica-ar-math-ratio-04-01-003/q4",
+          "questionType": "true-false",
+          "questionText": "النسبة في هذه الحالة هي بين مسافة (كم) وزمن (ساعة)، ولذلك الكميات هي من أنواع مختلفة. هل هناك حاجة للإشارة إلى وحدة القياس إلى جانب الكمية؟",
+          "answers": [
+            "نعم",
+            "لا"
+          ],
+          "correctAnswers": [
+            "نعم"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "https://lomdot.education.gov.il/metodica/720/ar/math/ratio/04/methodica-ar-math-ratio-04-01/methodica-ar-math-ratio-04-01-004/",
+      "title": "سؤال تسخين: سعر البندورة في متجرين",
+      "informationToBot": "מטרת הפריט: שאלת חימום קלילה שמחזירה ליחס בין כמויות מסוגים שונים בהקשר של מחיר ליחידה. מה התלמיד אמור להבין/לתרגל: חישוב מחיר ל-1 ק\"ג בכל חנות והשוואה ביניהם. כיווני חשיבה ואסטרטגיות: לחלק את המחיר בכמות בכל חנות (12 ÷ 5 = 2.4 ; 10 ÷ 4 = 2.5) ולהשוות; ההפרש הוא 10 אגורות. טעויות נפוצות: השוואה בין המחירים הכוללים בלי לנרמל לק\"ג; בלבול בין אגורות לשקלים. מידע נוסף: לכל סעיף שני ניסיונות ורמז אחרי טעות ראשונה; המסך מציג תמונת עגבניות לצורך הקשר בלבד. צילום מסך: לא צורף.",
+      "contentType": "practice",
+      "mediaFormat": "interactive-content",
+      "questions": [
+        {
+          "questionId": "https://lomdot.education.gov.il/metodica/720/ar/math/ratio/04/methodica-ar-math-ratio-04-01/methodica-ar-math-ratio-04-01-004/q1",
+          "questionType": "choice",
+          "questionText": "في المتجر أ، سعر 5 كغم بندورة هو 12 شيكل. في المتجر ب، سعر 4 كغم بندورة هو 10 شيكل. في أي متجر سعر الـ 1 كغم أقل، وبكم أغورة / شيكل؟",
+          "answers": [
+            "في المتجر ب، بـ 10 أغورات",
+            "في المتجر أ، بـ 10 أغورات",
+            "في المتجر أ، بـ 4 شيكل",
+            "السعر متطابق في المتجرين"
+          ],
+          "correctAnswers": [
+            "في المتجر أ، بـ 10 أغورات"
+          ]
+        }
+      ]
+    }
+  ]
+}

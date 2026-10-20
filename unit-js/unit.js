@@ -1,6 +1,6 @@
 'use strict';
 /* ═══════════════════════════════════════════════════════════════════
-   methodica-math-ratio-04 (יעד 1.4) — unit layer
+   methodica-ar-math-ratio-04 (יעד 1.4) — unit layer
    ═══════════════════════════════════════════════════════════════════ */
 
 const TOTAL_SCREENS = 68;   /* grows as screens are built */
@@ -14,7 +14,7 @@ const TOTAL_SCREENS = 68;   /* grows as screens are built */
    key namespaced per lomda; value is a logical ID only. */
 /* The unit slug with underscores (guide §8.1) — must equal UI_CHARACTER_KEY in
    40-resume.js, which names the same cache. */
-const CHARACTER_STORAGE_KEY = 'methodica_math_ratio_04_selectedCharacter';
+const CHARACTER_STORAGE_KEY = 'methodica_ar_math_ratio_04_selectedCharacter';
 const CHARACTER_IDS = ['character-orange', 'character-white'];
 const DEFAULT_CHARACTER = 'character-orange';
 

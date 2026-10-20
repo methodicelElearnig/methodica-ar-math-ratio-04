@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /* =====================================================================
-   methodica-math-ratio-04 — asset contract (guide §15.2 / §15.4 step 6)
+   methodica-ar-math-ratio-04 — asset contract (guide §15.2 / §15.4 step 6)
 
    Static, no dependencies:   node _test/verify-assets.js
    Exit code 1 on any failure.
@@ -22,7 +22,7 @@ const path = require('path');
 const vm = require('vm');
 
 const ROOT = path.resolve(__dirname, '..');
-const UNIT = 'methodica-math-ratio-04';
+const UNIT = 'methodica-ar-math-ratio-04';
 const PARTS = [1, 2, 3, 4, 5, 6, 7].map(n => `${UNIT}-0${n}`);
 
 let fails = 0, checks = 0;

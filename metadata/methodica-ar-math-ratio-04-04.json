@@ -1,0 +1,33 @@
+{
+  "id": "https://lomdot.education.gov.il/metodica/720/ar/math/ratio/04/methodica-ar-math-ratio-04-04/",
+  "title": "مهمة في الصف",
+  "learningUnitId": "methodica-ar-math-ratio-04",
+  "componentPurpose": "practice",
+  "isAssessment": false,
+  "recommendedAfterFail": [],
+  "isRequired": true,
+  "relativeDifficulty": 3,
+  "masteryLevel": null,
+  "order": 4,
+  "depthLevel": "core-curriculum-basic",
+  "cognitiveLevels": [
+    "process-thinking"
+  ],
+  "languages": [
+    "Arabic"
+  ],
+  "skills": [],
+  "estimatedTimeInMinutes": 1,
+  "createdAt": "2026-10-19T00:00:00.000Z",
+  "updatedAt": "2026-10-19T00:00:00.000Z",
+  "subContent": [
+    {
+      "id": "https://lomdot.education.gov.il/metodica/720/ar/math/ratio/04/methodica-ar-math-ratio-04-04/methodica-ar-math-ratio-04-04-001/",
+      "title": "مهمة صفّية — قياس وتيرة التكرارات",
+      "informationToBot": "מטרת הפריט: יישום מציאותי של יחס בין כמויות מסוגים שונים: קצב = מספר חזרות לזמן, מדידה והשוואה בין שני ניסיונות. מה התלמיד אמור להבין/לתרגל: חישוב קצב כיחס בין מספר החזרות (2 דקות) והשוואת שני קצבים כדי לקבוע אם השתפר. כיווני חשיבה ואסטרטגיות: למדוד מספר חזרות ב-2 דקות, לחשב חזרות לדקה, לחזור על המדידה ולהשוות בין הקצבים. טעויות נפוצות: השוואת מספר החזרות הכולל בלי לבדוק שמשך המדידה זהה; אי-ציון יחידות (חזרות לדקה). מידע נוסף: משימה פיזית ללא מחשב, לבד או בזוגות (טיימר בטלפון, דף וכלי כתיבה) - אתגר לבחירה: כפיפות בטן, קפיצה על רגל אחת או קליעת נייר. המסך השני כולל תיבת הקלדה חופשית להשוואה ('האם השתפרתם?') שאינה נאספת כתשובה מוערכת, לכן אין questions. כולל מסך מעבר לפני המשימה. צילום מסך: לא צורף.",
+      "contentType": "project-or-inquiry-task",
+      "mediaFormat": "text",
+      "questions": []
+    }
+  ]
+}

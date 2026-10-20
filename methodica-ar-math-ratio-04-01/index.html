@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Cache-Control" content="no-store">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>النسبة — استخدام النسبة (الهدف 1.4)</title>
+<link rel="stylesheet" href="../unit-assets/fonts/fonts.css?v=20261020a">
+  <link rel="stylesheet" href="../unit-css/styles.css?v=20261020a">
+</head>
+<body data-subject-theme="math">
+<!-- Boot cover (resume, ADDING-REPORTING-AND-RESUME.md §8.11): hides the first screen until it is
+     known whether a saved screen will be restored. A SIBLING of #stage (so no transform reaches it),
+     inline-styled so a stale stylesheet cannot leave it invisible. 50-loader.js removes it on every
+     exit path (dropBootCover); this inline net removes it after 800ms whatever happens — or, when a
+     restore is in flight (window.__resumeInFlight), waits for it up to a hard 11s ceiling (10s
+     metadata poll + two CDN scripts). Copied from methodica-math-ratio-06. -->
+<div id="boot-cover" style="position:fixed;inset:0;z-index:9999;background:#e9e9ee"></div>
+<script>
+(function () {
+  var t0 = Date.now();
+  function tick() {
+    var c = document.getElementById('boot-cover');
+    if (!c || !c.parentNode) return;
+    if (window.__resumeInFlight && Date.now() - t0 < 11000) { setTimeout(tick, 100); return; }
+    c.parentNode.removeChild(c);
+  }
+  setTimeout(tick, 800);
+})();
+</script>
+<div id="stage">
+<div id="app">
+  <!-- ═══════════════════════════════════════════════════════════
+       S0 — deck slide 3 · TwoOptionSelection (approved template)
+       template-library/templates/TwoOptionSelection, used as-is.
+       Only the content differs: this unit's two monsters, and the
+       deck's title. The cards hold VIDEO (producer 17.09) — the
+       variant the delivered ratio-01-01 ships, same geometry.
+       Deck sides: white at x=321 (left), orange at x=655 (right).
+       First screen: no Back button. Selection enables בחרתי.
+       ═══════════════════════════════════════════════════════════ -->
+  <section class="screen active" data-screen="0" id="s0">
+
+    <div class="select-content">
+      <div class="select-head">
+        <h1 class="select-title">أي شخصية تريدون أن ترافقكم؟</h1>
+      </div>
+
+      <!-- direction:ltr on .option-cards → first DOM child = leftmost.
+           Left = the white monster (deck x=321), right = the orange one (x=655). -->
+      <div class="option-cards" role="radiogroup" aria-label="اختاروا شخصية">
+        <div class="option-card" role="radio" aria-checked="false" tabindex="0"
+             data-value="character-white" aria-label="شخصية وحش أبيض" onclick="selectOption(this)">
+          <div class="option-card-img">
+            <video class="option-card-video" src="../unit-assets/video/character-white-selection.mp4"
+                   autoplay loop muted playsinline preload="auto" aria-label="شخصية وحش أبيض"></video>
+          </div>
+        </div>
+
+        <div class="option-card" role="radio" aria-checked="false" tabindex="0"
+             data-value="character-orange" aria-label="شخصية وحش برتقالي" onclick="selectOption(this)">
+          <div class="option-card-img">
+            <video class="option-card-video" src="../unit-assets/video/character-orange-selection.mp4"
+                   autoplay loop muted playsinline preload="auto" aria-label="شخصية وحش برتقالي"></video>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button class="btn-continue" id="s0-continue" disabled onclick="advanceScreen()"><span class="nav-label" data-label="اخترت"><span>اخترت</span></span></button>
+  </section>
+
+<!-- ═══════════════════════════════════════════════════════
+         S1 — deck slide 4 · SingleChoiceQuestionImage.
+         notesSlide: "מופיעה שאלה, לآخر מענה עליה מופיע חיווי של
+         الإجابة الصحيحة (ללא משוב מילולי) וכפתור המשך זמין ללחיצה" —
+         so: pick → the correct option is marked → המשך unlocks.
+         No hint, no attempts, no feedback box.
+         KEY read from the slide geometry, not inferred: the option pill
+         at x=540 carries ln=00B050 with its radio ellipse FILLED 00B050,
+         and that pill holds "לא"; the כן pill is 00B0F0 with an unfilled
+         radio. Cross-checks against slide 5, which explains that the two
+         ratios are of different KINDS.
+         Photos follow the deck: running at x=280 (left), tennis at x=711
+         (right) — RTL puts the first DOM child on the right, so tennis
+         comes first.
+         Ratio: the deck stores "5 : 3"; in an RTL paragraph that renders
+         "3 : 5", which is the form the learner sees.
+         ═══════════════════════════════════════════════════════ -->
+    <section class="screen" data-screen="1" id="s1">
+      <div class="quiz-stem-area">
+        <p class="quiz-stem">تنافست عبير وأمجد في يوم رياضي بلدي، شمل مسابقات في عدة فروع رياضة.<br>شاركت عبير في سباق ركض وشارك أمجد في التنس‎.</p>
+        <div class="s1-photos">
+          <img src="assets/img/s1-running.png" alt="عبير تركض في مسابقة ركض">
+          <img src="assets/img/s1-tennis.png" alt="أمجد يلعب التنس">
+        </div>
+        <p class="quiz-question"><strong>هل النسبة <span class="ratio">3 : 5</span> تصف إنجاز كليهما بنفس الطريقة؟</strong></p>
+        <div class="scq-answers scq-answers--short s1-answers" role="radiogroup" aria-label="اختاروا إجابة">
+          <button class="scq-opt" type="button" data-opt="yes" onclick="s1Answer(this)">
+            <span class="scq-radio" aria-hidden="true"></span>
+            <span class="scq-opt-text">نعم</span>
+          </button>
+          <button class="scq-opt" type="button" data-opt="no" onclick="s1Answer(this)">
+            <span class="scq-radio" aria-hidden="true"></span>
+            <span class="scq-opt-text">لا</span>
+          </button>
+        </div>
+      </div>
+      <button class="btn-continue" id="s1-continue" disabled onclick="advanceScreen()"><span class="nav-label" data-label="متابعة"><span>متابعة</span></span></button>
+      <button class="btn-back" onclick="goTo(0)"><span class="nav-label" data-label="عودة"><span>عودة</span></span></button>
+    </section>
+
+<!-- S2 — deck slide 5 · TextWithCallout. notesSlide: the character appears
+         after the text and only then does המשך unlock. Bolds are per RUN. -->
+    <section class="screen" data-screen="2" id="s2">
+      <div class="explain-content">
+        <p class="explain-body">هل لاحظتم أن نتيجة أمجد تعرض نسبة بين <strong>عدد المباريات التي فاز فيها </strong>وبين <strong>عدد المباريات الكلي</strong>، <br>بينما تعرض نتيجة عبير النسبة بين عدد لفات المسار (<strong>المسافة التي قطعتها</strong>) وبين <strong>الزمن الذي استغرقته </strong>لقطعها؟</p>
+        <p class="explain-body s2-block"><strong>تم التعبير عن النسبتين بصيغة رياضية بواسطة النسبة <span class="ratio">3 : 5</span>، لكن... </strong><br>لدى<strong>أمجد</strong> النسبة هي بين <strong>كميات من نفس النوع (عدد المباريات)، </strong><br>بينما لدى <strong>عبير</strong> النسبة هي بين <strong>كميات من أنواع مختلفة (المسافة والزمن)‎.</strong></p>
+      </div>
+      <div class="character-widget s2-char is-faded" id="s2-char">
+        <div class="speech-bubble">هيّا نتعلم عن النسبة هي بين كميات من نفس النوع، وعن النسبة بين كميات من أنواع مختلفة</div>
+        <img src="../unit-assets/img/char-orange-standing.png" alt="شخصية مرافقة" id="s2-char-img">
+      </div>
+      <button class="btn-continue" id="s2-continue" disabled onclick="advanceScreen()"><span class="nav-label" data-label="متابعة"><span>متابعة</span></span></button>
+      <button class="btn-back" onclick="goTo(1)"><span class="nav-label" data-label="عودة"><span>عودة</span></span></button>
+    </section>
+
+<!-- S3 — deck slide 6 · VideoWatchAndContinue. Producer 29.09 supplied the
+         film as a YouTube link (חלק 1); slides 7-8 are its מה רואים/קריינות
+         storyboard. Built on percent-08's approved video screen: the iframe is
+         in the markup and goTo() parks its src on leaving. -->
+    <section class="screen" data-screen="3" id="s3">
+      <div class="video-content">
+        <p class="video-lead">تعلمنا عن النسبة وعن الطرق المختلفة للتعبير عنها.<br>يمكن استخدام النسبة للكميات من نفس النوع، وأيضًا للكميات من أنواع مختلفة.<br>اضغطوا على الفيديو لنتعلم‎:</p>
+        <div class="video-frame" data-reveal="2" data-reveal-fade>
+          <iframe src="https://www.youtube-nocookie.com/embed/Hoz6DvYgygw?enablejsapi=1&amp;rel=0&amp;modestbranding=1&amp;hl=ar"
+          data-yt-item="002"
+            title="فيديو الوحدة التعليمية — الجزء 1" loading="lazy" allowfullscreen
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"></iframe>
+        </div>
+      </div>
+      <button class="btn-continue" onclick="advanceScreen()"><span class="nav-label" data-label="متابعة"><span>متابعة</span></span></button>
+      <button class="btn-back" onclick="goTo(2)"><span class="nav-label" data-label="عودة"><span>عودة</span></span></button>
+    </section>
+
+<!-- S4 — deck slide 9 · SingleChoiceQuestionImage. notesSlide: one attempt
+         only, no hint. KEY from geometry: the green-stroked pill with the filled
+         radio is at y=264 = the SECOND option, לא. Deck stores "5 : 2", which an
+         RTL paragraph renders "2 : 5" — and slide 8's narration says the reduced
+         ratio is two to five, so that is what the learner sees. -->
+    <section class="screen" data-screen="4" id="s4">
+      <div class="quiz-stem-area">
+        <p class="quiz-question"><strong>وجدنا أن النسبة بين حجم الملفات التي تم تنزيلها بوحدة‎ MB ‎هي <span class="ratio">2 : 5</span>.<br>هل يمكننا بالاعتماد على هذه المعلومة تحديد أيهما لديه إنترنت أسرع؟</strong></p>
+        <div class="scq-answers s4-answers" role="radiogroup" aria-label="اختاروا إجابة">
+          <button class="scq-opt" type="button" data-opt="yes" onclick="s4Answer(this)">
+            <span class="scq-radio" aria-hidden="true"></span><span class="scq-opt-text">نعم</span>
+          </button>
+          <button class="scq-opt" type="button" data-opt="no" onclick="s4Answer(this)">
+            <span class="scq-radio" aria-hidden="true"></span><span class="scq-opt-text">لا</span>
+          </button>
+        </div>
+        <div class="quiz-feedbox hidden" id="s4-fb">
+          <div class="scq-fb-title" id="s4-fb-title"></div>
+          <div class="fb-body">المعلومات عن حجم الملف لا تكفي لتحديد أيهما لديه إنترنت أسرع. علينا أن نعرف أيضًا الوقت الذي يحتاجه كل منهما لتنزيل الملفات‎.</div>
+        </div>
+      </div>
+      <button class="btn-continue" id="s4-continue" disabled onclick="advanceScreen()"><span class="nav-label" data-label="متابعة"><span>متابعة</span></span></button>
+      <button class="btn-back" onclick="goTo(3)"><span class="nav-label" data-label="عودة"><span>عودة</span></span></button>
+    </section>
+
+<!-- S5 — deck slide 10 · VideoWatchAndContinue. חלק 2 of the film; slides
+         11-12 are its storyboard. Same treatment as S3. -->
+    <section class="screen" data-screen="5" id="s5">
+      <div class="video-content">
+        <p class="video-lead">تعالوا نرى ماذا علينا أن نفعل لفحص سرعة الإنترنت.<br>اضغطوا على الفيديو وسنتابع‎:</p>
+        <div class="video-frame" data-reveal="2" data-reveal-fade>
+          <iframe src="https://www.youtube-nocookie.com/embed/pwI9W0Qlb3k?enablejsapi=1&amp;rel=0&amp;modestbranding=1&amp;hl=ar"
+          data-yt-item="002"
+            title="فيديو الوحدة التعليمية — الجزء 2" loading="lazy" allowfullscreen
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"></iframe>
+        </div>
+      </div>
+      <button class="btn-continue" onclick="advanceScreen()"><span class="nav-label" data-label="متابعة"><span>متابعة</span></span></button>
+      <button class="btn-back" onclick="goTo(4)"><span class="nav-label" data-label="عودة"><span>عودة</span></span></button>
+    </section>
+
+<!-- S6 — deck slide 13 · sorting, based on StatementAssessmentQuestion.
+         notesSlide: no hint, ONE attempt, המשך unlocks after answering.
+         KEY from geometry — green radios at x=117 (the "من أنواع مختلفة" column,
+         header at x=28) for the first three rows, and at x=353 (the "من نفس النوع"
+         column, header at x=262) for the last. That matches the feedback text. -->
+    <section class="screen" data-screen="6" id="s6">
+      <div class="sort-content">
+        <p class="quiz-question"><strong>بجانب كل مثال، حدّدوا نوع النسبة التي يصفها‎:</strong></p>
+        <table class="sort-table">
+          <thead>
+            <tr><th></th><th>نسبة بين كميات من نفس النوع</th><th>نسبة بين كميات من أنواع مختلفة</th></tr>
+          </thead>
+          <tbody id="s6-rows"></tbody>
+        </table>
+        <div class="quiz-feedbox hidden" id="s6-fb">
+          <div class="scq-fb-title" id="s6-fb-title"></div>
+          <div class="fb-body">الأمثلة الثلاثة الأولى تصف نسبة بين كميات من أنواع مختلفة وبوحدات قياس مختلفة – عدد قطع الكعك والزمن، الوزن والسعر، المسافة والزمن.<br>أما المثال الأخير فيصف نسبة بين كميات من نفس النوع - بين بلوزات وبلوزات أخرى.</div>
+        </div>
+      </div>
+      <button class="btn-continue" id="s6-continue" disabled onclick="s6Check()"><span class="nav-label" data-label="هل إجابتي صحيحة؟"><span>هل إجابتي صحيحة؟</span></span></button>
+      <button class="btn-back" onclick="goTo(5)"><span class="nav-label" data-label="عودة"><span>عودة</span></span></button>
+    </section>
+
+<!-- S7 — deck slides 14-16 · AccordionText. One screen, two panels: slide 14
+         is the closed state, 15 and 16 are the two expansions. notesSlide:
+         המשך unlocks only after BOTH have been opened.
+         The `a/b` and `x/y` in the bodies are oMath fractions in the deck,
+         invisible to a text scrape — rebuilt as stacked fractions. -->
+    <section class="screen" data-screen="7" id="s7">
+      <div class="acc-content">
+        <h1 class="acc-title">لنلخّص</h1>
+        <p class="acc-lead"><strong>اضغطوا على <svg class="acc-lead-icon" viewBox="0 0 16 8" fill="none" aria-hidden="true"><path d="M1 1L8 7L15 1" stroke="#303030" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg> بجانب كل نوع من أنواع النسبة للقراءة:</strong></p>
+
+        <div class="acc-item" id="s7-a">
+          <button class="acc-head" type="button" onclick="s7Toggle('a')">
+            <svg class="acc-chevron" viewBox="0 0 16 8" fill="none" aria-hidden="true"><path d="M1 1L8 7L15 1" stroke="#303030" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span class="acc-head-text">نسبة بين مقدارين / كميتين لهما وحدات قياس <strong>متطابقة</strong></span>
+          </button>
+          <div class="acc-body">
+            <p>تصف العلاقة بين المقدارين أو الكميتين (مثلًا، بِكَم مرة إحدى الكميتين أكبر / أصغر من الأخرى)‎.</p>
+            <p>بما أن المقدارين يُقاسان بنفس الوحدات (أو يمكن تحويلهما إلى نفس الوحدات)، ستُختزَل وحدات القياس عند بناء النسبة، ونبقى مع <strong>مقدار عددي </strong>من الصيغة <span class="ratio">a : b</span> أو <span class="fracpair"><span class="fraction fr-inline"><span class="frac-top">a</span><span class="frac-bottom">b</span></span></span>.</p>
+          </div>
+        </div>
+
+        <div class="acc-item" id="s7-b">
+          <button class="acc-head" type="button" onclick="s7Toggle('b')">
+            <svg class="acc-chevron" viewBox="0 0 16 8" fill="none" aria-hidden="true"><path d="M1 1L8 7L15 1" stroke="#303030" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span class="acc-head-text">نسبة بين مقدارين / كميتين لهما وحدات قياس <strong>مختلفة</strong></span>
+          </button>
+          <div class="acc-body">
+            <p>هذا مقدار جديد له وحدة قياس مركّبة، تتكون من وحدات المقدارين المعطيين. مثلًا، النسبة بين السعر‎ x ‎(بالشيكل) والكمية‎ y ‎(بالكغم) هي <span class="fracpair"><span class="fraction fr-inline"><span class="frac-top">x</span><span class="frac-bottom">y</span></span></span> شيكل للكغم. هذه النسبة تمثل سعر الوحدة‎.</p>
+          </div>
+        </div>
+      </div>
+      <button class="btn-continue" id="s7-continue" disabled onclick="advanceScreen()"><span class="nav-label" data-label="متابعة"><span>متابعة</span></span></button>
+      <button class="btn-back" onclick="goTo(6)"><span class="nav-label" data-label="عودة"><span>عودة</span></span></button>
+    </section>
+
+<!-- S8 — deck slide 17 · TransitionScreen. The deck's art is the companion
+         holding a "?" board; it follows the learner's chosen monster. -->
+    <section class="screen" data-screen="8" id="x8">
+      <div class="transition-content ts-content">
+        <h1 class="ts-title">سنبدأ التمرين بعد قليل،</h1>
+        <p class="ts-tail">لكن قبل ذلك، تعالوا نحلّ تمرينًا واحدًا معًا</p>
+        <div class="transition-character ts-character">
+          <video class="transition-video" id="x8-char" autoplay muted loop playsinline aria-label="الشخصية المرافقة"></video>
+        </div>
+      </div>
+      <button class="btn-continue" onclick="advanceScreen()"><span class="nav-label" data-label="متابعة"><span>متابعة</span></span></button>
+      <button class="btn-back" onclick="goTo(7)"><span class="nav-label" data-label="عودة"><span>عودة</span></span></button>
+    </section>
+
+<!-- S10 — deck slide 27 · TransitionScreen -->
+    <section class="screen" data-screen="18" id="x18">
+      <div class="transition-content ts-content">
+        <h1 class="ts-title">ماذا بقيَ عالقًا في عقولنا؟</h1>
+        <p class="ts-tail">سؤال بسيط للإحماء قبل أن نتقدم</p>
+        <div class="transition-character ts-character">
+          <div class="char-slot" id="x18-char"></div>
+        </div>
+      </div>
+      <button class="btn-continue" onclick="advanceScreen()"><span class="nav-label" data-label="متابعة"><span>متابعة</span></span></button>
+      <button class="btn-back" onclick="goTo(17)"><span class="nav-label" data-label="عودة"><span>عودة</span></span></button>
+    </section>
+
+
+
+
+
+  <!-- Report/issue flag — the APPROVED chrome, copied verbatim from
+       shared/720-core/chrome/chrome-snippets.html. Do not restyle, do not
+       rebuild. The old PNG pair is gone: its hover export was a stale
+       SCIENCE-mode render (#019DE5), which is what made hover look wrong in
+       a maths unit. The glyph is live SVG driven by currentColor. -->
+  <button class="flag-btn" id="flag-btn" type="button" aria-label="هل وجدتم مشكلة؟">
+        <span class="flag-btn-icon"> <span class="flag-btn-glyph" aria-hidden="true">
+            <svg class="flag-btn-glyph-pole" viewBox="0 0 0.794329 17.0005" preserveAspectRatio="none" fill="none">
+              <path
+                d="M0.397164 17C0.177722 17 0 16.8239 0 16.6065V0.393501C0 0.176082 0.177722 0 0.397164 0C0.616607 0 0.794329 0.176082 0.794329 0.393501V16.607C0.794329 16.8245 0.616607 17.0005 0.397164 17.0005V17Z"
+                fill="currentColor" />
+            </svg>
+            <svg class="flag-btn-glyph-banner" viewBox="0 0 12 9.31542" preserveAspectRatio="none" fill="none">
+              <path
+                d="M2.76227 9.31542C1.91972 9.31542 1.06958 9.15545 0.213483 8.71363C0.0823588 8.64599 0 8.51124 0 8.36469V0.950975C0 0.814619 0.0715221 0.687925 0.188558 0.615989C0.305594 0.54459 0.45189 0.537611 0.574886 0.598811C0.577053 0.599884 0.578679 0.600958 0.580846 0.602032C2.31309 1.49586 4.05563 1.046 5.90003 0.569821C7.80946 0.0770055 9.78336 -0.431915 11.7865 0.601495C11.9176 0.669136 12 0.803882 12 0.950438V8.36415C12 8.4946 11.9344 8.617 11.8255 8.69001C11.7166 8.76302 11.5774 8.77805 11.4555 8.72974C11.443 8.7249 11.4311 8.71954 11.4197 8.71363C9.68745 7.8198 7.94491 8.26967 6.10051 8.7453C5.00709 9.02714 3.89199 9.31489 2.76281 9.31489L2.76227 9.31542ZM0.793787 8.11935C2.45559 8.87307 4.13094 8.44038 5.90003 7.98407C7.62469 7.53903 9.40191 7.08057 11.2062 7.75806V1.19631C9.54441 0.442591 7.86906 0.875281 6.09997 1.33159C4.37531 1.77663 2.59755 2.23509 0.793787 1.5576V8.11935Z"
+                fill="currentColor" />
+            </svg>
+          </span> </span>
+        <span class="flag-btn-label">هل وجدتم مشكلة؟</span>
+      </button>
+
+  <!-- Screen 0 — slide 3: hook question (SingleChoiceQuestionImage; green indication only) -->
+
+  <!-- Screen 1 — slide 4: reveal + density formula (TextWithCallout) -->
+
+  <!-- Screen 3 — slides 6-9: הקנייה — one continuous scroll:
+       intro+applet → task (source colors) → shade question (צדקת popup)
+       → bowls experiment → proportion explanation. Continue gated on answer. -->
+
+  <!-- Screens 2, 4-13, 15, 24, 33, 37-40, 44, 48-49, 51, 53, 55, 57 are
+       generated by js/unit.js; question screens by js/quiz-engine.js -->
+
+  <!-- Quiz hint overlay — shared, outside all .screen divs -->
+  <div id="quiz-hint-overlay" class="hidden m-popup" role="dialog" aria-modal="true" aria-label="تلميح">
+    <div class="hint-popup">
+      <!-- 07.09: the bulb the hint card was missing. Plain-bulb variant
+           (viewBox 0 0 20.997 27.9988), the one the approved build uses in
+           the card title — deliberately NOT the button's rayed bulb. The
+           text lives in its own span so quizOpenHint() can rewrite it
+           without deleting the icon. -->
+      <h3 class="hint-title"><svg class="hint-title-icon" viewBox="0 0 20.997 27.9988" fill="none" aria-hidden="true"><path d="M17.4818 2.65764C15.2512 0.668476 12.2563 -0.275357 9.25683 0.0699765C4.59833 0.60431 0.748334 4.35748 0.103168 8.99148C-0.387999 12.5078 0.894168 16.0031 3.532 18.34C4.99267 19.6338 5.83033 21.5191 5.83033 23.5095V23.9155C5.83033 26.1671 7.662 27.9988 9.91367 27.9988H11.0803C13.332 27.9988 15.1637 26.1671 15.1637 23.9155V23.5036C15.1637 21.5366 16.041 19.6431 17.6347 18.1708C19.7708 16.1945 20.997 13.398 20.997 10.4988C20.997 7.50864 19.716 4.65031 17.4818 2.65764ZM13.997 23.9143C13.997 25.522 12.6892 26.831 11.0803 26.831H9.91367C8.30483 26.831 6.997 25.522 6.997 23.9143V23.5083C6.997 23.0545 6.9585 22.6041 6.88617 22.1643H14.1137C14.0367 22.6041 13.997 23.051 13.997 23.5025V23.9143ZM16.8425 17.3133C15.691 18.3773 14.865 19.6385 14.4077 20.9976H11.0792V12.1986C12.7323 11.9198 13.9958 10.479 13.9958 8.74764C13.9958 8.42564 13.7345 8.16431 13.4125 8.16431C13.0905 8.16431 12.8292 8.42564 12.8292 8.74764C12.8292 10.0345 11.7827 11.081 10.4958 11.081C9.209 11.081 8.1625 10.0345 8.1625 8.74764C8.1625 8.42564 7.90117 8.16431 7.57917 8.16431C7.25717 8.16431 6.99583 8.42564 6.99583 8.74764C6.99583 10.479 8.25933 11.9198 9.9125 12.1986V20.9976H6.60267C6.16633 19.6431 5.38 18.4193 4.3055 17.4661C1.9605 15.3895 0.821834 12.2815 1.25817 9.15248C1.831 5.03648 5.2505 1.70448 9.38867 1.22848C9.7655 1.18531 10.14 1.16431 10.511 1.16431C12.807 1.16431 14.9735 1.98448 16.7072 3.52914C18.6917 5.30014 19.8315 7.83998 19.8315 10.4976C19.8315 13.111 18.771 15.5318 16.8437 17.3133H16.8425Z" fill="white"/></svg><span class="hint-title-text"></span></h3>
+      <p class="hint-body"></p>
+      <button class="hint-close-btn" onclick="quizCloseHint()">عودة إلى السؤال</button>
+    </div>
+  </div>
+
+  <!-- Problem-report modal (approved-units pattern; posts to the shared Google Form) -->
+  <div id="report-modal" class="report-modal-overlay m-popup" hidden role="dialog" aria-modal="true" aria-labelledby="report-modal-title">
+    <div class="report-modal-box">
+      <button class="report-close-btn" onclick="tryCloseReportModal()" aria-label="إغلاق">&#10005;</button>
+      <h2 class="report-modal-title" id="report-modal-title">التبليغ عن مشكلة</h2>
+      <p class="report-modal-body">هل هناك شيء غير واضح أو لا يعمل كما يجب؟ أخبرونا بما حدث لنتمكن من معالجة المشكلة.</p>
+      <div class="report-field">
+        <label class="report-label" for="report-type">ما هو نوع المشكلة <span class="required-star">*</span></label>
+        <select class="report-select" id="report-type">
+          <option value="" disabled selected>اختاروا نوع المشكلة</option>
+          <option value="technical">عطل تقني أو شيء ما لا يعمل</option>
+          <option value="unclear">شيء غير واضح لي</option>
+          <option value="other">آخر</option>
+        </select>
+      </div>
+      <div class="report-field">
+        <label class="report-label" for="report-text">ماذا حدث؟ <span class="required-star">*</span></label>
+        <textarea class="report-textarea" id="report-text" maxlength="250" rows="4" placeholder="صفوا المشكلة‎..."></textarea>
+        <span class="report-char-count" id="report-char-count">0 / 250</span>
+      </div>
+      <p class="report-error" id="report-error" hidden>يرجى اختيار نوع المشكلة ووصف ما حدث.</p>
+      <div class="report-actions">
+        <button class="report-submit-btn" onclick="submitReport()">إرسال</button>
+        <button class="report-cancel-btn" onclick="tryCloseReportModal()">إلغاء</button>
+      </div>
+      <div class="report-thanks" id="report-thanks" hidden>
+        <p>شكرًا! تم إرسال التبليغ. سنعالج المشكلة في أقرب وقت.</p>
+        <button class="report-submit-btn" onclick="forceCloseReportModal()">إغلاق</button>
+      </div>
+    </div>
+  </div>
+  <div id="report-confirm-modal" class="report-modal-overlay m-popup" hidden role="dialog" aria-modal="true" aria-labelledby="confirm-modal-title">
+    <div class="report-modal-box report-confirm-box">
+      <h2 class="report-modal-title" id="confirm-modal-title">هل تريدون إغلاق النافذة فعلًا؟</h2>
+      <p class="report-modal-body">إذا ضغطتم على إغلاق لن يتم إرسال التبليغ</p>
+      <div class="report-actions">
+        <button class="report-cancel-btn" onclick="forceCloseReportModal()">إغلاق النافذة</button>
+        <button class="report-submit-btn" onclick="backToReportForm()">أريد التبليغ</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+  <!-- Platform layer first (identity → xAPI → resume → loader), then this component's
+       configuration, then the 720-core, then the glue, then the boot — LAST, in its own tag.
+       Every ?v= is identical in all seven components (ADDING-REPORTING-AND-RESUME.md §3.4). -->
+  <script src="../unit-js/10-identity.js?v=20261020a"></script>
+  <script src="../unit-js/20-xapi.js?v=20261020a"></script>
+  <script src="../unit-js/40-resume.js?v=20261020a"></script>
+  <script src="../unit-js/50-loader.js?v=20261020a"></script>
+  <script src="script.js?v=20261020a"></script>
+  <script src="../unit-js/motion.js?v=20261020a"></script>
+  <script src="../unit-js/quiz-engine.js?v=20261020a"></script>
+  <script src="../unit-js/questions.js?v=20261020a"></script>
+  <script src="../unit-js/unit.js?v=20261020a"></script>
+  <script src="../unit-js/report-modal.js?v=20261020a"></script>
+  <script src="../unit-js/engine.js?v=20261020a"></script>
+  <script src="../unit-js/70-platform.js?v=20261020a"></script>
+  <script src="../unit-js/90-boot.js?v=20261020a"></script>
+</div>
+</div>
+</body>
+</html>

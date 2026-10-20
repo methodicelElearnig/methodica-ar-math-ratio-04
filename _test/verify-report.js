@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-/* ═══════════════════ verify-report.js — methodica-math-ratio-04 contracts ═══════════════════
+/* ═══════════════════ verify-report.js — methodica-ar-math-ratio-04 contracts ═══════════════════
    NOT DEPLOYED. The static and DOM-level contracts of the reporting / issue-report / resume
    layer, for all seven components (ADDING-REPORTING-AND-RESUME.md §6.2, §6.7, §8, §10.2):
 
@@ -25,6 +25,8 @@ const { ok, eq } = R;
 
 const read = p => fs.readFileSync(path.join(BASE, p), 'utf8');
 const html = c => read(PART_DIR(c) + '/index.html');
+/* Arabic writes two as a dual word ("سؤالين", "تمرينان"); a gate or stop number not in this map is NaN. */
+const AR_NUM = w => ({ 'سؤالين': 2, 'سؤالان': 2, 'تمرينين': 2, 'تمرينان': 2 })[w] ?? (/^\d+$/.test(w) ? +w : NaN);
 const scriptsOf = c => [...html(c).matchAll(/<script src="([^"]+)"/g)].map(m => m[1]);
 const trimId = u => String(u || '').replace(/\/+$/, '');
 const last = u => trimId(u).split('/').pop();
@@ -142,16 +144,18 @@ const last = u => trimId(u).split('/').pop();
 
     /* gate: the number on the gate screen is the number in code */
     const gate = JSON.parse(v('JSON.stringify(XAPI_GATE)'));
-    const gateText = html(c).match(/(\d+) (?:שאלות|סעיפים)[^<]*?(?:על|ב-)(\d+)[^<]*לפחות|צריך לענות נכון על (\d+) שאלות לפחות/);
+    /* Arabic screens: 06/07 "يحتوي السؤال على 5 بنود. عليكم الإجابة عن 4 منها على الأقل",
+       02 "3 أسئلة" + "عن سؤالين على الأقل" (a dual, written as a word: AR_NUM). */
+    const gateText = html(c).match(/على (\d+) بنود[^<]*?عن (\d+) منها على الأقل|عن (\S+) على الأقل/);
     if (gate) {
       ok('gate', c + ' the gate screen states a threshold', !!gateText);
-      const need = gateText && +(gateText[2] || gateText[3]);
+      const need = gateText && (gateText[2] ? +gateText[2] : AR_NUM(gateText[3]));
       eq('gate', c + ' XAPI_GATE.need = the number on screen', gate.need, need);
       const t = JSON.parse(v('JSON.stringify(_gateTally())'));
-      const totalOnScreen = +(html(c).match(/(\d+) (?:שאלות|סעיפים)/) || [])[1];
+      const totalOnScreen = +(html(c).match(/(\d+) (?:أسئلة|بنود)/) || [])[1];
       eq('gate', c + ' the gated set has as many members as the screen promises', t.total, totalOnScreen);
     } else {
-      ok('gate', c + ' no threshold on screen, none in code', !/לפחות/.test(html(c)));
+      ok('gate', c + ' no threshold on screen, none in code', !/على الأقل/.test(html(c)));
     }
 
     /* painter sweep */
@@ -189,10 +193,11 @@ const last = u => trimId(u).split('/').pop();
   {
     const b = await H.boot('03');
     const stop = JSON.parse(b.val('JSON.stringify(typeof XAPI_STOP !== "undefined" ? XAPI_STOP : null)'));
-    const intro = html('03').match(/<h1 class="ts-title">(\d+) תרגילים<\/h1>/);
+    const intro = html('03').match(/<h1 class="ts-title">((\d+) تمارين|تمرينان)<\/h1>/);
+    const introN = intro && (intro[2] ? +intro[2] : AR_NUM(intro[1]));
     ok('stop', '03 declares a stop', !!stop);
-    ok('stop', '03 the stop covers as many exercises as s29 promises', !!(stop && intro && stop.items.length === +intro[1]), JSON.stringify(stop) + ' / ' + (intro && intro[1]));
-    ok('stop', '03 "ענו נכון על שניהם" = need is every one of them', !!(stop && /ענו נכון על שניהם/.test(html('03')) && stop.need === stop.items.length));
+    ok('stop', '03 the stop covers as many exercises as s29 promises', !!(stop && intro && stop.items.length === introN), JSON.stringify(stop) + ' / ' + introN);
+    ok('stop', '03 "أجيبوا بشكل صحيح السؤالين" = need is every one of them', !!(stop && /أجيبوا بشكل صحيح السؤالين/.test(html('03')) && stop.need === stop.items.length));
     const lastOfItem = stop ? JSON.parse(b.val('JSON.stringify(Object.keys(SCREEN_TO_SUBCONTENT).map(Number).filter(function(n){ return SCREEN_TO_SUBCONTENT[n] && SCREEN_TO_SUBCONTENT[n][0] === ' + JSON.stringify(stop.items[stop.items.length - 1]) + '; }))')).pop() : null;
     eq('stop', '03 the stop screen is the last screen of the last stop item', stop && stop.at, lastOfItem);
     for (const c of PARTS.filter(c => c !== '03')) {

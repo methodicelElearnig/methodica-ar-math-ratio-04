@@ -1,6 +1,6 @@
 'use strict';
 /* ═══════════════════════════════════════════════════════════════════
-   methodica-math-ratio-04 — screen data, read from the deck.
+   methodica-ar-math-ratio-04 — screen data, read from the deck.
    ═══════════════════════════════════════════════════════════════════ */
 const QUESTIONS = [
   /* 21.09 — deck slide 28. This screen used to be hand-rolled markup plus its
@@ -80,8 +80,8 @@ const QUESTIONS = [
     correct: 'a',
     hint: { body: 'هل يمكن المقارنة مباشرةً بين 3 أمتار في الثانية<br>و-10 كم في الساعة؟<br>فكروا ماذا يجب أن نفعل أولًا‎.' },
     fb: { retry: 'الإجابة غير دقيقة، هل نحاول مرة أخرى؟',
-      correct: { title: 'ممتاز‎!', body: `للمقارنة بين السرعتين، نحوّل سرعة لمى إلى متر في الثانية،<br>مثل وحدة قياس سمر:<br>تركض لمى 10,000 متر في 3,600 ثانية.<br>ولذلك فإن سرعتها هي: <span class="fracpair"><span class="fraction fr-inline"><span class="frac-top">25</span><span class="frac-bottom">9</span></span></span> أي <span class="vi-mixed" dir="ltr"><span class="vi-mixed-whole">2</span><span class="fracpair"><span class="fraction fr-inline"><span class="frac-top">7</span><span class="frac-bottom">9</span></span></span></span> متر في الثانية.<br> في المقابل، تركض لمى 3 أمتار في الثانية.<br>ولذلك لمى أسرع‎.` },
-      wrong: { title: 'هذا خطأ، تعالوا نتعلم منه:', body: `للمقارنة بين السرعتين، نحوّل سرعة لمى إلى متر في الثانية،<br>مثل وحدة قياس سمر:<br>تركض لمى 10,000 متر في 3,600 ثانية.<br>ولذلك فإن سرعتها هي: <span class="fracpair"><span class="fraction fr-inline"><span class="frac-top">25</span><span class="frac-bottom">9</span></span></span> أي <span class="vi-mixed" dir="ltr"><span class="vi-mixed-whole">2</span><span class="fracpair"><span class="fraction fr-inline"><span class="frac-top">7</span><span class="frac-bottom">9</span></span></span></span> متر في الثانية.<br> في المقابل، تركض لمى 3 أمتار في الثانية.<br>ولذلك لمى أسرع‎.` } },
+      correct: { title: 'ممتاز‎!', body: `للمقارنة بين السرعتين، نحوّل سرعة لمى إلى متر في الثانية،<br>مثل وحدة قياس سمر:<br>تركض لمى 10,000 متر في 3,600 ثانية.<br>ولذلك فإن سرعتها هي: <span class="fracpair"><span class="fraction fr-inline"><span class="frac-top">25</span><span class="frac-bottom">9</span></span></span> أي <span class="vi-mixed" dir="ltr"><span class="vi-mixed-whole">2</span><span class="fracpair"><span class="fraction fr-inline"><span class="frac-top">7</span><span class="frac-bottom">9</span></span></span></span> متر في الثانية.<br> في المقابل، تركض سمر 3 أمتار في الثانية.<br>ولذلك سمر أسرع‎.` },
+      wrong: { title: 'هذا خطأ، تعالوا نتعلم منه:', body: `للمقارنة بين السرعتين، نحوّل سرعة لمى إلى متر في الثانية،<br>مثل وحدة قياس سمر:<br>تركض لمى 10,000 متر في 3,600 ثانية.<br>ولذلك فإن سرعتها هي: <span class="fracpair"><span class="fraction fr-inline"><span class="frac-top">25</span><span class="frac-bottom">9</span></span></span> أي <span class="vi-mixed" dir="ltr"><span class="vi-mixed-whole">2</span><span class="fracpair"><span class="fraction fr-inline"><span class="frac-top">7</span><span class="frac-bottom">9</span></span></span></span> متر في الثانية.<br> في المقابل، تركض سمر 3 أمتار في الثانية.<br>ولذلك سمر أسرع‎.` } },
   },
   {
     screen: 24, label: '', type: 'value-input', maxAttempts: 2, hintPolicy: 'after-wrong',
@@ -348,7 +348,7 @@ const QUESTIONS = [
   },
   {
     screen: 53, label: '', type: 'single', maxAttempts: 2, hintPolicy: 'after-wrong',
-    stem: `ت. لحساب عدد الشقق، قام وسام بتمثيل عدد الشقق التي مساحتها 75 مترًا مربعًا بواسطة التعبير الجبري:‎وبعد تجميع الحدود، حصل إيتان على التعبير الجبري: <span class="eq-ltr" dir="ltr">22 - 8 - 5 - x</span><br> وبعد أن رتّب الحدود، حصل وسام على التعبير الجبري التالي: <span class="eq-ltr" dir="ltr">9 - x</span><br><br><strong>هل يمثّل هذا التعبير عدد الشقق التي مساحتها 75 مترًا مربعًا بشكل صحيح؟</strong>`,
+    stem: `ت. لحساب عدد الشقق، قام وسام بتمثيل عدد الشقق التي مساحتها 75 مترًا مربعًا بواسطة التعبير الجبري: <span class="eq-ltr" dir="ltr">22 - 8 - 5 - x</span><br>وبعد تجميع الحدود، حصل وسام على التعبير الجبري: <span class="eq-ltr" dir="ltr">9 - x</span><br><br><strong>هل يمثّل هذا التعبير عدد الشقق التي مساحتها 75 مترًا مربعًا بشكل صحيح؟</strong>`,
     content: `<table class="deck-table"><tbody><tr><th>مساحة الشقة بالمتر المربع</th><td>150</td><td>120</td><td>90</td><td>75</td></tr><tr><th>عدد الشقق</th><td>8</td><td>5</td><td>x</td><td>?</td></tr></tbody></table><p class="deck-credit">‎*‎مأخوذ من مهمة "مؤور‎".</p>`,
     answersClass: 'scq-answers--short-wide',
     options: [{ id: 'a', html: 'نعم' }, { id: 'b', html: 'لا' }, { id: 'c', html: 'لا يمكن التحديد' }],

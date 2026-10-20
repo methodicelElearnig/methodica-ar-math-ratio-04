@@ -1,6 +1,6 @@
 'use strict';
 /* ═══════════════════════════════════════════════════════════════════
-   methodica-math-ratio-04 — platform glue: xAPI reporting + resume on the 720-core engine.
+   methodica-ar-math-ratio-04 — platform glue: xAPI reporting + resume on the 720-core engine.
 
    The platform files (10-identity / 20-xapi / 40-resume / 50-loader / 90-boot) come from
    methodica-math-ratio-06 (feature/reporting-resume), which runs on the same 720-core

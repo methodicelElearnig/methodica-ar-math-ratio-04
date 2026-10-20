@@ -1,3 +1,22 @@
+> **methodica-ar-math-ratio-04 (2026-10-20):** the Arabic twin. `ContentBaseUrl` =
+> `https://lomdot.education.gov.il/metodica/720/ar/math/ratio/04`, retrieve `IdBase` = `…/720/ar/math/ratio/04`
+> (ids and content both under `720/ar/`, as ar-ratio-01 / ar-percent-08), `$TitleLangKey = 'Arabic'`, unit key
+> `methodica-ar-math-ratio-04` (the repo's own record). **Parent-unit mode (default):** the 7 Arabic
+> components and 16 items are created inside the existing **Hebrew unit `methodica-math-ratio-04`**, as in
+> ar-ratio-01/02, ar-percent-08 and ar-scale-01 (KATA binds a learning objective to one unit). The
+> Hebrew unit is read-only: one GET, never a POST/PATCH; `*_unit.json` is not sent. `-ParentUnitKey ''`
+> restores the own-unit upsert. `-Preflight` requires the parent to exist and checks only the Arabic
+> components. Dry run 2026-10-20: **`created=23 updated=1 failed=0`** (the update is 03's
+> `recommendedAfterFail` → the Arabic 02).
+>
+> **SENT 2026-10-20** (live): `-Preflight` parent EXISTS, 7 Arabic components ABSENT → send
+> `created=23 updated=1 failed=0` (7 components, 16 items, 03 → 02 linked) → `-Status` draft=7. The Hebrew
+> unit now lists 14 components (7 Hebrew published, 7 Arabic draft), and its own record is unchanged
+> (updatedAt 2026-09-30). **Not published** (`-Publish` is one-way). The parent's `he` title read "מדידת נפח נוזל
+> בכלי מדידה שונים" (a copy-paste from another unit). At Vadim's request it was corrected the same day to
+> "יחס בין כמויות מאותו סוג ומסוגים שונים": one manual PATCH of `title`, with `ar`/`Hebrew` unchanged.
+> Read back: no other field moved. The note below is the Hebrew unit's.
+>
 > **methodica-math-ratio-04 (2026-09-30):** copied unchanged from methodica-math-ratio-05 (itself from
 > methodica-science-volume-liquid-01, the newest sender; ratio-06's copy is the older lineage without
 > presence semantics, `-Preflight`/`-Status` and the 200/404-only existence check). Only the unit
