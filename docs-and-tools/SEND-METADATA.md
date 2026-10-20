@@ -7,7 +7,14 @@
 > Hebrew unit is read-only: one GET, never a POST/PATCH; `*_unit.json` is not sent. `-ParentUnitKey ''`
 > restores the own-unit upsert. `-Preflight` requires the parent to exist and checks only the Arabic
 > components. Dry run 2026-10-20: **`created=23 updated=1 failed=0`** (the update is 03's
-> `recommendedAfterFail` → the Arabic 02). NOT SENT YET. The note below is the Hebrew unit's.
+> `recommendedAfterFail` → the Arabic 02).
+>
+> **SENT 2026-10-20** (live): `-Preflight` parent EXISTS, 7 Arabic components ABSENT → send
+> `created=23 updated=1 failed=0` (7 components, 16 items, 03 → 02 linked) → `-Status` draft=7. The Hebrew
+> unit now lists 14 components (7 Hebrew published, 7 Arabic draft), and its own record is unchanged
+> (updatedAt 2026-09-30). **Not published** (`-Publish` is one-way). Seen on the parent and not touched:
+> its `he` title reads "מדידת נפח נוזל בכלי מדידה שונים" (a copy-paste from another unit; the `Hebrew` key
+> is right). The note below is the Hebrew unit's.
 >
 > **methodica-math-ratio-04 (2026-09-30):** copied unchanged from methodica-math-ratio-05 (itself from
 > methodica-science-volume-liquid-01, the newest sender; ratio-06's copy is the older lineage without
