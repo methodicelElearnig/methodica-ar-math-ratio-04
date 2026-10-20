@@ -1,9 +1,13 @@
 > **methodica-ar-math-ratio-04 (2026-10-20):** the Arabic twin. `ContentBaseUrl` =
 > `https://lomdot.education.gov.il/metodica/720/ar/math/ratio/04`, retrieve `IdBase` = `…/720/ar/math/ratio/04`
 > (ids and content both under `720/ar/`, as ar-ratio-01 / ar-percent-08), `$TitleLangKey = 'Arabic'`, unit key
-> `methodica-ar-math-ratio-04`. NOT SENT YET. Before the first send, decide the Kata shape: ar-percent-08 got
-> `409 objective already bound` for a separate Arabic unit and moved to parent-unit mode (its `ee5833e`, the
-> Arabic components inside the Hebrew unit). That mode is not ported here. The note below is the Hebrew unit's.
+> `methodica-ar-math-ratio-04` (the repo's own record). **Parent-unit mode (default):** the 7 Arabic
+> components and 16 items are created inside the existing **Hebrew unit `methodica-math-ratio-04`**, as in
+> ar-ratio-01/02, ar-percent-08 and ar-scale-01 (KATA binds a learning objective to one unit). The
+> Hebrew unit is read-only: one GET, never a POST/PATCH; `*_unit.json` is not sent. `-ParentUnitKey ''`
+> restores the own-unit upsert. `-Preflight` requires the parent to exist and checks only the Arabic
+> components. Dry run 2026-10-20: **`created=23 updated=1 failed=0`** (the update is 03's
+> `recommendedAfterFail` → the Arabic 02). NOT SENT YET. The note below is the Hebrew unit's.
 >
 > **methodica-math-ratio-04 (2026-09-30):** copied unchanged from methodica-math-ratio-05 (itself from
 > methodica-science-volume-liquid-01, the newest sender; ratio-06's copy is the older lineage without
