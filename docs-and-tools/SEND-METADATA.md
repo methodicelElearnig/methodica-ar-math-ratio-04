@@ -12,9 +12,10 @@
 > **SENT 2026-10-20** (live): `-Preflight` parent EXISTS, 7 Arabic components ABSENT → send
 > `created=23 updated=1 failed=0` (7 components, 16 items, 03 → 02 linked) → `-Status` draft=7. The Hebrew
 > unit now lists 14 components (7 Hebrew published, 7 Arabic draft), and its own record is unchanged
-> (updatedAt 2026-09-30). **Not published** (`-Publish` is one-way). Seen on the parent and not touched:
-> its `he` title reads "מדידת נפח נוזל בכלי מדידה שונים" (a copy-paste from another unit; the `Hebrew` key
-> is right). The note below is the Hebrew unit's.
+> (updatedAt 2026-09-30). **Not published** (`-Publish` is one-way). The parent's `he` title read "מדידת נפח נוזל
+> בכלי מדידה שונים" (a copy-paste from another unit). At Vadim's request it was corrected the same day to
+> "יחס בין כמויות מאותו סוג ומסוגים שונים": one manual PATCH of `title`, with `ar`/`Hebrew` unchanged.
+> Read back: no other field moved. The note below is the Hebrew unit's.
 >
 > **methodica-math-ratio-04 (2026-09-30):** copied unchanged from methodica-math-ratio-05 (itself from
 > methodica-science-volume-liquid-01, the newest sender; ratio-06's copy is the older lineage without
