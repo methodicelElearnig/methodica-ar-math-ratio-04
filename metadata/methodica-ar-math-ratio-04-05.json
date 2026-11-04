@@ -35,6 +35,10 @@
           "answers": [],
           "correctAnswers": [
             "12"
+          ],
+          "xapiInteractionComponents": null,
+          "correctXapiResponsesPattern": [
+            "12"
           ]
         },
         {
@@ -48,6 +52,29 @@
             "مستوى الماء سيبقى ثابتًا"
           ],
           "correctAnswers": [
+            "مستوى الماء سينخفض"
+          ],
+          "xapiInteractionComponents": {
+            "choices": [
+              {
+                "id": "مستوى الماء سينخفض",
+                "description": "مستوى الماء سينخفض"
+              },
+              {
+                "id": "مستوى الماء سيرتفع",
+                "description": "مستوى الماء سيرتفع"
+              },
+              {
+                "id": "سيرتفع المستوى ثم يستقر",
+                "description": "سيرتفع المستوى ثم يستقر"
+              },
+              {
+                "id": "مستوى الماء سيبقى ثابتًا",
+                "description": "مستوى الماء سيبقى ثابتًا"
+              }
+            ]
+          },
+          "correctXapiResponsesPattern": [
             "مستوى الماء سينخفض"
           ]
         }
@@ -72,6 +99,29 @@
           ],
           "correctAnswers": [
             "300 كم"
+          ],
+          "xapiInteractionComponents": {
+            "choices": [
+              {
+                "id": "12 كم",
+                "description": "12 كم"
+              },
+              {
+                "id": "120 كم",
+                "description": "120 كم"
+              },
+              {
+                "id": "300 كم",
+                "description": "300 كم"
+              },
+              {
+                "id": "600 كم",
+                "description": "600 كم"
+              }
+            ]
+          },
+          "correctXapiResponsesPattern": [
+            "300 كم"
           ]
         },
         {
@@ -85,6 +135,29 @@
             "47.5 kWh"
           ],
           "correctAnswers": [
+            "27.5 kWh"
+          ],
+          "xapiInteractionComponents": {
+            "choices": [
+              {
+                "id": "27.5 kWh",
+                "description": "27.5 kWh"
+              },
+              {
+                "id": "32.5 kWh",
+                "description": "32.5 kWh"
+              },
+              {
+                "id": "40 kWh",
+                "description": "40 kWh"
+              },
+              {
+                "id": "47.5 kWh",
+                "description": "47.5 kWh"
+              }
+            ]
+          },
+          "correctXapiResponsesPattern": [
             "27.5 kWh"
           ]
         }

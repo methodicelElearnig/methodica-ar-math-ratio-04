@@ -36,6 +36,11 @@
           "correctAnswers": [
             "3,600/1,800",
             "3600/1800"
+          ],
+          "xapiInteractionComponents": null,
+          "correctXapiResponsesPattern": [
+            "3,600/1,800",
+            "3600/1800"
           ]
         },
         {
@@ -44,6 +49,10 @@
           "questionText": "ب. وجدنا أن النسبة هي 3,600/1,800 شيكل للمتر المربع. كم هي الدفعة للجنة البناية عن مساحة متر مربع واحد؟ (شيكل)",
           "answers": [],
           "correctAnswers": [
+            "2"
+          ],
+          "xapiInteractionComponents": null,
+          "correctXapiResponsesPattern": [
             "2"
           ]
         },
@@ -58,6 +67,25 @@
           ],
           "correctAnswers": [
             "نعم"
+          ],
+          "xapiInteractionComponents": {
+            "choices": [
+              {
+                "id": "نعم",
+                "description": "نعم"
+              },
+              {
+                "id": "لا",
+                "description": "لا"
+              },
+              {
+                "id": "لا يمكن التحديد",
+                "description": "لا يمكن التحديد"
+              }
+            ]
+          },
+          "correctXapiResponsesPattern": [
+            "نعم"
           ]
         },
         {
@@ -71,6 +99,25 @@
           ],
           "correctAnswers": [
             "نعم"
+          ],
+          "xapiInteractionComponents": {
+            "choices": [
+              {
+                "id": "نعم",
+                "description": "نعم"
+              },
+              {
+                "id": "لا",
+                "description": "لا"
+              },
+              {
+                "id": "لا يمكن التحديد",
+                "description": "لا يمكن التحديد"
+              }
+            ]
+          },
+          "correctXapiResponsesPattern": [
+            "نعم"
           ]
         },
         {
@@ -79,6 +126,10 @@
           "questionText": "جـ. حلّوا المعادلة 180x + 150 · (9 - x) = 5,100 - 3,600 لإيجاد x وأكملوا: عدد الشقق بمساحة 90 مترًا مربعًا، وعدد الشقق بمساحة 75 مترًا مربعًا.",
           "answers": [],
           "correctAnswers": [
+            "عدد الشقق بمساحة 90 مترًا مربعًا: 5، عدد الشقق بمساحة 75 مترًا مربعًا: 4"
+          ],
+          "xapiInteractionComponents": null,
+          "correctXapiResponsesPattern": [
             "عدد الشقق بمساحة 90 مترًا مربعًا: 5، عدد الشقق بمساحة 75 مترًا مربعًا: 4"
           ]
         }
