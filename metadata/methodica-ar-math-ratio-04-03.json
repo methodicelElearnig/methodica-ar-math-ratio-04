@@ -37,6 +37,10 @@
           "answers": [],
           "correctAnswers": [
             "أمتار في الدقيقة: 90، أمتار في الثانية: 1.5"
+          ],
+          "xapiInteractionComponents": null,
+          "correctXapiResponsesPattern": [
+            "أمتار في الدقيقة: 90، أمتار في الثانية: 1.5"
           ]
         },
         {
@@ -47,6 +51,11 @@
           "correctAnswers": [
             "3:5",
             "3 : 5"
+          ],
+          "xapiInteractionComponents": null,
+          "correctXapiResponsesPattern": [
+            "3:5",
+            "3 : 5"
           ]
         },
         {
@@ -55,6 +64,11 @@
           "questionText": "أُجريت في مختبر التكنولوجيا تجربة على روبوتين يتحركان بخط مستقيم. يقطع الروبوت أ 180 مترًا خلال دقيقتين. يتحرك الروبوت ب بسرعة 2.5 متر في الثانية، وكان زمن حركته 1.5 دقيقة. ت. ما هي النسبة المختزلة بين المسافة الكلية التي قطعها الروبوت أ (خلال دقيقتين) والمسافة الكلية التي قطعها الروبوت ب (خلال 1.5 دقيقة)؟",
           "answers": [],
           "correctAnswers": [
+            "4:5",
+            "4 : 5"
+          ],
+          "xapiInteractionComponents": null,
+          "correctXapiResponsesPattern": [
             "4:5",
             "4 : 5"
           ]
@@ -80,6 +94,29 @@
           ],
           "correctAnswers": [
             "300"
+          ],
+          "xapiInteractionComponents": {
+            "choices": [
+              {
+                "id": "180",
+                "description": "180"
+              },
+              {
+                "id": "200",
+                "description": "200"
+              },
+              {
+                "id": "300",
+                "description": "300"
+              },
+              {
+                "id": "600",
+                "description": "600"
+              }
+            ]
+          },
+          "correctXapiResponsesPattern": [
+            "300"
           ]
         },
         {
@@ -88,6 +125,10 @@
           "questionText": "وجدنا أن وتيرة الطباعة هي 20 ورقة في الدقيقة. ب. كم ساعة ستحتاج الطابعة لطباعة 1,800 ورقة؟",
           "answers": [],
           "correctAnswers": [
+            "1.5"
+          ],
+          "xapiInteractionComponents": null,
+          "correctXapiResponsesPattern": [
             "1.5"
           ]
         }
@@ -111,6 +152,25 @@
           ],
           "correctAnswers": [
             "السيارة أ"
+          ],
+          "xapiInteractionComponents": {
+            "choices": [
+              {
+                "id": "لا يمكن المعرفة",
+                "description": "لا يمكن المعرفة"
+              },
+              {
+                "id": "السيارة أ",
+                "description": "السيارة أ"
+              },
+              {
+                "id": "السيارة ب",
+                "description": "السيارة ب"
+              }
+            ]
+          },
+          "correctXapiResponsesPattern": [
+            "السيارة أ"
           ]
         },
         {
@@ -123,6 +183,25 @@
             "السيارة أ"
           ],
           "correctAnswers": [
+            "السيارة ب"
+          ],
+          "xapiInteractionComponents": {
+            "choices": [
+              {
+                "id": "لا يمكن المعرفة",
+                "description": "لا يمكن المعرفة"
+              },
+              {
+                "id": "السيارة ب",
+                "description": "السيارة ب"
+              },
+              {
+                "id": "السيارة أ",
+                "description": "السيارة أ"
+              }
+            ]
+          },
+          "correctXapiResponsesPattern": [
             "السيارة ب"
           ]
         }
@@ -145,6 +224,21 @@
           ],
           "correctAnswers": [
             "المسطّح ب (25 مترًا في 25 مترًا)"
+          ],
+          "xapiInteractionComponents": {
+            "choices": [
+              {
+                "id": "المسطّح أ (20 مترًا في 15 مترًا)",
+                "description": "المسطّح أ (20 مترًا في 15 مترًا)"
+              },
+              {
+                "id": "المسطّح ب (25 مترًا في 25 مترًا)",
+                "description": "المسطّح ب (25 مترًا في 25 مترًا)"
+              }
+            ]
+          },
+          "correctXapiResponsesPattern": [
+            "المسطّح ب (25 مترًا في 25 مترًا)"
           ]
         },
         {
@@ -153,6 +247,10 @@
           "questionText": "تريد البلدية إقامة سياج حول المسطّح أ (20 في 15 مترًا). يعمل عامل بوتيرة ثابتة مقدارها 5 أمتار في الساعة. ب. كم ساعة سيحتاج لإتمام العمل؟",
           "answers": [],
           "correctAnswers": [
+            "14"
+          ],
+          "xapiInteractionComponents": null,
+          "correctXapiResponsesPattern": [
             "14"
           ]
         }

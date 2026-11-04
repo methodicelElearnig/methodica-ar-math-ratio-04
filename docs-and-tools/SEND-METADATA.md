@@ -15,7 +15,20 @@
 > (updatedAt 2026-09-30). **Not published** (`-Publish` is one-way). The parent's `he` title read "מדידת נפח נוזל
 > בכלי מדידה שונים" (a copy-paste from another unit). At Vadim's request it was corrected the same day to
 > "יחס בין כמויות מאותו סוג ומסוגים שונים": one manual PATCH of `title`, with `ar`/`Hebrew` unchanged.
-> Read back: no other field moved. The note below is the Hebrew unit's.
+> Read back: no other field moved.
+>
+> **PUBLISHED 2026-10-20:** `-Publish` → `published=7`, read back published.
+>
+> **Answer fields edited in KATA (MOE monday, 28.10–02.11.26):** after MOE's review the true-false
+> questions carry `true`/`false` answers and every question has a `correctXapiResponsesPattern`.
+> On 2026-11-04 `metadata/` took `answers`, `correctAnswers`, `correctXapiResponsesPattern` and
+> `xapiInteractionComponents` from a retrieve of the parent unit, matched by `questionId`; every
+> other field was kept. ⚠️ Do not overwrite `metadata/` with a whole retrieve:
+> - KATA's `learningUnitId` is the parent (`methodica-math-ratio-04`), not `XAPI_UNIT_ID`.
+> - KATA currently has **no questions in 01-003** (Hebrew and Arabic both; it had 4 on 2026-09-30).
+>   `metadata/` keeps them, and 01-003 q1 still has `نعم`/`لا`.
+>
+> The note below is the Hebrew unit's.
 >
 > **methodica-math-ratio-04 (2026-09-30):** copied unchanged from methodica-math-ratio-05 (itself from
 > methodica-science-volume-liquid-01, the newest sender; ratio-06's copy is the older lineage without

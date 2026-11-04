@@ -40,6 +40,29 @@
           ],
           "correctAnswers": [
             "2/3"
+          ],
+          "xapiInteractionComponents": {
+            "choices": [
+              {
+                "id": "2/3",
+                "description": "2/3"
+              },
+              {
+                "id": "2/3 متر",
+                "description": "2/3 متر"
+              },
+              {
+                "id": "2/3 متر في الدقيقة",
+                "description": "2/3 متر في الدقيقة"
+              },
+              {
+                "id": "2/3 متر في الثانية",
+                "description": "2/3 متر في الثانية"
+              }
+            ]
+          },
+          "correctXapiResponsesPattern": [
+            "2/3"
           ]
         },
         {
@@ -47,11 +70,15 @@
           "questionType": "true-false",
           "questionText": "ب. هل يمكننا تحديد أيهما أسرع، بناءً على النسبة التي وجدناها في البند السابق؟",
           "answers": [
-            "نعم",
-            "لا"
+            "true",
+            "false"
           ],
           "correctAnswers": [
-            "لا"
+            "false"
+          ],
+          "xapiInteractionComponents": null,
+          "correctXapiResponsesPattern": [
+            "false"
           ]
         },
         {
@@ -64,6 +91,25 @@
             "كلتاهما مخطئتان"
           ],
           "correctAnswers": [
+            "سمر"
+          ],
+          "xapiInteractionComponents": {
+            "choices": [
+              {
+                "id": "سمر",
+                "description": "سمر"
+              },
+              {
+                "id": "لمى",
+                "description": "لمى"
+              },
+              {
+                "id": "كلتاهما مخطئتان",
+                "description": "كلتاهما مخطئتان"
+              }
+            ]
+          },
+          "correctXapiResponsesPattern": [
             "سمر"
           ]
         }
@@ -83,6 +129,10 @@
           "answers": [],
           "correctAnswers": [
             "30"
+          ],
+          "xapiInteractionComponents": null,
+          "correctXapiResponsesPattern": [
+            "30"
           ]
         },
         {
@@ -96,6 +146,29 @@
             "250.2 شيكل"
           ],
           "correctAnswers": [
+            "250.2 شيكل"
+          ],
+          "xapiInteractionComponents": {
+            "choices": [
+              {
+                "id": "150 شيكل",
+                "description": "150 شيكل"
+              },
+              {
+                "id": "168.75 شيكل",
+                "description": "168.75 شيكل"
+              },
+              {
+                "id": "180 شيكل",
+                "description": "180 شيكل"
+              },
+              {
+                "id": "250.2 شيكل",
+                "description": "250.2 شيكل"
+              }
+            ]
+          },
+          "correctXapiResponsesPattern": [
             "250.2 شيكل"
           ]
         }
@@ -116,6 +189,11 @@
           "correctAnswers": [
             "3:2",
             "3 : 2"
+          ],
+          "xapiInteractionComponents": null,
+          "correctXapiResponsesPattern": [
+            "3:2",
+            "3 : 2"
           ]
         },
         {
@@ -125,6 +203,10 @@
           "answers": [],
           "correctAnswers": [
             "8"
+          ],
+          "xapiInteractionComponents": null,
+          "correctXapiResponsesPattern": [
+            "8"
           ]
         },
         {
@@ -133,6 +215,10 @@
           "questionText": "في حفلة عيد ميلاد ريم حضّروا خلطة عصير فواكه: 3 لترات من عصير البرتقال مع لترين من عصير المانجو، بتكلفة إجمالية 40 شيكل. ت. لتحضير 15 لترًا من الخلطة يلزم _ لترات من عصير البرتقال و-_ لترات من عصير المانجو.",
           "answers": [],
           "correctAnswers": [
+            "عصير البرتقال: 9, عصير المانجو: 6"
+          ],
+          "xapiInteractionComponents": null,
+          "correctXapiResponsesPattern": [
             "عصير البرتقال: 9, عصير المانجو: 6"
           ]
         }
