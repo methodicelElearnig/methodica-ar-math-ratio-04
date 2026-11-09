@@ -236,5 +236,31 @@ const last = u => trimId(u).split('/').pop();
     }
   }
 
+  /* ── 03: the score contract (MOE QA runbook §4 "ציון ומעבר"; 08.11 sheet fixes 1, 2, 6) ──
+     s29 promises 2 exercises, both right to move on (K = N = 2): items 001 (q1-q3) and 002 (q1, q2), each right
+     only when all its parts are. success and score.scaled come from that one count — the count the s34 stop
+     reads; the two harder exercises (003, 004) never enter. Every count 0..2 with the harder set all wrong /
+     all right, and each basic exercise with one part wrong. */
+  {
+    const b = await H.boot('03', { lib: true });
+    b.finishBoot();
+    const T = [['001/q1', '001/q2', '001/q3'], ['002/q1', '002/q2']], C = ['003/q1', '003/q2', '004/q1', '004/q2'];
+    const run = (pairs) => JSON.parse(b.val('(function(){ Object.keys(XAPI_Q_RESULTS).forEach(function (k) { delete XAPI_Q_RESULTS[k]; });' +
+      ' Object.assign(XAPI_Q_RESULTS, ' + JSON.stringify(pairs) + '); var r = partResult(); return JSON.stringify([r.success, r.score.scaled]); })()'));
+    const seed = (k, chal) => Object.fromEntries(T.flatMap((q, i) => q.map(x => [x, i < k])).concat(C.map(x => [x, chal])));
+    for (let k = 0; k <= 2; k++) for (const chal of [false, true]) {
+      const tag = '03 ' + k + '/2' + (chal ? ' + harder all right' : ' + harder all wrong');
+      const [succ, scaled] = run(seed(k, chal));
+      eq('score', tag + ': success = correct ≥ 2', succ, k >= 2);
+      eq('score', tag + ': scaled = correct / 2 (harder set not counted)', scaled, k / 2);
+      eq('score', tag + ': success ⇔ scaled ≥ K/N', succ, scaled >= 1);
+    }
+    for (const [tag, wrong] of [['001 with q2 wrong', '001/q2'], ['002 with q2 wrong', '002/q2']]) {
+      const pairs = seed(2, true); pairs[wrong] = false;
+      eq('score', '03 ' + tag + ' counts 0: 1 of 2, success false', run(pairs), [false, 0.5]);
+    }
+    run({});
+  }
+
   R.done();
 })().catch(e => { console.error(e); process.exitCode = 1; });

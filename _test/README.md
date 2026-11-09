@@ -25,7 +25,7 @@ NODE_PATH=C:/Users/Vadim/AppData/Local/Temp/lomda-test/node_modules node _test/l
 `layout.js` needs `puppeteer-core` (in the second folder) and Chrome at its default path
 (`CHROME=` overrides it).
 
-State on 2026-10-08: **346 + 722 + 222 = 1290 checks, all green.** Every group was
+State on 2026-11-09: **346 + 742 + 226 = 1314 checks, all green** (the 03 score contract added 24; 10 of them fail on the pre-fix `partResult`). On 2026-10-08: 346 + 722 + 222 = 1290. Every group was
 mutation-tested — 16 deliberate breaks, each turning at least one suite red: gate threshold,
 a missing map key, the statement screen mapping one key, no flush after the commitment, no Retry
 `lw`, no repaint on `goTo`, no ended-button restore, a hop without `DEV_NAV`, an ungated
