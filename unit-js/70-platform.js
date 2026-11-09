@@ -174,7 +174,9 @@ function onCustomAnswered(screen, patch) {
      07  "7 סעיפים … להצליח ב-5 לפחות"            → the 7 question screens of item 001 (section ו,
                                                     screen 65, carries two catalogue questions
                                                     and is correct only when both rows are)
-   Components WITHOUT one (01 teaching, 03 / 05 practice) score correct ÷ the questions the
+   03 promises its STOP's set ("2 תרגילים … ענו נכון על שניהם", XAPI_STOP) and scores on exactly that
+   (2026-11-09, see partResult).
+   Components WITHOUT one (01 teaching, 05 practice) score correct ÷ the questions the
    metadata declares, and always succeed: nothing on screen sets a bar, and inventing one would
    route learners on a number nobody was shown. Except 05, the challenge: MOE 2026-10-08 set its
    bar (XAPI_PART_PASS 0.6) — it is reported only, never shown and never gating.
@@ -249,10 +251,16 @@ function endComponentAtStop() {
 function partResult() {
   var items = _evalItems();
   if (!items.length) return { success: true };
-  if (_stopFailed()) {
-    var tot = 0, good = 0;
-    items.forEach(function (it) { _declaredQs(it).forEach(function (k) { tot++; if (_qOk(it, k)) good++; }); });
-    return { success: false, score: { scaled: tot ? good / tot : 0 } };
+  /* A component with a stop (03) promises exactly the stop's set on its first screen, so its result is
+     that one count — at the stop AND at the real end (2026-11-09, 08.11 sheet fixes 1, 2, 6): an exercise
+     counts 1, right only when all its parts are (_itemAllOk), unanswered = wrong; success = ok >= need,
+     scaled = ok / the stop's items. The harder exercises after it report their own answered and never
+     enter. Until now: the share of every declared question in the component, the harder ones included,
+     and success:true constant once past the stop. */
+  var s = _stop();
+  if (s) {
+    var basic = s.items.filter(_itemAllOk).length;
+    return { success: basic >= s.need, score: { scaled: basic / s.items.length } };
   }
   var t = _gateTally();
   if (t) return { success: t.ok >= t.need, score: { scaled: t.total ? t.ok / t.total : 0 } };

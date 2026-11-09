@@ -292,11 +292,22 @@ function endClick(b) {
       if (!stops) {
         eq('stop', '03 ' + tag + ': on to s35 (the harder exercises)', b.val('currentScreen'), 35);
         eq('stop', '03 ' + tag + ': nothing completed yet', comp(b).length, 0);
+        /* the harder exercises all wrong, to the end: the result is still the 2 basic ones (08.11 sheet fixes 1, 2) */
+        for (const n of [36, 37, 38, 39]) {
+          b.exec('goTo(' + n + ')');
+          const q = JSON.parse(b.val('JSON.stringify(QUESTIONS.find(function(q){return q.screen===' + n + ';}))'));
+          for (let k = 0; k < q.maxAttempts; k++) b.exec(H.enterJs(n, H.answerFor(q, 'wrong', k)) + H.clickCheck(n));
+        }
+        b.exec(H.clickCheck(39));
+        const f = comp(b);
+        ok('stop', '03 ' + tag + ' + harder all wrong: the final completed is success true, scaled 1', f.length === 1 && f[0].result.success === true && f[0].result.score.scaled === 1, JSON.stringify(f.map(x => x.result)));
         continue;
       }
       eq('stop', '03 ' + tag + ': stays on s34', b.val('currentScreen'), 34);
       const c = comp(b);
       ok('stop', '03 ' + tag + ': the component is completed, success false', c.length === 1 && c[0].result && c[0].result.success === false, JSON.stringify(c.map(x => x.result)));
+      const want = okSet.has(30) && okSet.has(31) && okSet.has(32) || okSet.has(33) && okSet.has(34) ? 0.5 : 0;
+      ok('stop', '03 ' + tag + ': scaled ' + want + ' — the 2 basic exercises, the harder ones not counted', c.length === 1 && c[0].result.score && c[0].result.score.scaled === want, JSON.stringify(c.map(x => x.result)));
       ok('stop', '03 ' + tag + ': the s34 button is ended', b.val('document.getElementById("q34-check").disabled') === true && b.val('document.getElementById("q34-check").getAttribute("aria-disabled")') === 'true');
       eq('stop', '03 ' + tag + ': verdict recorded as fail', b.val('getUnitResult(partResultKey())'), 'fail');
       eq('stop', '03 ' + tag + ': no hop to a neighbour', b.val('window.__hops'), 0);
