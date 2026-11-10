@@ -122,15 +122,33 @@
         },
         {
           "questionId": "https://lomdot.education.gov.il/metodica/720/ar/math/ratio/04/methodica-ar-math-ratio-04-06/methodica-ar-math-ratio-04-06-001/q5",
-          "questionType": "fill-in",
+          "questionType": "performance",
           "questionText": "جـ. حلّوا المعادلة 180x + 150 · (9 - x) = 5,100 - 3,600 لإيجاد x وأكملوا: عدد الشقق بمساحة 90 مترًا مربعًا، وعدد الشقق بمساحة 75 مترًا مربعًا.",
-          "answers": [],
+          "answers": null,
           "correctAnswers": [
-            "عدد الشقق بمساحة 90 مترًا مربعًا: 5، عدد الشقق بمساحة 75 مترًا مربعًا: 4"
+            {
+              "stepId": "عدد الشقق بمساحة 90 مترًا مربعًا",
+              "response": "5"
+            },
+            {
+              "stepId": "عدد الشقق بمساحة 75 مترًا مربعًا",
+              "response": "4"
+            }
           ],
-          "xapiInteractionComponents": null,
+          "xapiInteractionComponents": {
+            "steps": [
+              {
+                "id": "عدد الشقق بمساحة 90 مترًا مربعًا",
+                "description": null
+              },
+              {
+                "id": "عدد الشقق بمساحة 75 مترًا مربعًا",
+                "description": null
+              }
+            ]
+          },
           "correctXapiResponsesPattern": [
-            "عدد الشقق بمساحة 90 مترًا مربعًا: 5، عدد الشقق بمساحة 75 مترًا مربعًا: 4"
+            "عدد الشقق بمساحة 90 مترًا مربعًا[.]5[,]عدد الشقق بمساحة 75 مترًا مربعًا[.]4"
           ]
         }
       ]

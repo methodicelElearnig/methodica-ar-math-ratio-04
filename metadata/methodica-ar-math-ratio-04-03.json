@@ -32,15 +32,33 @@
       "questions": [
         {
           "questionId": "https://lomdot.education.gov.il/metodica/720/ar/math/ratio/04/methodica-ar-math-ratio-04-03/methodica-ar-math-ratio-04-03-001/q1",
-          "questionType": "fill-in",
+          "questionType": "performance",
           "questionText": "أُجريت في مختبر التكنولوجيا تجربة على روبوتين يتحركان بخط مستقيم. يقطع الروبوت أ 180 مترًا خلال دقيقتين. أ. ما هي النسبة بين المسافة التي يقطعها الروبوت أ والزمن الذي يستغرقه (أي ما هي سرعته)؟ اكتبوها بصيغتين.",
-          "answers": [],
+          "answers": null,
           "correctAnswers": [
-            "أمتار في الدقيقة: 90، أمتار في الثانية: 1.5"
+            {
+              "stepId": "أمتار في الدقيقة",
+              "response": "90"
+            },
+            {
+              "stepId": "أمتار في الثانية",
+              "response": "1.5"
+            }
           ],
-          "xapiInteractionComponents": null,
+          "xapiInteractionComponents": {
+            "steps": [
+              {
+                "id": "أمتار في الدقيقة",
+                "description": null
+              },
+              {
+                "id": "أمتار في الثانية",
+                "description": null
+              }
+            ]
+          },
           "correctXapiResponsesPattern": [
-            "أمتار في الدقيقة: 90، أمتار في الثانية: 1.5"
+            "أمتار في الدقيقة[.]90[,]أمتار في الثانية[.]1.5"
           ]
         },
         {

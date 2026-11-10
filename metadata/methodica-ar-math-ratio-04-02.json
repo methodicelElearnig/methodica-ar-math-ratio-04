@@ -211,15 +211,33 @@
         },
         {
           "questionId": "https://lomdot.education.gov.il/metodica/720/ar/math/ratio/04/methodica-ar-math-ratio-04-02/methodica-ar-math-ratio-04-02-003/q3",
-          "questionType": "fill-in",
+          "questionType": "performance",
           "questionText": "في حفلة عيد ميلاد ريم حضّروا خلطة عصير فواكه: 3 لترات من عصير البرتقال مع لترين من عصير المانجو، بتكلفة إجمالية 40 شيكل. ت. لتحضير 15 لترًا من الخلطة يلزم _ لترات من عصير البرتقال و-_ لترات من عصير المانجو.",
-          "answers": [],
+          "answers": null,
           "correctAnswers": [
-            "عصير البرتقال: 9, عصير المانجو: 6"
+            {
+              "stepId": "عصير البرتقال",
+              "response": "9"
+            },
+            {
+              "stepId": "عصير المانجو",
+              "response": "6"
+            }
           ],
-          "xapiInteractionComponents": null,
+          "xapiInteractionComponents": {
+            "steps": [
+              {
+                "id": "عصير البرتقال",
+                "description": null
+              },
+              {
+                "id": "عصير المانجو",
+                "description": null
+              }
+            ]
+          },
           "correctXapiResponsesPattern": [
-            "عصير البرتقال: 9, عصير المانجو: 6"
+            "عصير البرتقال[.]9[,]عصير المانجو[.]6"
           ]
         }
       ]
