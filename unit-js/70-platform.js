@@ -80,7 +80,10 @@ function quizAnswerText(screen, q, st) {
    three branches. The isLast idiom is the family's: correct || attempts exhausted; the Retry gate
    (quiz-engine.js) makes the second attempt a real one, so answered.last counts are honest.
    A statement screen decides each row on its own, so each row is its own catalogue question
-   (§6.3 "one screen with several independent sub-questions"): per-row `correct`, shared isLast. */
+   (§6.3 "one screen with several independent sub-questions"): per-row `correct`, shared isLast.
+   True/false questions report 'true' / 'false', never the label on screen (guide §6.3b: Kata compares
+   the response with correctXapiResponsesPattern ["true"] / ["false"]): a statement row reports the
+   value picked, a yes/no single choice its QUESTIONS `tf` map ({ optionId: 'true' | 'false' }). */
 function onQuizAnswered(screen, q, st, correct) {
   var item = _itemFor(screen);
   var keys = _qKeysFor(screen);
@@ -91,14 +94,12 @@ function onQuizAnswered(screen, q, st, correct) {
       var v = (st.selectedSet || [])[i];
       var s = q.statements[i];
       if (!s) return;
-      xapiAnswered(item, k, v === String(s.correct), isLast,
-        (v === 'true' ? 'صحيح' : v === 'false' ? 'غير صحيح' : '') + ' — ' + xapiAnswerText(_htmlNode(s.text)));
+      xapiAnswered(item, k, v === String(s.correct), isLast, v === 'true' || v === 'false' ? v : '');
     });
     return;
   }
-  xapiAnswered(item, keys[0], correct, isLast, quizAnswerText(screen, q, st));
+  xapiAnswered(item, keys[0], correct, isLast, q.tf ? (q.tf[st.selected] || '') : quizAnswerText(screen, q, st));
 }
-function _htmlNode(html) { var d = document.createElement('div'); d.innerHTML = html || ''; return d; }
 
 /* Called at the very tail of quizCheck(), after the last commitment (done / lw / verdict) on every
    path — the flush-after-last-commitment contract (§8.3, D-13). */
@@ -125,11 +126,12 @@ function onQuizHint(screen) {
    below restore these screens by calling unit.js's own handlers with the saved choice. */
 var CUSTOM_STATE = {};
 
+/* s1 and s4 are true/false questions in the catalogue (نعم = true, لا = false): they report the
+   boolean, never the label (guide §6.3b). */
+function _yesNo(s) { return s.pick === 'yes' ? 'true' : s.pick === 'no' ? 'false' : ''; }
 var CUSTOM_KEYS = {
-  1: { correct: function (s) { return s.pick === S1_CORRECT; },
-       text: function (s) { return s.pick === 'yes' ? 'نعم' : s.pick === 'no' ? 'لا' : ''; } },
-  4: { correct: function (s) { return s.pick === S4_CORRECT; },
-       text: function (s) { return s.pick === 'yes' ? 'نعم' : s.pick === 'no' ? 'لا' : ''; } },
+  1: { correct: function (s) { return s.pick === S1_CORRECT; }, text: _yesNo },
+  4: { correct: function (s) { return s.pick === S4_CORRECT; }, text: _yesNo },
   6: { correct: function (s) {
          return S6_ROWS.every(function (r, i) { return (s.picks || [])[i] === r.correct; });
        },
