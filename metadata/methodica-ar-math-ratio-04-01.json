@@ -145,56 +145,7 @@
       "informationToBot": "מטרת הפריט: הדגמת דרך החשיבה בפתרון שאלה על שני סוגי יחס, שלב אחר שלב עם הדמות. מה התלמיד אמור להבין/לתרגל: בסעיף א: יחס בין שני מרחקים (30 : 25 = 6 : 5) הוא בין כמויות מאותו סוג ולכן ללא יחידות. בסעיף ב: השוואת מהירויות דורשת יחס בין מרחק לזמן, ציון יחידות והתאמת יחידות המידה (ק\"מ לשעה מול מטרים לשנייה). כיווני חשיבה ואסטרטגיות: לשאול קודם: מהן הכמויות? האם הן מאותו סוג? האם צריך יחידות? ורק אז לחשב; להמיר 20 ק\"מ בשעה ל-20,000 מטרים ב-3,600 שניות. טעויות נפוצות: כתיבת יחס בין מרחקים עם יחידות; השוואת 20 עם 3 בלי התאמת יחידות מידה. מידע נוסף: פריט הדגמה: הלומד בוחר תשובה בכל שלב והדמות מציגה את הפתרון, ולכן מוגדר כטקסט. צילום מסך: לא צורף.",
       "contentType": "solved-exercise",
       "mediaFormat": "text",
-      "questions": [
-        {
-          "questionId": "https://lomdot.education.gov.il/metodica/720/ar/math/ratio/04/methodica-ar-math-ratio-04-01/methodica-ar-math-ratio-04-01-003/q1",
-          "questionType": "true-false",
-          "questionText": "تتنافس راكبة دراجة وعدّاء ماراثون في مقاطع مختلفة. تقطع راكبة الدراجة 30 كم بسرعة 20 كم/ساعة، ويقطع العدّاء 25 كم بسرعة 3 أمتار في الثانية. أ. ما هي النسبة بين المسافة التي تقطعها راكبة الدراجة والمسافة التي يقطعها العدّاء؟ أولًا، نفحص الكميات التي نريد بناء النسبة بينها: هل الكميات من نفس النوع؟",
-          "answers": [
-            "نعم",
-            "لا"
-          ],
-          "correctAnswers": [
-            "نعم"
-          ]
-        },
-        {
-          "questionId": "https://lomdot.education.gov.il/metodica/720/ar/math/ratio/04/methodica-ar-math-ratio-04-01/methodica-ar-math-ratio-04-01-003/q2",
-          "questionType": "choice",
-          "questionText": "في هذه الحالة، النسبة هي بين مسافتين، ولذلك الكميات هي من نفس النوع. هل هناك حاجة للإشارة إلى وحدة القياس إلى جانب الكمية؟",
-          "answers": [
-            "هناك حاجة للإشارة إلى وحدات القياس",
-            "لا حاجة للإشارة إلى وحدات القياس"
-          ],
-          "correctAnswers": [
-            "لا حاجة للإشارة إلى وحدات القياس"
-          ]
-        },
-        {
-          "questionId": "https://lomdot.education.gov.il/metodica/720/ar/math/ratio/04/methodica-ar-math-ratio-04-01/methodica-ar-math-ratio-04-01-003/q3",
-          "questionType": "choice",
-          "questionText": "ب. من يتحرك بسرعة أكبر، عدّاء الماراثون أم راكبة الدراجة؟ الآن، علينا أن نكتشف أيهما أسرع. في هذه الحالة، النسبة هي بين:",
-          "answers": [
-            "كميات من نفس النوع",
-            "كميات من أنواع مختلفة"
-          ],
-          "correctAnswers": [
-            "كميات من أنواع مختلفة"
-          ]
-        },
-        {
-          "questionId": "https://lomdot.education.gov.il/metodica/720/ar/math/ratio/04/methodica-ar-math-ratio-04-01/methodica-ar-math-ratio-04-01-003/q4",
-          "questionType": "true-false",
-          "questionText": "النسبة في هذه الحالة هي بين مسافة (كم) وزمن (ساعة)، ولذلك الكميات هي من أنواع مختلفة. هل هناك حاجة للإشارة إلى وحدة القياس إلى جانب الكمية؟",
-          "answers": [
-            "نعم",
-            "لا"
-          ],
-          "correctAnswers": [
-            "نعم"
-          ]
-        }
-      ]
+      "questions": []
     },
     {
       "id": "https://lomdot.education.gov.il/metodica/720/ar/math/ratio/04/methodica-ar-math-ratio-04-01/methodica-ar-math-ratio-04-01-004/",
