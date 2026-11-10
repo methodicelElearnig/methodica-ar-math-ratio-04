@@ -19,6 +19,11 @@
      boot     per component: the net raises the flag on ?registration, the library is preloaded,
               images off the landing screen are lazy (§2.6 m-p, §2.10 q)
      leave    the leave save goes through xapi-720-l.js's saveState720OnLeave (§2.10 r-u)
+     resp     MOE runbook 10.11.26: a correct round sends Kata's correctXapiResponsesPattern byte for
+              byte (the KATA table; the class E proposals), the shipped metadata carries it, wrong
+              answers keep the form, no invisible characters, the old builders are gone
+
+     NODE_PATH=C:/lomda-test/node_modules node _test/verify-report.js
 
      NODE_PATH=C:/lomda-test/node_modules node _test/verify-report.js
    ═══════════════════════════════════════════════════════════════════════════════════════ */
@@ -407,6 +412,156 @@ const last = u => trimId(u).split('/').pop();
       eq('leave', 'u: after a failed read the leave save writes nothing', JSON.parse(b.val('JSON.stringify(__leaveWrites())')).length, 0);
       eq('leave', 'u: ... and the stored document is untouched (screen 2)', b.val('window.__realLoad(RESUME_STATE_ID).payload.currentScreen'), 2);
       b.w.close();
+    }
+  }
+
+
+  /* ── resp: result.response = Kata's correctXapiResponsesPattern (MOE runbook 10.11.26) ──
+     Kata compares result.response with the pattern character by character
+     (QA/2026-11-10_moe-runbook-checks/REPORT.md; this unit: phase3/lane-D.md 04-01…04-07). KATA is
+     the pattern list for every question, copied from Kata (read 10.11.26); a list with two entries
+     accepts either (Kata's own alternatives, '3:2' / '3 : 2'). The three class E questions carry
+     the performance pattern proposed in metadata/ and DEPLOY.md. Guided 01-003 is NOT here: Kata
+     declares no question on it, and since the group-A fix (10.11) it reports nothing. */
+  {
+    const KATA = {
+    '01-001/q1': ["false"],
+    '01-002/q1': ["false"],
+    '01-002/q2': ["تخبز مرام صانعة الحلويات 50 قطعة كعك في الساعة[.]نسبة بين كميات من أنواع مختلفة[,]سعر كيلو الموز 8 شيكل[.]نسبة بين كميات من أنواع مختلفة[,]تسير سيارة بسرعة 85 كم (كيلومتر) في الساعة[.]نسبة بين كميات من أنواع مختلفة[,]مقابل كل بلوزتين بيضاوين، توجد لدى ياسمين 3 بلوزات سوداء[.]نسبة بين كميات من نفس النوع"],
+    '01-004/q1': ["في المتجر أ، بـ 10 أغورات"],
+    '02-001/q1': ["2/3"],
+    '02-001/q2': ["false"],
+    '02-001/q3': ["سمر"],
+    '02-002/q1': ["30"],
+    '02-002/q2': ["250.2 شيكل"],
+    '02-003/q1': ["3:2", "3 : 2"],
+    '02-003/q2': ["8"],
+    '02-003/q3': ["عصير البرتقال[.]9[,]عصير المانجو[.]6"],   // proposed (class E)
+    '03-001/q1': ["أمتار في الدقيقة[.]90[,]أمتار في الثانية[.]1.5"],   // proposed (class E)
+    '03-001/q2': ["3:5", "3 : 5"],
+    '03-001/q3': ["4:5", "4 : 5"],
+    '03-002/q1': ["300"],
+    '03-002/q2': ["1.5"],
+    '03-003/q1': ["السيارة أ"],
+    '03-003/q2': ["السيارة ب"],
+    '03-004/q1': ["المسطّح ب (25 مترًا في 25 مترًا)"],
+    '03-004/q2': ["14"],
+    '05-001/q1': ["12"],
+    '05-001/q2': ["مستوى الماء سينخفض"],
+    '05-002/q1': ["300 كم"],
+    '05-002/q2': ["27.5 kWh"],
+    '06-001/q1': ["3,600/1,800", "3600/1800"],
+    '06-001/q2': ["2"],
+    '06-001/q3': ["نعم"],
+    '06-001/q4': ["نعم"],
+    '06-001/q5': ["عدد الشقق بمساحة 90 مترًا مربعًا[.]5[,]عدد الشقق بمساحة 75 مترًا مربعًا[.]4"],   // proposed (class E)
+    '07-001/q1': ["8:1", "8 : 1"],
+    '07-001/q2': ["نسبة بين كميات من نفس النوع، لأن الكميتين هما أشخاص"],
+    '07-001/q3': ["عدد بلا وحدات"],
+    '07-001/q4': ["شيكل للساعة"],
+    '07-001/q5': ["هذا عدد يمثّل تكلفة ساعة عمل واحدة للحافلة"],
+    '07-001/q6': ["false"],
+    '07-001/q7': ["true"],
+    '07-001/q8': ["الإجابتان أ و-ب صحيحتان، وهما توضّحان الفرق بين النسبة بين كميات من نفس النوع والنسبة بين كميات من أنواع مختلفة"],
+    };
+    /* known, listed in DEPLOY.md; each one must still be what it is (a fix makes the check fail) */
+    const KNOWN_GAPS = {
+
+    /* class A, wording: the page's option text ≠ Kata's answer text (lane-D 04-07). Fix = the page
+       or Kata takes the other's wording — a translator's / Vadim's decision (DEPLOY.md) */
+    '07-001/q2': { why: 'page wording ≠ Kata', sends: 'نسبة بين كميات من نفس النوع، لأن الكميتين تمثلان أشخاصًا', warn: /001 q2/ },
+    '07-001/q3': { why: 'page wording ≠ Kata', sends: 'عدد بدون وحدات', warn: /001 q3/ },
+    };
+    const qk = (qid) => { const p = trimId(qid).split('/'); return p[p.length - 2].slice(-6) + '/' + p[p.length - 1]; };
+    const INVISIBLE = /[\u200B-\u200F\u202A-\u202E\u2066-\u2069\u061C]/;
+    const x = read('unit-js/20-xapi.js'), p = read('unit-js/70-platform.js');
+    ['xapiZoneAnswer', 'xapiFieldsAnswer', 'xapiMultiAnswer'].forEach(f => ok('resp', '20-xapi.js: the old builder ' + f + ' is gone', !new RegExp('function ' + f + '\\b').test(x)));
+    ok('resp', '70-platform.js: quizAnswerText (", " / ":" / " | " joins) is gone', !/function quizAnswerText\b/.test(p));
+    ['xapiResponse', 'xapiChoiceResponse', 'xapiMatchingResponse', 'xapiPerformanceResponse', 'xapiNumericResponse', 'xapiTrueFalseResponse'].forEach(f => ok('resp', '20-xapi.js defines ' + f, new RegExp('function ' + f + '\\b').test(x)));
+    ok('resp', 'the bidi strip covers LRM, RLM, ALM, ZWSP and the embeddings / isolates', /_XAPI_BIDI = \/\[\\u200B\\u200E\\u200F\\u202A-\\u202E\\u2066-\\u2069\\u061C\]\/g/.test(x));
+    ['unit-js/unit.js', 'unit-js/quiz-engine.js', 'unit-js/questions.js', 'unit-js/engine.js'].concat(PARTS.map(c => PART_DIR(c) + '/script.js')).forEach(f => {
+      ok('resp', f + ': no direct xapiAnswered / sendStatement720 answered', !/xapiAnswered\s*\(|sendStatement720\(\s*['"]answered/.test(read(f)));
+    });
+    const inMeta = {};
+    PARTS.forEach(c => readMeta(c).subContent.forEach(it => (it.questions || []).forEach(q => { inMeta[qk(q.questionId)] = q; })));
+    eq('resp', 'KATA lists exactly the metadata questions', Object.keys(KATA).sort(), Object.keys(inMeta).sort());
+    Object.keys(KATA).forEach(k => {
+      const q = inMeta[k];
+      eq('resp', k + ': metadata correctXapiResponsesPattern = Kata', q && q.correctXapiResponsesPattern, KATA[k]);
+      if (q && q.questionType === 'performance') {
+        eq('resp', k + ': performance steps = the pattern', (q.correctAnswers || []).map(s => s.stepId + '[.]' + s.response).join('[,]'), KATA[k][0]);
+        eq('resp', k + ': xapiInteractionComponents.steps = the step names', ((q.xapiInteractionComponents || {}).steps || []).map(s => s.id), (q.correctAnswers || []).map(s => s.stepId));
+      }
+    });
+
+    /* a correct round per component, through the real handlers (statement-flow's walk) */
+    const custom = {
+      1: 's1Answer(document.querySelector(\'#s1 .scq-opt[data-opt="no"]\'))',
+      4: 's4Answer(document.querySelector(\'#s4 .scq-opt[data-opt="no"]\'))',
+      6: 'S6_ROWS.forEach(function(r,i){ s6Pick(i, r.correct); }); s6Check()',
+      7: 's7Toggle("a"); s7Toggle("b")',
+      10: 'guidedAnswer(10, document.querySelector(\'#g10 .gc-opt[data-idx="0"]\'))',
+      11: 'guidedAnswer(11, document.querySelector(\'#g11 .gc-opt[data-idx="1"]\'))',
+      14: 'guidedAnswer(14, document.querySelector(\'#g14 .gc-opt[data-idx="1"]\'))',
+      15: 'guidedAnswer(15, document.querySelector(\'#g15 .gc-opt[data-idx="0"]\'))'
+    };
+    const responsesOf = (b, from) => {
+      const out = {};
+      b.stmts().slice(from || 0).filter(s => /^answered/.test(s.verb)).forEach(s => {
+        const r = s.result.response != null ? s.result.response : ((s.result.extensions || {}).student_answer || []).join(', ');
+        (out[qk(s.opts.questionId)] = out[qk(s.opts.questionId)] || []).push(String(r));
+      });
+      return out;
+    };
+    const seen = {};
+    for (const c of PARTS) {
+      const b = await H.boot(c, { lib: true });
+      b.finishBoot();
+      const P = JSON.parse(b.val('JSON.stringify(window.PART_CONFIG)'));
+      for (let n = P.start; n <= P.end; n++) {
+        b.exec('goTo(' + n + ')');
+        const q = JSON.parse(b.val('JSON.stringify(QUESTIONS.find(function(q){return q.screen===' + n + ';}) || null)'));
+        if (q) b.exec(H.enterJs(n, H.answerFor(q, 'right')) + H.clickCheck(n));
+        else if (custom[n] && b.val('!!document.querySelector(\'.screen[data-screen="' + n + '"]\')')) b.exec(custom[n]);
+      }
+      const got = responsesOf(b);
+      Object.keys(got).forEach(k => {
+        if (!(k in KATA)) { ok('resp', c + ': ' + k + ' answered on an id Kata does not have', false, got[k].join(' | ')); return; }
+        seen[k] = true;
+        if (k in KNOWN_GAPS) { eq('resp', c + ': ' + k + ' known gap still as listed (' + KNOWN_GAPS[k].why + ')', got[k], [KNOWN_GAPS[k].sends]); return; }
+        ok('resp', c + ': ' + k + ' correct answer → one of Kata\'s patterns', got[k].length === 1 && KATA[k].includes(got[k][0]), JSON.stringify(got[k]) + ' vs ' + JSON.stringify(KATA[k]));
+      });
+      if (c === '01') ok('resp', '01: the guided 01-003 picks (s10, s11, s14, s15) report nothing (group-A fix, 10.11)', !b.stmts().some(s => /^answered/.test(s.verb) && /-01-003\/q\d/.test((s.opts && s.opts.questionId) || '')));
+      ok('resp', c + ': no response carries an invisible character', Object.keys(got).every(k => got[k].every(r => !INVISIBLE.test(r))), JSON.stringify(got));
+      const gapWarn = w => (c === '07' && Object.keys(KNOWN_GAPS).some(k => KNOWN_GAPS[k].warn && k.startsWith(c + '-') && KNOWN_GAPS[k].warn.test(w)));
+      ok('resp', c + ': no layer warning on a correct round outside the known gaps', !b.warns.some(w => /\[xAPI\] (response|performance)/.test(w) && !gapWarn(w)), b.warns.filter(w => /\[xAPI\]/.test(w)).join(' | '));
+      ok('resp', c + ': no console.error', !b.errors.length, b.errors.slice(0, 3).join(' | '));
+      b.w.close();
+    }
+    Object.keys(KATA).forEach(k => ok('resp', k + ': answered in a correct round', !!seen[k]));
+
+    /* wrong answers keep the form; typed variants the engine accepts still match */
+    {
+      const b = await H.boot('03', { lib: true });
+      b.finishBoot();
+      let n0 = b.stmts().length;
+      b.exec('goTo(30);' + H.enterJs(30, { inputs: ['91', '2'] }) + H.clickCheck(30));
+      const r = responsesOf(b, n0)['03-001/q1'] || [];
+      eq('resp', '03-001/q1 wrong values → the same steps, the learner\'s values', r, [KATA['03-001/q1'][0].replace('[.]90[,]', '[.]91[,]').replace(/\[\.\]1\.5$/, '[.]2')]);
+      b.w.close();
+      const d = await H.boot('06', { lib: true });
+      d.finishBoot();
+      d.exec('goTo(50);' + H.enterJs(50, { inputs: ['3600', '1800'] }) + H.clickCheck(50));
+      ok('resp', '06-001/q1 typed "3600" / "1800" → one of Kata\'s patterns', KATA['06-001/q1'].includes((responsesOf(d)['06-001/q1'] || [])[0]), JSON.stringify(responsesOf(d)));
+      d.w.close();
+      const e = await H.boot('01', { lib: true });
+      e.finishBoot();
+      e.exec('goTo(6); S6_ROWS.forEach(function(r,i){ s6Pick(i, i === 3 ? "diff" : r.correct); }); s6Check()');
+      const m = (responsesOf(e)['01-002/q2'] || [])[0] || '';
+      const pairs = m.split('[,]');
+      eq('resp', '01-002/q2 one wrong row → four pairs, the three right ones first in Kata\'s order', pairs.slice(0, 3), KATA['01-002/q2'][0].split('[,]').slice(0, 3));
+      ok('resp', '01-002/q2 … and the wrong pair last, as placed', /\[\.\]/.test(pairs[3] || '') && pairs[3] !== KATA['01-002/q2'][0].split('[,]')[3], pairs[3]);
+      e.w.close();
     }
   }
 

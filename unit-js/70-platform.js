@@ -54,26 +54,42 @@ function _qKeysFor(n) {
 
 /* ═══════════════════ Reporting call sites (quiz-engine.js) ═══════════════════ */
 
-/* What the learner answered, as they see it. Single choice: the option's own text (tooltips and
-   zoom buttons stripped by xapiAnswerText), else an image's alt, else the option id. Value input:
-   the boxes in data-slot order — a ratio row reads "3:2", anything else "a | b". */
-function quizAnswerText(screen, q, st) {
+/* The option's visible label — the catalogue's choice text (tooltips and zoom buttons stripped,
+   fractions and the lawn figures read by xapiAnswerText), else an image's alt, else the option id. */
+function _optLabel(screen, id) {
+  var o = document.querySelector('#q' + screen + ' .scq-opt[data-id="' + id + '"]');
+  if (!o) return String(id);
+  var t = xapiAnswerText(o.querySelector('.scq-opt-text') || o);
+  var img = t ? null : o.querySelector('img');
+  return t || (img && img.getAttribute('alt')) || String(id);
+}
+
+/* The spec xapiResponse() takes for this screen — the UI value(s), which the builders in 20-xapi.js
+   resolve to the metadata strings (percent-05's quizAnswerSpec, 2026-11-10, MOE runbook):
+     single (yes/no, QUESTIONS tf map) → {value: 'true' | 'false'}       true-false
+     single / multi                   → {choices: [label, …]}             choice
+     value-input, one box             → {value}                           numeric
+     value-input, several boxes       → {steps} for a performance question (the class E proposals);
+                                        {text: 'a:b'} for a ratio fill-in, the separator taken from
+                                        the catalogue's own answer ('3:2', '3,600/1,800') */
+function quizAnswerSpec(screen, q, st) {
   try {
-    if (q.type === 'single' || q.type === 'multi') {
-      var ids = q.type === 'multi' ? (st.selectedSet || []) : [st.selected];
-      return ids.map(function (id) {
-        var o = document.querySelector('#q' + screen + ' .scq-opt[data-id="' + id + '"]');
-        if (!o) return String(id);
-        var t = xapiAnswerText(o.querySelector('.scq-opt-text') || o);
-        var img = t ? null : o.querySelector('img');
-        return t || (img && img.getAttribute('alt')) || String(id);
-      }).join(', ');
-    }
+    if (q.type === 'single' && q.tf) return { value: q.tf[st.selected] || '' };
+    if (q.type === 'single') return { choices: st.selected != null ? [_optLabel(screen, st.selected)] : [] };
+    if (q.type === 'multi')  return { choices: (st.selectedSet || []).map(function (id) { return _optLabel(screen, id); }) };
     if (q.type === 'value-input') {
-      return (st.selectedSet || []).join(q.ratioRows ? ':' : ' | ');
+      var ins = (st.selectedSet || []).map(function (v) { return v == null ? '' : String(v); });
+      if ((q.correctInputs || []).length === 1) return { value: ins[0], text: ins[0] };
+      return { steps: ins, text: ins.join(_ratioSep(screen)) };
     }
-    return JSON.stringify(st.selectedSet || st.selected || '');
-  } catch (e) { return ''; }
+    return { text: JSON.stringify(st.selectedSet || st.selected || '') };
+  } catch (e) { console.error('[xAPI] answer spec', screen, e); return { text: '' }; }
+}
+/* ':' unless the catalogue writes this ratio as a fraction ('3,600/1,800') */
+function _ratioSep(screen) {
+  var item = _itemFor(screen), k = _qKeysFor(screen)[0];
+  var ca = (item && k) ? (xapiQMeta(item, k).correctAnswers || []) : [];
+  return (typeof ca[0] === 'string' && /^[^:\/]+\/[^:\/]+$/.test(ca[0])) ? '/' : ':';
 }
 
 /* Called from quizCheck() after the verdict is known and BEFORE any marking — every submit, all
@@ -94,11 +110,11 @@ function onQuizAnswered(screen, q, st, correct) {
       var v = (st.selectedSet || [])[i];
       var s = q.statements[i];
       if (!s) return;
-      xapiAnswered(item, k, v === String(s.correct), isLast, v === 'true' || v === 'false' ? v : '');
+      xapiAnswered(item, k, v === String(s.correct), isLast, { value: v === 'true' || v === 'false' ? v : '' });
     });
     return;
   }
-  xapiAnswered(item, keys[0], correct, isLast, q.tf ? (q.tf[st.selected] || '') : quizAnswerText(screen, q, st));
+  xapiAnswered(item, keys[0], correct, isLast, quizAnswerSpec(screen, q, st));
 }
 
 /* Called at the very tail of quizCheck(), after the last commitment (done / lw / verdict) on every
@@ -135,9 +151,13 @@ var CUSTOM_KEYS = {
   6: { correct: function (s) {
          return S6_ROWS.every(function (r, i) { return (s.picks || [])[i] === r.correct; });
        },
+       /* matching (01-002 q2): one pair per row picked — the row text, and the column as an index
+          into the catalogue's answers.target ('same' = 0 "…من نفس النوع", 'diff' = 1 "…من أنواع مختلفة"),
+          so the response is Kata's 'source[.]target[,]…' (MOE runbook 2026-11-10) */
        text: function (s) {
-         var col = { same: 'من نفس النوع', diff: 'من أنواع مختلفة' };
-         return S6_ROWS.map(function (r, i) { return r.text + ': ' + (col[(s.picks || [])[i]] || '—'); }).join(' | ');
+         var col = { same: 0, diff: 1 };
+         return { pairs: S6_ROWS.map(function (r, i) { return { source: r.text, target: col[(s.picks || [])[i]] }; })
+                                .filter(function (p) { return p.target != null; }) };
        } }
 };
 function _guidedCfg(n) { return (typeof GUIDED !== 'undefined') ? GUIDED.find(function (g) { return g.screen === n; }) : null; }
