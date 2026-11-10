@@ -49,6 +49,7 @@ function makeReporter(name) {
 /* opts.search      query string (default: '?slxapi=1&registration=r1' when opts.lib, '' otherwise)
    opts.hash        '#screen=N'
    opts.lib         execute the stub library after the page scripts (+ XAPI_USING_G)
+   opts.libFile     which stub: 'xapi-720-k.js' (default) or 'xapi-720-l.js' (the leave save, 2026-11-10)
    opts.keepState   do not __reset() the stub's sessionStorage (simulated reload)
    opts.storage     { session: {...}, local: {...} } seeded before any script runs
    opts.meta        inject window.METADATA from metadata/<part>.json (default true) */
@@ -105,7 +106,7 @@ async function boot(c, opts) {
 
   if (opts.lib) {
     /* from THIS folder, not BASE: a deployment package (verify-report.js <pkg>) correctly has no _test/ */
-    exec(fs.readFileSync(path.join(__dirname, 'xapi-720-k.js'), 'utf8'), 'stub');
+    exec(fs.readFileSync(path.join(__dirname, opts.libFile || 'xapi-720-k.js'), 'utf8'), 'stub');
     exec('window.XAPI_USING_G = true;');
     if (!opts.keepState) exec('window.__reset();');
   }

@@ -44,7 +44,7 @@ collision is silent and last-wins (`_test/verify-report.js` asserts it).
 
 ## Reporting and resume
 
-xAPI to Kata through the MOE library (`xapi-720-k.js`, CDN, never shipped), the shared
+xAPI to Kata through the MOE library (`xapi-720-l.js` since 2026-11-10, CDN, never shipped), the shared
 "מצאתם בעיה?" form, and resume through Kata's State API — one document per component. The
 platform owns routing: a component's last button reports `completed` and stops. Design and
 decisions: `docs-and-tools/REPORTING-RESUME.md`; family guide:
@@ -53,7 +53,7 @@ decisions: `docs-and-tools/REPORTING-RESUME.md`; family guide:
 Local walk with the stand-in library, served from the folder above the repo:
 
 ```
-http://localhost:<port>/methodica-ar-math-ratio-04/methodica-ar-math-ratio-04-01/index.html?xapiLib=../_test/xapi-720-k.js&resetState
+http://localhost:<port>/methodica-ar-math-ratio-04/methodica-ar-math-ratio-04-01/index.html?xapiLib=../_test/xapi-720-l.js&resetState
 ```
 
 `&dev=1` gives free navigation and the hops between components.
