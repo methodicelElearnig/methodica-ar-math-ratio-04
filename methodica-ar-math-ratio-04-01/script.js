@@ -48,15 +48,15 @@ var XAPI_SCREEN_QUESTIONS = {
   1: ['q1'],
   4: ['q1'],
   6: ['q2'],
-  10: ['q1'],
-  11: ['q2'],
-  14: ['q3'],
-  15: ['q4'],
   19: ['q1']
 };
 
-/* Items carrying a code-graded question (used as a set). */
-var XAPI_EVAL_ITEMS = { '001': 1, '002': 1, '003': 1, '004': 1 };
+/* Items carrying a code-graded question (used as a set). 003, the guided walk-through (s10, s11,
+   s14, s15), is out since 2026-11-10 (unit owner's rule of 10.11, as ratio-05 a572ab3; MOE runbook
+   class H): Kata declares no question on it, so its picks are kept and saved (onCustomAnswered →
+   flushResumeSave) but report nothing, its 'completed' carries no result, and part 01 scores on
+   the four catalogue questions (001 q1, 002 q1, q2, 004 q1) instead of eight. */
+var XAPI_EVAL_ITEMS = { '001': 1, '002': 1, '004': 1 };
 
 /* No pass gate on screen — see partResult() (70-platform.js). */
 var XAPI_GATE = null;

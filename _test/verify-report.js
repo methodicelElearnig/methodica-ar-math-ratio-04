@@ -422,7 +422,7 @@ const last = u => trimId(u).split('/').pop();
      the pattern list for every question, copied from Kata (read 10.11.26); a list with two entries
      accepts either (Kata's own alternatives, '3:2' / '3 : 2'). The three class E questions carry
      the performance pattern proposed in metadata/ and DEPLOY.md. Guided 01-003 is NOT here: Kata
-     declares no question on it (left as is, waiting for Nimrod — see KNOWN_GAPS). */
+     declares no question on it, and since the group-A fix (10.11) it reports nothing. */
   {
     const KATA = {
     '01-001/q1': ["false"],
@@ -466,7 +466,7 @@ const last = u => trimId(u).split('/').pop();
     };
     /* known, listed in DEPLOY.md; each one must still be what it is (a fix makes the check fail) */
     const KNOWN_GAPS = {
-    'guided-01-003': { why: 'guided item, Kata declares no question — waits for Nimrod' },
+
     /* class A, wording: the page's option text ≠ Kata's answer text (lane-D 04-07). Fix = the page
        or Kata takes the other's wording — a translator's / Vadim's decision (DEPLOY.md) */
     '07-001/q2': { why: 'page wording ≠ Kata', sends: 'نسبة بين كميات من نفس النوع، لأن الكميتين تمثلان أشخاصًا', warn: /001 q2/ },
@@ -526,13 +526,14 @@ const last = u => trimId(u).split('/').pop();
       }
       const got = responsesOf(b);
       Object.keys(got).forEach(k => {
-        if (!(k in KATA)) { ok('resp', c + ': ' + k + ' answered on an id Kata does not have — only the known guided 01-003', /^01-003\//.test(k) && 'guided-01-003' in KNOWN_GAPS, got[k].join(' | ')); return; }
+        if (!(k in KATA)) { ok('resp', c + ': ' + k + ' answered on an id Kata does not have', false, got[k].join(' | ')); return; }
         seen[k] = true;
         if (k in KNOWN_GAPS) { eq('resp', c + ': ' + k + ' known gap still as listed (' + KNOWN_GAPS[k].why + ')', got[k], [KNOWN_GAPS[k].sends]); return; }
         ok('resp', c + ': ' + k + ' correct answer → one of Kata\'s patterns', got[k].length === 1 && KATA[k].includes(got[k][0]), JSON.stringify(got[k]) + ' vs ' + JSON.stringify(KATA[k]));
       });
+      if (c === '01') ok('resp', '01: the guided 01-003 picks (s10, s11, s14, s15) report nothing (group-A fix, 10.11)', !b.stmts().some(s => /^answered/.test(s.verb) && /-01-003\/q\d/.test((s.opts && s.opts.questionId) || '')));
       ok('resp', c + ': no response carries an invisible character', Object.keys(got).every(k => got[k].every(r => !INVISIBLE.test(r))), JSON.stringify(got));
-      const gapWarn = w => /'003'|"003"|003/.test(w) || (c === '07' && Object.keys(KNOWN_GAPS).some(k => KNOWN_GAPS[k].warn && k.startsWith(c + '-') && KNOWN_GAPS[k].warn.test(w)));
+      const gapWarn = w => (c === '07' && Object.keys(KNOWN_GAPS).some(k => KNOWN_GAPS[k].warn && k.startsWith(c + '-') && KNOWN_GAPS[k].warn.test(w)));
       ok('resp', c + ': no layer warning on a correct round outside the known gaps', !b.warns.some(w => /\[xAPI\] (response|performance)/.test(w) && !gapWarn(w)), b.warns.filter(w => /\[xAPI\]/.test(w)).join(' | '));
       ok('resp', c + ': no console.error', !b.errors.length, b.errors.slice(0, 3).join(' | '));
       b.w.close();
