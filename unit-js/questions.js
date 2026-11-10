@@ -66,6 +66,7 @@ const QUESTIONS = [
     content: `<img class="content-img" data-no-zoom src="assets/img/p1-runners.jpeg" alt="فتاتان تركضان في ملعب الرياضة">`,
     options: [{ id: 'a', html: 'نعم' }, { id: 'b', html: 'لا' }],
     correct: 'b',
+    tf: { a: 'true', b: 'false' },   // 02-001 q2 is true/false in the catalogue: report the boolean (onQuizAnswered)
     hint: { body: 'ركضت كل منهما مسافة مختلفة. هل النسبة بين المسافتين يمكّننا من معرفة أيهما قطعت المسافة بسرعة أكبر؟' },
     fb: { retry: 'الإجابة غير دقيقة، هل نحاول مرة أخرى؟',
       correct: { title: 'إجابة دقيقة‎!', body: `لا يمكن الاستنتاج أيهما أسرع بناءً على النسبة بين المسافتين فقط. لمعرفة أيهما أسرع، علينا حساب سرعة كل منهما - أي، عدد الأمتار التي تقطعها كلٌّ منهما في وحدة زمن واحدة (ثانية)‎.` },

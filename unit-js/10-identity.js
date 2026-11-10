@@ -19,7 +19,7 @@ window.XAPI_UNIT_ID = 'methodica-ar-math-ratio-04';
 /* Last path segment of a canonical id — the short slug the bug-report form records. */
 function shortId(u){ return String(u || '').replace(/\/+$/, '').split('/').pop(); }
 
-/* Resume (KATA State API) — ACTIVE. True also switches the loader to xapi-720-k.js (the State
+/* Resume (KATA State API) — ACTIVE. True also switches the loader to xapi-720-l.js (the State
    transport + state diagnostics), so this flag changes reporting too — see 50-loader.js. */
 var RESUME_ENABLED = true;
 

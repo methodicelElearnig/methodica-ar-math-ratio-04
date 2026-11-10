@@ -14,6 +14,11 @@
      painter  every question screen repaints without throwing, clean and answered, idempotently
      report   the issue form carries unit / component / item / page on every screen
      markup   boot cover in every index.html
+     write-guard  2026-11-03 hardening: no write before the restore, the drain persists as read, a
+              failed read closes every write (BOOT-AND-RESUME-HARDENING-2026-11-03.md §2.6 a-l)
+     boot     per component: the net raises the flag on ?registration, the library is preloaded,
+              images off the landing screen are lazy (§2.6 m-p, §2.10 q)
+     leave    the leave save goes through xapi-720-l.js's saveState720OnLeave (§2.10 r-u)
 
      NODE_PATH=C:/lomda-test/node_modules node _test/verify-report.js
    ═══════════════════════════════════════════════════════════════════════════════════════ */
@@ -48,8 +53,8 @@ const last = u => trimId(u).split('/').pop();
   ok('layer', 'one ?v= on every script in every component', versions.size === 1 && !versions.has(undefined), [...versions].join(', '));
 
   const loader = read('unit-js/50-loader.js');
-  ok('layer', "-k is the resume library and the XAPI_USING_G regex knows it",
-    /RESUME_ENABLED \? 'xapi-720-k\.js'/.test(loader) && /xapi-720-\[[a-z]*k[a-z]*\]\\\.js/.test(loader));
+  ok('layer', "-l is the resume library and the XAPI_USING_G regex knows it (2026-11-10, §2.10)",
+    /RESUME_ENABLED \? 'xapi-720-l\.js'/.test(loader) && /xapi-720-\[[a-z]*l[a-z]*\]\\\.js/.test(loader));
 
   const shared = fs.readdirSync(path.join(BASE, 'unit-js')).filter(f => f.endsWith('.js')).map(f => 'unit-js/' + f);
   for (const c of PARTS) {
@@ -260,6 +265,149 @@ const last = u => trimId(u).split('/').pop();
       eq('score', '03 ' + tag + ' counts 0: 1 of 2, success false', run(pairs), [false, 0.5]);
     }
     run({});
+  }
+
+  /* ── write-guard (BOOT-AND-RESUME-HARDENING-2026-11-03.md §2.6 a-l, 2026-11-10) ──
+     Nothing is written before the restore; the drain persists the document AS READ; a failed read
+     (anything but a 404) closes every write. Part 01 with a seeded v6 document saved on screen 2.
+     Run against the previous package (LOMDA_BASE=<pkg>) these fail: that is the proof they see it. */
+  {
+    const SLUG = PART_DIR('01');
+    const SEED = { v: 6, component: SLUG, payload: { currentScreen: 2 }, done: {}, doneItems: {}, hints: {}, picks: {},
+      ui: { character: 'character-white' }, results: {} };
+    const seeded = async () => {
+      const b = await H.boot('01', { lib: true });
+      b.exec('__setState(' + JSON.stringify(SEED) + ');');
+      return b;
+    };
+    const store = b => b.state() || {};
+    const pay = b => (store(b).payload || {}).currentScreen;
+    const sleep = ms => new Promise(r => setTimeout(r, ms));
+    {
+      const b = await seeded();
+      b.exec("readUnitState(); setUnitCharacter('character-orange'); goTo(1);");
+      eq('write-guard', 'a: a pick + goTo before _resumeReady leave the stored payload on screen 2', pay(b), 2);
+      eq('write-guard', 'a: the pick is queued', b.val('_pendingProfile && _pendingProfile.character'), 'character-orange');
+      b.exec('window.__held = null; window.saveState720Debounced = function (id, doc) { window.__held = doc; };' +
+        '_resumeReady = true; drainPendingUnitState();');
+      eq('write-guard', 'b: the drain keeps the stored payload on screen 2', pay(b), 2);
+      eq('write-guard', 'b: ... and stores the picked character', (store(b).ui || {}).character, 'character-orange');
+      eq('write-guard', 'b: ... under this component', store(b).component, SLUG);
+      b.exec('applyExecutionState(_unitState.payload);');
+      eq('write-guard', 'c: the restore lands on screen 2', b.val('currentScreen'), 2);
+      eq('write-guard', 'd: the document the debounced write holds still says screen 2', b.val('window.__held && window.__held.payload && window.__held.payload.currentScreen'), 2);
+      b.w.close();
+    }
+    {
+      const b = await seeded();
+      b.exec("readUnitState(); goTo(1); markSent('doneItems', 'x');");
+      eq('write-guard', 'e: a ledger mark before _resumeReady writes nothing', pay(b), 2);
+      eq('write-guard', 'e: ... but is kept in memory', b.val('_unitState.doneItems.x'), true);
+      b.exec('_resumeReady = true; flushResumeSave();');
+      eq('write-guard', 'f: the next save carries the mark', (store(b).doneItems || {}).x, true);
+      b.w.close();
+    }
+    {
+      const b = await seeded();
+      b.exec("window.__realLoad = loadState720; window.loadState720 = function () { return null; };" +
+        "window.stateLastResult720 = function () { return { op: 'load', status: 500, ok: false }; }; readUnitState();");
+      eq('write-guard', 'g: a 500 read is a failed read', b.val('_resumeReadFailed'), true);
+      eq('write-guard', 'g: ... with no payload in memory', b.val('_unitState.payload'), null);
+      b.exec("_resumeReady = true; window.__p = persistUnitState(_unitState); flushResumeSave(); markSent('done', 'y'); goTo(1); scheduleResumeSave();");
+      await sleep(900);
+      eq('write-guard', 'h: persistUnitState refuses', b.val('window.__p'), false);
+      const real = JSON.parse(b.val('JSON.stringify(window.__realLoad(RESUME_STATE_ID))')) || {};
+      eq('write-guard', 'h: the stored payload is still screen 2', (real.payload || {}).currentScreen, 2);
+      ok('write-guard', 'h: nothing of the session reached the store', !(real.done || {}).y);
+      b.exec("window.loadState720 = window.__realLoad; window.stateLastResult720 = function () { return { op: 'load', status: 200, ok: true }; }; readUnitState();");
+      eq('write-guard', 'i: a later good read reopens', b.val('_resumeReadFailed'), false);
+      eq('write-guard', 'i: ... with the saved payload', b.val('_unitState.payload && _unitState.payload.currentScreen'), 2);
+      b.exec("window.loadState720 = function () { return null; }; window.stateLastResult720 = function () { return { op: 'load', status: 404, ok: true, reason: 'absent' }; }; readUnitState();");
+      eq('write-guard', 'j: a 404 is a fresh document, not a failure', b.val('_resumeReadFailed'), false);
+      eq('write-guard', 'j: ... with no payload', b.val('_unitState.payload'), null);
+      b.w.close();
+    }
+    const res = read('unit-js/40-resume.js');
+    const fnBody = (src, name) => { const m = new RegExp('function ' + name + '\\([^)]*\\) \\{[\\s\\S]*?\\n\\}').exec(src); return m ? m[0] : ''; };
+    const drain = fnBody(res, 'drainPendingUnitState').replace(/\/\*[\s\S]*?\*\//g, '');
+    ok('write-guard', 'k: the drain never captures, it persists the document as read', !/captureUnitState\(/.test(drain) && /persistUnitState\(_unitState\)/.test(drain));
+    ok('write-guard', 'k: markSent persists only after _resumeReady', /if \(!_resumeReady\) return;\s*try \{ persistUnitState/.test(fnBody(res, 'markSent')));
+    ok('write-guard', 'k: persistUnitState opens with the failed-read refusal', /^function persistUnitState\(doc\) \{\s*var ok = false;\s*(\/\*[\s\S]*?\*\/\s*)?if \(_resumeReadFailed\)/.test(fnBody(res, 'persistUnitState')));
+    for (const f of ['scheduleResumeSave', 'flushResumeSave', 'flushResumeSaveLeaving'])
+      ok('write-guard', 'k: ' + f + ' bails on a failed read', /if \(!RESUME_ENABLED \|\| !_resumeReady \|\| _restoring \|\| _resumeReadFailed\) return;/.test(fnBody(res, f)));
+    const ld = read('unit-js/50-loader.js');
+    ok('write-guard', 'l: phase B retries a failed read', /if \(_resumeReadFailed\) \{\s*_saved = readUnitState\(\);/.test(ld));
+    ok('write-guard', 'l: a throwing restore keeps a failed read closed', /_resumeReady = !_resumeReadFailed;/.test(ld));
+    ok('write-guard', 'l: phase A keeps the cover on a failed read', /if \(!_payload && !_resumeReadFailed\) dropBootCover\(\);/.test(ld));
+    ok('write-guard', 'l: the restore stays inside the !_resumeReadFailed wrapper and keeps _devHarness', /if \(!_resumeReadFailed\) \{[\s\S]*if \(_payload && !_devHarness\)[\s\S]*\}\s*\/\* if \(!_resumeReadFailed\) \*\//.test(ld));
+    ok('write-guard', 'l: a screen reached during the boot window is saved after phase B',
+      /if \(!_resumed\) \{ try \{ xapiOnScreen\(currentScreen\); \} catch \(e\) \{\} \}[\s\S]{0,700}if \(!_resumed && currentScreen !== PART_FIRST\) \{ try \{ scheduleResumeSave\(\); \}/.test(ld));
+  }
+
+  /* ── boot window, per component (§2.6 m-p, §2.10 q) ── */
+  {
+    const { JSDOM } = require('jsdom');
+    const letter = (/RESUME_ENABLED \? 'xapi-720-([a-z])\.js'/.exec(read('unit-js/50-loader.js')) || [])[1];
+    eq('boot', 'q: the loader asks for -l', letter, 'l');
+    ok('boot', 'q: the XAPI_USING_G regex knows -l', /xapi-720-\[[a-z]*l[a-z]*\]\\\.js/.test(read('unit-js/50-loader.js')));
+    const CDN = 'https://lomdot.education.gov.il/metodica/720active/common/';
+    for (const c of PARTS) {
+      const src = html(c);
+      const doc = new JSDOM(src).window.document;
+      const nets = [...doc.querySelectorAll('script:not([src])')].filter(s => /boot-cover/.test(s.textContent));
+      eq('boot', 'm: ' + c + ' exactly one inline net', nets.length, 1);
+      const net = nets[0] ? nets[0].textContent : '';
+      ok('boot', 'm: ' + c + ' the net raises the flag on a registration', /registration=/.test(net) && /__resumeInFlight = true/.test(net));
+      ok('boot', 'm: ' + c + ' the net keeps 800 ms and the 11000 ceiling', /__resumeInFlight/.test(net) && /\b800\b/.test(net) && /\b11000\b/.test(net));
+      for (const [q, want] of [['?slxapi=1&registration=abc', true], ['', false]]) {
+        const d = new JSDOM(src, { url: 'http://localhost:8777/' + UNIT + '/' + PART_DIR(c) + '/index.html' + q, runScripts: 'dangerously' });
+        eq('boot', 'n: ' + c + ' __resumeInFlight ' + (want ? 'raised with' : 'not raised without') + ' a registration', d.window.__resumeInFlight === true, want);
+        d.window.close();
+      }
+      const pre = [...doc.querySelectorAll('head link[rel=preload][as=script]')].map(l => l.getAttribute('href'));
+      eq('boot', 'o: ' + c + ' preloads the wrapper and the loader\'s library, byte-equal', pre, [CDN + 'xapiwrapper.min.js', CDN + 'xapi-720-' + letter + '.js']);
+      ok('boot', 'o: ' + c + ' no crossorigin on the preloads', ![...doc.querySelectorAll('head link[rel=preload]')].some(l => l.hasAttribute('crossorigin')));
+      ok('boot', 'o: ' + c + ' preconnects to Kata', !!doc.querySelector('head link[rel=preconnect][href="https://kata.cet.ac.il"]'));
+      const land = doc.querySelector('.screen.active');
+      const imgs = [...doc.querySelectorAll('img[src]')].filter(i => /^assets\//.test(i.getAttribute('src')) || /^\.\.\/unit-assets\/img\/.*\.png$/.test(i.getAttribute('src')));
+      const bad = imgs.filter(i => !!(land && land.contains(i)) === (i.getAttribute('loading') === 'lazy'));
+      ok('boot', 'p: ' + c + ' images off the landing screen are lazy, on it eager', !bad.length, bad.map(i => i.getAttribute('src')).join(', '));
+      const vids = [...doc.querySelectorAll('video[autoplay][src]')].filter(v => !(land && land.contains(v)));
+      ok('boot', 'p: ' + c + ' no hidden autoplay video carries an inline src', !vids.length, vids.map(v => v.getAttribute('src')).join(', '));
+    }
+  }
+
+  /* ── leave save via xapi-720-l.js (§2.10 r-u) ── */
+  {
+    ok('leave', 'r: both stubs exist', fs.existsSync(path.join(__dirname, 'xapi-720-k.js')) && fs.existsSync(path.join(__dirname, 'xapi-720-l.js')));
+    const res = read('unit-js/40-resume.js');
+    ok('leave', 's: flushResumeSaveOnLeave goes through flushResumeSaveLeaving',
+      /function flushResumeSaveOnLeave\(\) \{\s*if \(_leavingToNextPart\) return;\s*flushResumeSaveLeaving\(\);\s*\}/.test(res));
+    ok('leave', 's: flushResumeSaveLeaving prefers saveState720OnLeave, typeof-guarded',
+      /typeof window\.saveState720OnLeave === 'function'\) \? window\.saveState720OnLeave : window\.saveState720/.test(res));
+    for (const lib of ['xapi-720-l.js', 'xapi-720-k.js']) {
+      const b = await H.boot('01', { lib: true, libFile: lib });
+      b.finishBoot();
+      b.exec('goTo(3);');
+      b.w.dispatchEvent(new b.w.Event('pagehide'));
+      const lw = JSON.parse(b.val('JSON.stringify(window.__leaveWrites ? window.__leaveWrites() : null)'));
+      if (lib === 'xapi-720-l.js') {
+        ok('leave', 't: on -l the pagehide save goes through saveState720OnLeave with screen 3', !!lw && lw.length > 0 && lw[lw.length - 1].cs === 3, JSON.stringify(lw));
+      } else {
+        ok('leave', 't: on -k there is no saveState720OnLeave and nothing throws', lw === null && b.val('typeof window.saveState720OnLeave') === 'undefined' && !b.errors.length, b.errors.join(' | '));
+      }
+      eq('leave', 't: ' + lib + ' the stored document is at screen 3', ((b.state() || {}).payload || {}).currentScreen, 3);
+      b.w.close();
+    }
+    {
+      const b = await H.boot('01', { lib: true, libFile: 'xapi-720-l.js' });
+      b.exec('__setState(' + JSON.stringify({ v: 6, component: PART_DIR('01'), payload: { currentScreen: 2 }, done: {}, doneItems: {}, hints: {}, picks: {}, ui: { character: null }, results: {} }) + ');');
+      b.exec("window.__realLoad = loadState720; window.loadState720 = function () { return null; }; window.stateLastResult720 = function () { return { op: 'load', status: 503, ok: false }; };" +
+        'readUnitState(); _resumeReady = true; goTo(4); flushResumeSaveOnLeave();');
+      eq('leave', 'u: after a failed read the leave save writes nothing', JSON.parse(b.val('JSON.stringify(__leaveWrites())')).length, 0);
+      eq('leave', 'u: ... and the stored document is untouched (screen 2)', b.val('window.__realLoad(RESUME_STATE_ID).payload.currentScreen'), 2);
+      b.w.close();
+    }
   }
 
   R.done();
